@@ -37,8 +37,8 @@ jobs:
       - name: Add Plugins splashscreen
         run: cordova plugin add cordova-plugin-splashscreen
 
-      - name: Add Plugins whitelist
-        run: cordova plugin add cordova-plugin-whitelist
+      #- name: Add Plugins whitelist
+      #  run: cordova plugin add cordova-plugin-whitelist
 
       - name: Add Plugins device
         run: cordova plugin add cordova-plugin-device
