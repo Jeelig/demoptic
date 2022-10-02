@@ -2,11 +2,15 @@
 var routes = [
   {
     path: '/',
-    url: './index.html',
+    url: './pages/home.html',
   },
   {
-    path: '/about/',
+    path: '/opticiens/',
     url: './pages/about.html',
+  },
+  {
+    path: '/opticien/:id/',
+    url: './pages/opticien.html',
   },
   {
     path: '/form/',

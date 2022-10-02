@@ -1,0 +1,382 @@
+
+    <div class="page" data-name="home" ng-controller="HomeController" ng-init="init()">
+        <!-- Top Navbar -->
+        <div class="navbar">
+            <div class="navbar-bg" style="background-color: #fff;"></div>
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link icon-only panel-open" data-panel="left">
+                        <i class="icon f7-icons if-not-md" style="color: #000;">menu</i>
+                        <i class="icon material-icons if-md" style="color: #000;">menu</i>
+                    </a>
+                </div>
+                <div class="title">Optic Store Finder</div>
+                <div class="right">
+                    <a href="#" class="link icon-only">
+                        <i class="icon material-icons" style="color: #000;">star_border</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Toolbar--
+        <div class="toolbar toolbar-bottom">
+        <div class="toolbar-inner">
+            <a href="#" class="link">Left Link</a>
+            <a href="#" class="link">Right Link</a>
+        </div>
+        </div>-->
+        <div class="toolbar tabbar tabbar-labels toolbar-bottom" style="background-color: #fff; border-top: solid 1px #000; height: 85px;">
+            <div class="toolbar-inner" style="margin: 8px 0 8px 0;">
+                <a href="#tab-home" class="tab-link tab-link-active" ng-click="setTab('home')">
+                    <div class="icon material-icons" style="color: #000;">
+                        <img src="assets/img/home/menu_home.png" ng-show="menu_item!='home'"/>
+                        <img src="assets/img/home/menu_home_active.png" ng-show="menu_item=='home'" class="ng-hide" />
+                    </div>
+                    <span class="tabbar-label" ng-class="{'clr-active': menu_item=='home'}">Accueil</span>
+                </a>
+                <a href="#tab-rdv" class="tab-link" ng-click="setTab('rdv')">
+                    <div class="icon f7-icons" style="color: #000;">
+                        <img src="assets/img/home/menu_rdv.png" ng-show="menu_item!='rdv'"/>
+                        <img src="assets/img/home/menu_rdv_active.png" ng-show="menu_item=='rdv'" class="ng-hide" class="ng-hide"  />
+                    </div>
+                    <span class="tabbar-label" ng-class="{'clr-active': menu_item=='rdv'}">Rendez-vous</span>
+                </a>
+                <a href="#tab-vsg" class="tab-link" ng-click="setTab('vsg')">
+                    <div class="icon f7-icons" style="color: #000;">
+                        <img src="assets/img/home/menu_visagisme.png" ng-show="menu_item!='vsg'"/>
+                        <img src="assets/img/home/menu_visagisme_active.png" ng-show="menu_item=='vsg'" class="ng-hide" />
+                    </div>
+                    <span class="tabbar-label" ng-class="{'clr-active': menu_item=='vsg'}">Visagisme</span>
+                </a>
+                <a href="#tab-trends" class="tab-link" ng-click="setTab('trends')">
+                    <div class="bulle_green"></div>
+                    <div class="icon f7-icons" style="color: #000;">
+                        <img src="assets/img/home/menu_trends.png" ng-show="menu_item!='trends'"/>
+                        <img src="assets/img/home/menu_trends_active.png" ng-show="menu_item=='trends'" class="ng-hide" />
+                    </div>
+                    <span class="tabbar-label" ng-class="{'clr-active': menu_item=='trends'}">Tendances</span>
+                </a>
+                <a href="#tab-user" class="tab-link" ng-click="setTab('account')">
+                    <div class="icon f7-icons" style="color: #000;">
+                        <img src="assets/img/home/menu_compte.png" ng-show="menu_item!='account'"/>
+                        <img src="assets/img/home/menu_compte_active.png" class="ng-hide" ng-show="menu_item=='account'" class="ng-hide" />
+                    </div>
+                    <span class="tabbar-label" ng-class="{'clr-active': menu_item=='account'}">Mon compte</span>
+                </a>
+            </div>
+        </div>
+
+        <div style="margin-top: calc(var(--f7-navbar-height) + var(--f7-safe-area-top)); height: calc((180 * 100vw) / 877);">
+            <img src="assets/img/optic.png" style="width: 100%;" />
+        </div>
+
+        <div class="tabs opt">
+            <div id="tab-home" class="page-content tab tab-active">
+                <div style="padding: 30px 40px 20px 40px; color: #098fa1; font-size: 20px; text-align: center;">
+                    Un guide, votre liberté de choisir.
+                </div>
+    
+                <a href="/opticiens/" class="item-content item-link">
+                    <div class="bluebloc">
+                        <div class="kpm"><img src="assets/img/home/home_visage.png" style="width: auto; height: 65px;" /></div>
+                        <div class="indic">Votre visage</div>
+                    </div>
+                </a>
+                <a href="/opticiens/" class="item-content item-link">
+                    <div class="bluebloc">
+                        <div class="kpm"><img src="assets/img/home/home_face.png" style="width: auto; height: 67px;" /></div>
+                        <div class="indic">Votre style</div>
+                    </div>
+                </a>
+                <a href="/opticien/" class="item-content item-link">
+                    <div class="bluebloc">
+                        <div class="kpm"><img src="assets/img/home/home_home.png" style="width: auto; height: 55px; margin-right: -20px;" /></div>
+                        <div class="indic">Votre opticien</div>
+                    </div>
+                </a>
+                <a href="/opticiens/" class="item-content item-link">
+                    <div class="bluebloc">
+                        <div class="kpm icon"><img src="assets/img/home/home_settings.png" style="width: auto; height: 60px; margin-right: -10px;" /></div>
+                        <div class="indic">L'après vente</div>
+                    </div>
+                </a>
+            </div>
+            <div id="tab-rdv" class="page-content tab">
+                <div class="rdv_list">
+                    <ul>
+                        <li ng-class="{'active': rdv_tab=='coming'}" ng-click="rdv_tab='coming'">A VENIR</li>
+                        <li ng-class="{'active': rdv_tab=='past'}" ng-click="rdv_tab='past'">PASSES</li>
+                    </ul>
+                </div>
+                <div class="block">
+                    <p>RENDEZ-VOUS</p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam enim quia molestiae facilis laudantium voluptates obcaecati officia cum, sit libero commodi. Ratione illo suscipit temporibus sequi iure ad laboriosam
+                        accusamus?
+                    </p>
+                    <p>
+                        Saepe explicabo voluptas ducimus provident, doloremque quo totam molestias! Suscipit blanditiis eaque exercitationem praesentium reprehenderit, fuga accusamus possimus sed, sint facilis ratione quod, qui dignissimos
+                        voluptas! Aliquam rerum consequuntur deleniti.
+                    </p>
+                    <p>
+                        Totam reprehenderit amet commodi ipsum nam provident doloremque possimus odio itaque, est animi culpa modi consequatur reiciendis corporis libero laudantium sed eveniet unde delectus a maiores nihil dolores? Natus,
+                        perferendis.
+                    </p>
+                    <p>
+                        Atque quis totam repellendus omnis alias magnam corrupti, possimus aspernatur perspiciatis quae provident consequatur minima doloremque blanditiis nihil maxime ducimus earum autem. Magni animi blanditiis similique iusto,
+                        repellat sed quisquam!
+                    </p>
+                    <p>Suscipit, facere quasi atque totam. Repudiandae facilis at optio atque, rem nam, natus ratione cum enim voluptatem suscipit veniam! Repellat, est debitis. Modi nam mollitia explicabo, unde aliquid impedit! Adipisci!</p>
+                    <p>Deserunt adipisci tempora asperiores, quo, nisi ex delectus vitae consectetur iste fugiat iusto dolorem autem. Itaque, ipsa voluptas, a assumenda rem, dolorum porro accusantium, officiis veniam nostrum cum cumque impedit.</p>
+                    <p>
+                        Laborum illum ipsa voluptatibus possimus nesciunt ex consequatur rem, natus ad praesentium rerum libero consectetur temporibus cupiditate atque aspernatur, eaque provident eligendi quaerat ea soluta doloremque. Iure fugit,
+                        minima facere.
+                    </p>
+                </div>
+            </div>
+            <div id="tab-vsg" class="page-content tab">
+                <div class="block">
+                    <p>VISAGISME</p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam enim quia molestiae facilis laudantium voluptates obcaecati officia cum, sit libero commodi. Ratione illo suscipit temporibus sequi iure ad laboriosam
+                        accusamus?
+                    </p>
+                    <p>
+                        Saepe explicabo voluptas ducimus provident, doloremque quo totam molestias! Suscipit blanditiis eaque exercitationem praesentium reprehenderit, fuga accusamus possimus sed, sint facilis ratione quod, qui dignissimos
+                        voluptas! Aliquam rerum consequuntur deleniti.
+                    </p>
+                    <p>
+                        Totam reprehenderit amet commodi ipsum nam provident doloremque possimus odio itaque, est animi culpa modi consequatur reiciendis corporis libero laudantium sed eveniet unde delectus a maiores nihil dolores? Natus,
+                        perferendis.
+                    </p>
+                    <p>
+                        Atque quis totam repellendus omnis alias magnam corrupti, possimus aspernatur perspiciatis quae provident consequatur minima doloremque blanditiis nihil maxime ducimus earum autem. Magni animi blanditiis similique iusto,
+                        repellat sed quisquam!
+                    </p>
+                    <p>Suscipit, facere quasi atque totam. Repudiandae facilis at optio atque, rem nam, natus ratione cum enim voluptatem suscipit veniam! Repellat, est debitis. Modi nam mollitia explicabo, unde aliquid impedit! Adipisci!</p>
+                    <p>Deserunt adipisci tempora asperiores, quo, nisi ex delectus vitae consectetur iste fugiat iusto dolorem autem. Itaque, ipsa voluptas, a assumenda rem, dolorum porro accusantium, officiis veniam nostrum cum cumque impedit.</p>
+                    <p>
+                        Laborum illum ipsa voluptatibus possimus nesciunt ex consequatur rem, natus ad praesentium rerum libero consectetur temporibus cupiditate atque aspernatur, eaque provident eligendi quaerat ea soluta doloremque. Iure fugit,
+                        minima facere.
+                    </p>
+                </div>
+            </div>
+            <div id="tab-trends" class="page-content tab">
+                <div class="block">
+                    <p>TENDANCES</p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam enim quia molestiae facilis laudantium voluptates obcaecati officia cum, sit libero commodi. Ratione illo suscipit temporibus sequi iure ad laboriosam
+                        accusamus?
+                    </p>
+                    <p>
+                        Saepe explicabo voluptas ducimus provident, doloremque quo totam molestias! Suscipit blanditiis eaque exercitationem praesentium reprehenderit, fuga accusamus possimus sed, sint facilis ratione quod, qui dignissimos
+                        voluptas! Aliquam rerum consequuntur deleniti.
+                    </p>
+                    <p>
+                        Totam reprehenderit amet commodi ipsum nam provident doloremque possimus odio itaque, est animi culpa modi consequatur reiciendis corporis libero laudantium sed eveniet unde delectus a maiores nihil dolores? Natus,
+                        perferendis.
+                    </p>
+                    <p>
+                        Atque quis totam repellendus omnis alias magnam corrupti, possimus aspernatur perspiciatis quae provident consequatur minima doloremque blanditiis nihil maxime ducimus earum autem. Magni animi blanditiis similique iusto,
+                        repellat sed quisquam!
+                    </p>
+                    <p>Suscipit, facere quasi atque totam. Repudiandae facilis at optio atque, rem nam, natus ratione cum enim voluptatem suscipit veniam! Repellat, est debitis. Modi nam mollitia explicabo, unde aliquid impedit! Adipisci!</p>
+                    <p>Deserunt adipisci tempora asperiores, quo, nisi ex delectus vitae consectetur iste fugiat iusto dolorem autem. Itaque, ipsa voluptas, a assumenda rem, dolorum porro accusantium, officiis veniam nostrum cum cumque impedit.</p>
+                    <p>
+                        Laborum illum ipsa voluptatibus possimus nesciunt ex consequatur rem, natus ad praesentium rerum libero consectetur temporibus cupiditate atque aspernatur, eaque provident eligendi quaerat ea soluta doloremque. Iure fugit,
+                        minima facere.
+                    </p>
+                </div>
+            </div>
+            <div id="tab-user" class="page-content tab" style="overflow-y:scroll;">
+                <div style="font-size:14px; display: none;" id="page_profile">
+                    <div class="profile_blue_area">
+                        <div class="pf_help"><img src="assets/img/acc/aide.png" style="width: 75px;"></div>
+                        <div class="pf_full_name">{{user.user_metadata.full_name}}</div>
+                        <div class="pf_email">{{user.email}}</div>
+                        <div class="pf_phone">07 66 38 97 09</div>
+                        <ul>
+                            <li>
+                                <div><img src="assets/img/home/menu_compte_white.png"></div>
+                                Mon profil
+                            </li>
+                            <li>
+                                <div><img src="assets/img/acc/mesessayages.png"></div>
+                                Mes essayages
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="profile_white_above">
+                        <ul>
+                            <li>
+                                <div><img src="assets/img/acc/mesproches.png"/></div>
+                                <span>Mes proches</span>
+                                <span class="gray">Ajoutez les profils de vos proches</span>
+                            </li>
+                            <li>
+                                <div><img src="assets/img/acc/mesfavoris.png"/></div>
+                                <span>Mes favoris</span>
+                            </li>
+                            <li>
+                                <div><img src="assets/img/acc/parametres.png"/></div>
+                                <span>Paramètres de sécurité</span>
+                            </li>
+                            <li>
+                                <div><img src="assets/img/acc/devenirpartenaire.png"/></div>
+                                <span>Devenir partenaire</span>
+                            </li>
+                            <li>
+                                <div><img src="assets/img/acc/mentionslegales.png"/></div>
+                                <span>Mentions légales</span>
+                            </li>
+                            <li ng-click="logout()">
+                                <div><img src="assets/img/acc/deconexion.png"/></div>
+                                <span class="red">Déconnexion</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="block" style="font-size:14px;" id="formulaire_login">
+                    <p style="text-align: center;">Connectez-vous pour accéder aux contenus privés</p>
+                    <div class="around_login">
+                        <div class="logoLiftr"  @click="${TestoZero}"><img src="assets/img/logo.png"/></div>
+
+                        <form class="list" id="my-form" style="margin-top: 0px; margin-bottom: 15px;">
+                            <div id="login_form">
+                                <ul>
+                                    <li class="item-content item-input">
+                                        <div class="item-inner"><!--
+                                            <div class="f7-icons" style="position: absolute; margin:21px 0 0 -10px; font-size: 24px; color: #A1A1A1;">person_circle_fill</div>-->
+                                            <div class="item-title item-floating-label">Identifiant</div>
+                                            <div class="item-input-wrap">
+                                                <input type="email" placeholder="Votre adresse email" ng-model="email" />
+                                                <span class="input-clear-button"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="item-content item-input">
+                                        <div class="item-inner">
+                                            <div class="item-title item-floating-label">Mot de passe</div>
+                                            <div class="item-input-wrap">
+                                                <input type="password" placeholder="Saisissez votre mot de passe" ng-model="password"/>
+                                                <span class="input-clear-button"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title">Se souvenir de moi</div>
+                                                <div class="item-after">
+                                                    <label class="toggle toggle-init"> <input type="checkbox" checked name="toggle" value="yes" /><i class="toggle-icon"></i> </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <!--
+                                <ul>
+                                    <li>
+                                        <div class="item-content item-input">
+                                            <div class="item-inner">
+                                                <div class="item-title item-label">Identifiant</div>
+                                                <div class="item-input-wrap">
+                                                    <input type="text" name="login" placeholder="Identifiant" id="log_login" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="item-content item-input">
+                                            <div class="item-inner">
+                                                <div class="item-title item-label">Mot de passe</div>
+                                                <div class="item-input-wrap">
+                                                    <input type="password" name="password" placeholder="Mot de passe" id="log_pw" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title">Se souvenir de moi</div>
+                                                <div class="item-after">
+                                                    <label class="toggle toggle-init"> <input type="checkbox" checked name="toggle" value="yes" /><i class="toggle-icon"></i> </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>-->
+
+                                <div class="block block-strong row no-after no-before" style="margin: 0 !important; padding-top: 0 !important; padding-bottom: 0 !important;">
+                                    <div class="col"><a class="button button-fill button-round" id="loginbtn" href="#" ng-click="Login()">Connexion</a></div>
+                                </div>
+                                
+                                <div class="block block-strong row no-after no-before" style="margin: 0 !important; padding-top: 15px !important; padding-bottom: 0 !important;">
+                                    <div class="col"><a class="button" href="#" onclick="$('#register_form').show(); $('#login_form').hide();">Inscrivez-vous</a></div>
+                                </div>
+                                
+                            </div>
+
+                            <div id="register_form" style="display: none;">
+                                <ul>
+                                    <li>
+                                        <div class="item-content item-input">
+                                            <div class="item-inner">
+                                                <div class="item-title item-label">Identifiant</div>
+                                                <div class="item-input-wrap">
+                                                    <input type="text" name="login" placeholder="Votre adresse email" ng-model="reg_login" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="item-content item-input">
+                                            <div class="item-inner">
+                                                <div class="item-title item-label">Prénom / Nom</div>
+                                                <div class="item-input-wrap">
+                                                    <input type="text" name="login" placeholder="Nom et prénom" ng-model="reg_fullname" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="item-content item-input">
+                                            <div class="item-inner">
+                                                <div class="item-title item-label">Mot de passe</div>
+                                                <div class="item-input-wrap">
+                                                    <input type="password" name="password" placeholder="Mot de passe" ng-model="reg_password" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="item-content item-input">
+                                            <div class="item-inner">
+                                                <div class="item-title item-label">Confirmer le Mot de passe</div>
+                                                <div class="item-input-wrap">
+                                                    <input type="password" name="password" placeholder="Confirmer le Mot de passe" ng-model="reg_password_confirm" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="block block-strong row no-after no-before" style="margin: 0 !important; padding-top: 0 !important; padding-bottom: 0 !important; margin-top:15px !important;">
+                                    <div class="col"><a class="button button-fill button-round" href="#" ng-click="register()">Inscription</a></div>
+                                </div>
+                                
+                                <div class="block block-strong row no-after no-before" style="margin: 0 !important; padding-top: 15px !important; padding-bottom: 0 !important;">
+                                    <div class="col"><a class="button" href="#" onclick="$('#register_form').hide(); $('#login_form').show();">Connectez-vous</a></div>
+                                </div>
+                                
+                            </div>
+
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+

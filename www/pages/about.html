@@ -1,26 +1,70 @@
-<div class="page" data-name="about">
-  <div class="navbar">
-    <div class="navbar-bg"></div>
-    <div class="navbar-inner sliding">
-      <div class="left">
-        <a href="#" class="link back">
-          <i class="icon icon-back"></i>
-          <span class="if-not-md">Back</span>
-        </a>
-      </div>
-      <div class="title">About</div>
-    </div>
-  </div>
-  <div class="page-content">
-    <div class="block-title">About My App</div>
-    <div class="block block-strong">
-      <p>Fugiat perspiciatis excepturi, soluta quod non ullam deleniti. Nobis sint nemo consequuntur, fugiat. Eius perferendis animi autem incidunt vel quod tenetur nostrum, voluptate omnis quasi quidem illum consequuntur, a, quisquam.</p>
-      <p>Laudantium neque magnam vitae nemo quam commodi, in cum dolore obcaecati laborum, excepturi harum, optio qui, consequuntur? Obcaecati dolor sequi nesciunt culpa quia perspiciatis, reiciendis ex debitis, ut tenetur alias.</p>
-    </div>
-    <div class="block">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni molestiae laudantium dignissimos est nobis delectus nemo ea alias voluptatum architecto, amet similique, saepe iste consectetur in repellat ut minus quibusdam!</p>
-      <p>Molestias et distinctio porro nesciunt ratione similique, magni doloribus, rerum nobis, aliquam quae reiciendis quasi modi. Nam a recusandae, fugiat in ea voluptates fuga eius, velit corrupti reprehenderit dignissimos consequatur!</p>
-      <p>Blanditiis, cumque quo adipisci. Molestiae, dolores dolorum quos doloremque ipsa ullam eligendi commodi deserunt doloribus inventore magni? Ea mollitia veniam nostrum nihil, iusto doloribus a at! Ea molestiae ullam delectus!</p>
-    </div>
-  </div>
+<div class="page" data-name="opticiens" ng-controller="OpticiensController" ng-init="init()">
+	<div class="navbar">
+		<div class="navbar-bg"></div>
+		<div class="navbar-inner sliding">
+			<div class="left">
+				<a href="#" class="link back">
+					<i class="icon icon-back"></i>
+					<span class="if-not-md">Back</span>
+				</a>
+			</div>
+			<div class="title">Trouver mon opticien</div>
+			<div class="right">
+				<a href="#" class="link" ng-click="init()">
+					<div class="f7-icons">arrow_2_circlepath</div>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="page-content">
+
+        <div style="padding-left: 15px; padding-right: 15px; background-color: #F2F2F2; padding-bottom: 80px;">
+            <div class="f7-icons place_icon">placemark</div>
+            <button class="col button button-raised button-fill button-round" style="margin-top:15px;">Localiser ma position</button>
+
+            <div class="op_text_circle">
+                <div class="title">DECOUVREZ</div>
+                <div class="content">
+                    Des professionnels de santé diplômés qui prennent le temps de découvrir vos besoins, de vous proposer l'équipement adapté et de vous conseiller pour le bien de votre vue.
+                </div>
+            </div>
+        </div>
+
+        <div class="above_list_optk">
+
+            <div class="list media-list inset">
+                <div class="preloader" ng-show="optics.length<=0"></div>
+                <ul ng-show="optics.length>0">
+                    <li ng-repeat="optic in optics">
+                        <div class="f7-icons fleche_bas">arrow_right_circle_fill</div>
+                        <div class="optic_distance">2 km</div>
+                        <a href="/opticien/{{optic.id}}/" class="item-link item-content">
+                            <div class="item-media"><img ng-src="{{optic.image}}" width="44" /></div>
+                            <div class="item-inner">
+                                <div class="item-title-row">
+                                    <div class="item-title">{{optic.name}}</div>
+                                </div>
+                                <div class="item-subtitle">{{optic.adresse}}</div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+
+        </div>
+
+        <!--
+		<div class="block-title">About My App</div>
+		<div class="block block-strong">
+			<p>Fugiat perspiciatis excepturi, soluta quod non ullam deleniti. Nobis sint nemo consequuntur, fugiat. Eius perferendis animi autem incidunt vel quod tenetur nostrum, voluptate omnis quasi quidem illum consequuntur, a, quisquam.</p>
+			<p>Laudantium neque magnam vitae nemo quam commodi, in cum dolore obcaecati laborum, excepturi harum, optio qui, consequuntur? Obcaecati dolor sequi nesciunt culpa quia perspiciatis, reiciendis ex debitis, ut tenetur alias.</p>
+		</div>
+		<div class="block">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni molestiae laudantium dignissimos est nobis delectus nemo ea alias voluptatum architecto, amet similique, saepe iste consectetur in repellat ut minus quibusdam!</p>
+			<p>Molestias et distinctio porro nesciunt ratione similique, magni doloribus, rerum nobis, aliquam quae reiciendis quasi modi. Nam a recusandae, fugiat in ea voluptates fuga eius, velit corrupti reprehenderit dignissimos consequatur!</p>
+			<p>Blanditiis, cumque quo adipisci. Molestiae, dolores dolorum quos doloremque ipsa ullam eligendi commodi deserunt doloribus inventore magni? Ea mollitia veniam nostrum nihil, iusto doloribus a at! Ea molestiae ullam delectus!</p>
+		</div>
+        -->
+	</div>
 </div>
