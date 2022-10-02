@@ -98,7 +98,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
     // Now safe to use device APIs
-	alert("Device is ready !");
+	//alert("Device is ready !");
 	navigator.splashscreen.hide();
 }
 
