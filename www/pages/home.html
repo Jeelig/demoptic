@@ -67,7 +67,7 @@
         </div>
 
         <div style="margin-top: calc(var(--f7-navbar-height) + var(--f7-safe-area-top)); height: calc((180 * 100vw) / 877);">
-            <img src="assets/img/optic.png" style="width: 100%;" />
+            <img src="assets/img/optic2.jpg" style="width: 100%;" />
         </div>
 
         <div class="tabs opt">
@@ -323,7 +323,7 @@
                                     <li>
                                         <div class="item-content item-input">
                                             <div class="item-inner">
-                                                <div class="item-title item-label">Identifiant</div>
+                                                <div class="item-title item-label">Identifiant *</div>
                                                 <div class="item-input-wrap">
                                                     <input type="text" name="login" placeholder="Votre adresse email" ng-model="reg_login" />
                                                 </div>
@@ -333,9 +333,9 @@
                                     <li>
                                         <div class="item-content item-input">
                                             <div class="item-inner">
-                                                <div class="item-title item-label">Prénom / Nom</div>
+                                                <div class="item-title item-label">Prénom / Nom *</div>
                                                 <div class="item-input-wrap">
-                                                    <input type="text" name="login" placeholder="Nom et prénom" ng-model="reg_fullname" />
+                                                    <input type="text" name="firstname" placeholder="Nom et prénom" ng-model="reg_fullname" />
                                                 </div>
                                             </div>
                                         </div>
@@ -343,7 +343,7 @@
                                     <li>
                                         <div class="item-content item-input">
                                             <div class="item-inner">
-                                                <div class="item-title item-label">Mot de passe</div>
+                                                <div class="item-title item-label">Mot de passe *</div>
                                                 <div class="item-input-wrap">
                                                     <input type="password" name="password" placeholder="Mot de passe" ng-model="reg_password" />
                                                 </div>
@@ -353,9 +353,19 @@
                                     <li>
                                         <div class="item-content item-input">
                                             <div class="item-inner">
-                                                <div class="item-title item-label">Confirmer le Mot de passe</div>
+                                                <div class="item-title item-label">Confirmer le Mot de passe *</div>
                                                 <div class="item-input-wrap">
                                                     <input type="password" name="password" placeholder="Confirmer le Mot de passe" ng-model="reg_password_confirm" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="item-content item-input">
+                                            <div class="item-inner">
+                                                <div class="item-title item-label">Téléphone</div>
+                                                <div class="item-input-wrap">
+                                                    <input type="text" name="phone" placeholder="Nom et prénom" ng-model="reg_phone" />
                                                 </div>
                                             </div>
                                         </div>

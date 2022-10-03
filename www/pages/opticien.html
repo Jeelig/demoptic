@@ -1,34 +1,100 @@
-<div class="page" data-name="opticien" ng-controller="OpticienController" ng-init="init()">
-	<div class="navbar">
-		<div class="navbar-bg"></div>
-		<div class="navbar-inner sliding">
-			<div class="left">
-				<a href="#" class="link back">
-					<i class="icon icon-back"></i>
-					<span class="if-not-md">Back</span>
-				</a>
-			</div>
-			<div class="title">Mon opticien</div>
-			<div class="right">
-				<a href="#" class="link">
-					<div class="f7-icons">heart</div>
-				</a>
+<template>
+	<div class="page" data-name="opticien">
+		<div class="navbar">
+			<div class="navbar-bg"></div>
+			<div class="navbar-inner sliding">
+				<div class="left">
+					<a href="#" class="link back">
+						<i class="icon icon-back"></i>
+						<span class="if-not-md">Back</span>
+					</a>
+				</div>
+				<div class="title">Mon opticien</div>
+				<div class="right">
+					<a href="#" class="link">
+						<div class="f7-icons">heart</div>
+					</a>
+				</div>
 			</div>
 		</div>
+		<div class="page-content">
+
+			<div class="opticien_blue_area" style="height:140px;">
+				${opticien.name}
+			</div>
+
+			<div class="above_list_optk">
+
+				<div class="list media-list inset" style="margin-top: 20px">
+					
+				</div>
+
+			</div>
+
+		</div>
 	</div>
-	<div class="page-content">
+</template>
 
-        <div class="opticien_blue_area" style="height:140px;">
-            
-        </div>
+<script>
+	export default function (props, { $f7, $on, $update }) {
+		// Component Data
+		//var self = this;
+		let name = "Jimmy";
+		let age = 25;
+		let likes = ["Tennis", "Chess", "Football"];
+		var id = props.id;
+		var opticien = {name:"toto"};
 
-        <div class="above_list_optk">
+		// Component Methods
+		const openAlert = () => {
+			$f7.dialog.alert("Hello World");
+		};
+		const addValue = () => {
+			debugger;
+			$update();
+		}
 
-            <div class="list media-list inset" style="margin-top: 20px">
-                
-            </div>
+		// Page Events
+		$on("pageMounted", (e, page) => {
+			console.log("pageMounted", page);
+		});
+		$on("pageInit", (e, page) => {
+			var self = this;
+			console.log("pageInit", page);
+			opticien = {name:"tata"};
+			$update();
+			addValue();/*
+			supe.from('Opticien')
+			.select(`id, name)`)
+			.eq('id', 1)
+			.then((response) => {
+				console.log(response);
+				self.opticien = response.data[0];
+				//debugger;
+				self.addValue();
+				$update();
+			}).catch((error)=> {
+				console.warn(error);
+			});*/
+		});
+		$on("pageBeforeIn", (e, page) => {
+			console.log("pageBeforeIn", page);
+		});
+		$on("pageAfterIn", (e, page) => {
+			console.log("pageAfterIn", page);
+		});
+		$on("pageBeforeOut", (e, page) => {
+			console.log("pageBeforeOut", page);
+		});
+		$on("pageAfterOut", (e, page) => {
+			console.log("pageAfterOut", page);
+		});
+		$on("pageBeforeRemove", (e, page) => {
+			console.log("pageBeforeRemove", page);
+		});
 
-        </div>
 
-	</div>
-</div>
+		// Return render function
+		return $render;
+	}
+</script>

@@ -10,14 +10,12 @@ var routes = [
   },
   {
     path: '/opticien/:id/',
-    url: './pages/opticien.html',
+    componentUrl: './pages/opticien.html',
   },
   {
     path: '/form/',
     url: './pages/form.html',
   },
-
-
   {
     path: '/dynamic-route/blog/:blogId/post/:postId/',
     componentUrl: './pages/dynamic-route.html',
