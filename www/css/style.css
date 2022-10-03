@@ -313,6 +313,7 @@
     background-color: #FFF;
     margin-top: -60px;
     padding-top: 1px;
+    padding-bottom: 70px;
 }
 .above_list_optk .media-list {
     margin-top: 20px;
@@ -376,4 +377,134 @@
     color: #FFF;
     padding-bottom: 100px;
     background-image: linear-gradient(to right, #1459AC, #1A3D87);
+}
+
+.opticien_blue_area .imgr {
+    text-align: center;
+}
+.opticien_blue_area .imgr img {
+    height: 120px;
+}
+.opticien_blue_area .contr {
+    text-align: left;
+}
+
+.opticien_blue_area .contr .optic_title {
+    text-transform: uppercase;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.opticien_blue_area .contr table {
+    
+}
+.opticien_blue_area .contr table tr {
+    
+}
+.opticien_blue_area .contr table tr td {
+    font-size:10px;
+}
+.opticien_blue_area .contr table tr td div {
+    border-radius: 5px;
+    overflow: hidden;
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    margin-right: 10px;
+}
+.opticien_blue_area .contr table tr td div img {
+    width: 100%;
+}
+.opticien_blue_area .contr .opt_adr {
+    margin-top:10px;
+    font-size:11px;
+}
+.opticien_blue_area .contr .opt_web {
+    margin-top:10px;
+    font-size:11px;
+    color: #098FA1;
+}
+
+.optic_title {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.optic_expertize {
+    font-size: 12px;
+    color:#CCC;
+    margin-bottom: 10px;
+}
+
+.above_list_optk.on_opticien .f7-icons.star {
+    font-size: 20px;
+    color: #FCEA0D;
+}
+.above_list_optk.on_opticien .f7-icons.star.gray {
+    font-size: 20px;
+    color: #D9D9D9;
+}
+
+.optic_tit_cat {
+    text-transform: uppercase;
+    color:#1c59b8;
+    letter-spacing:2px;
+    margin-top:15px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.optic_scrolling_div {
+    width: 100%;
+    overflow-x: scroll;
+}
+.optic_scrolling_div > div  {
+    width: 1800px;
+}
+.optic_scrolling_div > div ul {
+    list-style-type: none;
+}
+.optic_scrolling_div > div ul li {
+    display: inline-block;
+    width: 75px;
+    height: 75px;
+    background-color: #CCC;
+    margin-right: 10px;
+    font-size: 10px;
+    text-align: center;
+}
+
+.opt_info_resistance {
+    background-color: #CCC;
+    border-radius: 60px;
+    margin-top:20px;
+    color: #1459AC;
+}
+
+.opticien_gray_area {
+    min-height: 350px;
+    border-radius: 45px 45px 0px 0px;
+    background-color: #F2F2F2;
+    margin-top: -60px;
+    padding-top: 1px;
+    padding-bottom: 70px;
+}
+
+.opticien_gray_area ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.opticien_gray_area ul li {
+    display: inline-block;
+    width: 75px;
+    height: 75px;
+    background-color: #FFF;
+    border-radius: 5px;
+    box-shadow: 3px 2px 4px #bdbdbd;
+    margin-right: 10px;
+    overflow: hidden;
+}
+.opticien_gray_area ul li img {
+    width: 100%;
 }

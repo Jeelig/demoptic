@@ -17,20 +17,85 @@
 				</div>
 			</div>
 		</div>
-		<div class="page-content">
+		<div class="page-content" style="background-color: #F2F2F2;">
 
-			<div class="opticien_blue_area" style="height:140px;">
-				${opticien.name}
+			<div class="opticien_blue_area" style="height:130px;">
+				<div class="row no-gap" style="padding-top:20px">
+					<div class="col-40 imgr"><img src=${opticien.image}/></div>
+					<div class="col-60 contr">
+						<div class="optic_title">${opticien.name}</div>
+						<table cellspacing="0" cellpadding="0">
+							<tr>
+								<td rowspan="2"><div><img src="assets/img/optic/horaires.png"/></div></td>
+								<td>Mardi - Samedi</td>
+							</tr>
+							<tr>
+								<td>9h30-12h30 et 14h00-19h00</td>
+							</tr>
+						</table>
+						<div class="opt_adr">${opticien.adresse}</div>
+						<div class="opt_web">${opticien.website}</div>
+					</div>
+				</div>
 			</div>
 
-			<div class="above_list_optk">
+			<div class="above_list_optk on_opticien">
 
-				<div class="list media-list inset" style="margin-top: 20px">
+				<div class="list media-list inset" style="margin-top: 20px; text-align: left;">
 					
+					<div class="optic_title">${opticien.name}</div>
+					<div class="optic_expertize">Expertise monture sport</div>
+					<div class="f7-icons star">star_fill</div>
+					<div class="f7-icons star">star_fill</div>
+					<div class="f7-icons star">star_fill</div>
+					<div class="f7-icons star gray">star_fill</div>
+					<div class="f7-icons star gray">star_fill</div>
+
+					<img src="assets/img/lissac.png" style="width:100%; margin-top:20px;"/>
+
+					<div class="optic_tit_cat">Montures</div>
+
+					<div class="optic_scrolling_div">
+						<div>
+							<ul>
+								<li>Titane</li>
+								<li>Acetate</li>
+								<li>Plastique</li>
+								<li>Metallique</li>
+								<li>Titane</li>
+								<li>Acetate</li>
+								<li>Titane</li>
+								<li>Acetate</li>
+							</ul>
+						</div>
+					</div>
+					
+					<div class="opt_info_resistance">
+						<div class="row no-gap">
+							<div class="col-15" style="text-align:center; padding-top: 4px;"><img src="assets/img/face/ampoule conseils.png" style="width:35px"/></div>
+							<div class="col-85" style="font-size:12px;">
+								Resistantes et ultra légères , les montures en titane sont élégantes et ne vous laisseront pas de marque sur le nez.
+							</div>
+						</div>
+					</div>
+
 				</div>
 
 			</div>
 
+			
+			<div class="opticien_gray_area" style="height:130px;">
+
+				<div style="padding: 15px;">
+					<div class="optic_tit_cat">GARANTIES & SAV*</div>
+					<ul>
+						<li><img src="assets/img/optic/mutuelle.jpg"/></li>
+						<li><img src="assets/img/optic/paiementcarte.png"/></li>
+						<li><img src="assets/img/optic/paiementcheque.png"/></li>
+					</ul>
+				</div>
+			</div>
+			
 		</div>
 	</div>
 </template>
@@ -61,21 +126,16 @@
 		$on("pageInit", (e, page) => {
 			var self = this;
 			console.log("pageInit", page);
-			opticien = {name:"tata"};
-			$update();
-			addValue();/*
 			supe.from('Opticien')
-			.select(`id, name)`)
-			.eq('id', 1)
+			.select(`id, name, adresse, email, telephone, image, website)`)
+			.eq('id', id)
 			.then((response) => {
 				console.log(response);
-				self.opticien = response.data[0];
-				//debugger;
-				self.addValue();
+				opticien = response.data[0];
 				$update();
 			}).catch((error)=> {
 				console.warn(error);
-			});*/
+			});
 		});
 		$on("pageBeforeIn", (e, page) => {
 			console.log("pageBeforeIn", page);
