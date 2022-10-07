@@ -55,6 +55,9 @@ MyApp.angular.controller('MainController', ['$scope', '$compile', '$rootScope', 
 			if ((PageFrom == "opticien") && (PageName == "opticiens")) {
 				res = false;
 			}
+			if ((PageFrom == "opticien") && (PageName == "favorites")) {
+				res = false;
+			}
 		}
         return res;
     };

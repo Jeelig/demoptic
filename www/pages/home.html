@@ -188,7 +188,7 @@
                     </p>
                 </div>
             </div>
-            <div id="tab-user" class="page-content tab" style="overflow-y:scroll;">
+            <div id="tab-user" class="page-content tab">
                 <div style="font-size:14px; display: none;" id="page_profile">
                     <div class="profile_blue_area">
                         <div class="pf_help"><img src="assets/img/acc/aide.png" style="width: 75px;"></div>
@@ -197,12 +197,16 @@
                         <div class="pf_phone">07 66 38 97 09</div>
                         <ul>
                             <li>
-                                <div><img src="assets/img/home/menu_compte_white.png"></div>
-                                Mon profil
+                                <a href="/profile/" style="color: #FFF;">
+                                    <div><img src="assets/img/home/menu_compte_white.png"></div>
+                                    Mon profil
+                                </a>
                             </li>
                             <li>
-                                <div><img src="assets/img/acc/mesessayages.png"></div>
-                                Mes essayages
+                                <a href="/essayages/" style="color: #FFF;">
+                                    <div><img src="assets/img/acc/mesessayages.png"></div>
+                                    Mes essayages
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -214,20 +218,28 @@
                                 <span class="gray">Ajoutez les profils de vos proches</span>
                             </li>
                             <li>
-                                <div><img src="assets/img/acc/mesfavoris.png"/></div>
-                                <span>Mes favoris</span>
+                                <a href="/favoris/" style="color: #FFF;">
+                                    <div><img src="assets/img/acc/mesfavoris.png"/></div>
+                                    <span>Mes favoris</span>
+                                </a>
                             </li>
                             <li>
-                                <div><img src="assets/img/acc/parametres.png"/></div>
-                                <span>Paramètres de sécurité</span>
+                                <a href="/parameters/" style="color: #FFF;">
+                                    <div><img src="assets/img/acc/parametres.png"/></div>
+                                    <span>Paramètres de sécurité</span>
+                                </a>
                             </li>
                             <li>
-                                <div><img src="assets/img/acc/devenirpartenaire.png"/></div>
-                                <span>Devenir partenaire</span>
+                                <a href="/partner/" style="color: #FFF;">
+                                    <div><img src="assets/img/acc/devenirpartenaire.png"/></div>
+                                    <span>Devenir partenaire</span>
+                                </a>
                             </li>
                             <li>
-                                <div><img src="assets/img/acc/mentionslegales.png"/></div>
-                                <span>Mentions légales</span>
+                                <a href="/legal/" style="color: #FFF;">
+                                    <div><img src="assets/img/acc/mentionslegales.png"/></div>
+                                    <span>Mentions légales</span>
+                                </a>
                             </li>
                             <li ng-click="logout()">
                                 <div><img src="assets/img/acc/deconexion.png"/></div>
@@ -325,7 +337,7 @@
                                             <div class="item-inner">
                                                 <div class="item-title item-label">Identifiant *</div>
                                                 <div class="item-input-wrap">
-                                                    <input type="text" name="login" placeholder="Votre adresse email" ng-model="reg_login" />
+                                                    <input type="text" name="login" placeholder="Votre adresse email" ng-model="reg_login" required/>
                                                 </div>
                                             </div>
                                         </div>
@@ -335,7 +347,7 @@
                                             <div class="item-inner">
                                                 <div class="item-title item-label">Prénom / Nom *</div>
                                                 <div class="item-input-wrap">
-                                                    <input type="text" name="firstname" placeholder="Nom et prénom" ng-model="reg_fullname" />
+                                                    <input type="text" name="firstname" placeholder="Nom et prénom" ng-model="reg_fullname" required/>
                                                 </div>
                                             </div>
                                         </div>
@@ -345,7 +357,7 @@
                                             <div class="item-inner">
                                                 <div class="item-title item-label">Mot de passe *</div>
                                                 <div class="item-input-wrap">
-                                                    <input type="password" name="password" placeholder="Mot de passe" ng-model="reg_password" />
+                                                    <input type="password" name="password" placeholder="Mot de passe" ng-model="reg_password" required />
                                                 </div>
                                             </div>
                                         </div>
@@ -355,7 +367,7 @@
                                             <div class="item-inner">
                                                 <div class="item-title item-label">Confirmer le Mot de passe *</div>
                                                 <div class="item-input-wrap">
-                                                    <input type="password" name="password" placeholder="Confirmer le Mot de passe" ng-model="reg_password_confirm" />
+                                                    <input type="password" name="password" placeholder="Confirmer le Mot de passe" ng-model="reg_password_confirm" required/>
                                                 </div>
                                             </div>
                                         </div>

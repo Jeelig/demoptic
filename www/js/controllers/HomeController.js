@@ -18,8 +18,8 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
     $scope.existunreadnotif = false;
     $scope.notifications = [];
 
-    $scope.email = "";
-    $scope.password = "";
+    $scope.email = "gilles.bandza@gmail.com";
+    $scope.password = "Dochill8#=M";
     $scope.user = null;
     $scope.rdv_tab = "coming";
 
@@ -80,7 +80,8 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
             password: $scope.reg_password
         }, {
             data: { 
-                full_name: $scope.reg_fullname
+                full_name: $scope.reg_fullname,
+                telephone: $scope.reg_phone
             }
         }).then((response) => {
             console.log(response);

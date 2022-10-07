@@ -9,6 +9,30 @@ var routes = [
     url: './pages/about.html',
   },
   {
+    path: '/profile/',
+    url: './pages/profil.html',
+  },
+  {
+    path: '/essayages/',
+    url: './pages/essayages.html',
+  },
+  {
+    path: '/favoris/',
+    url: './pages/favoris.html',
+  },
+  {
+    path: '/parameters/',
+    url: './pages/parametres.html',
+  },
+  {
+    path: '/partner/',
+    url: './pages/partner.html',
+  },
+  {
+    path: '/legal/',
+    url: './pages/legal.html',
+  },
+  {
     path: '/opticien/:id/',
     componentUrl: './pages/opticien.html',
   },

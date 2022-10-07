@@ -12,6 +12,7 @@
 				<div class="title">Mon opticien</div>
 				<div class="right">
 					<a href="#" class="link">
+						<div class="f7-icons">heart_fill</div>
 						<div class="f7-icons">heart</div>
 					</a>
 				</div>
@@ -117,7 +118,23 @@
 		const addValue = () => {
 			debugger;
 			$update();
-		}
+		};
+		const liked = () => {
+			supe.from('favoris')
+			.select("id")
+			.eq('opticien', id)
+			.then((response) => {
+				console.log(response);
+				//debugger;
+				if (response.data.length > 0) {
+					//debugger;
+					opticien.liked = true;
+				}
+			})
+			.catch((err) => {
+				console.warn(err)
+			});
+		};
 
 		// Page Events
 		$on("pageMounted", (e, page) => {
@@ -133,6 +150,7 @@
 				console.log(response);
 				opticien = response.data[0];
 				$update();
+				liked();
 			}).catch((error)=> {
 				console.warn(error);
 			});
