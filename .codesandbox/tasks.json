@@ -9,6 +9,11 @@
 
   // These tasks can be run from CodeSandbox. Running one will open a log in the app.
   "tasks": {
+    "move": {
+      "name": "move",
+      "command": "cd www",
+      "runAtStart": true
+    },
     "test": {
       "name": "test",
       "command": "npm run test",
