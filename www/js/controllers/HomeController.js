@@ -18,8 +18,8 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
     $scope.existunreadnotif = false;
     $scope.notifications = [];
 
-    $scope.email = "gilles.bandza@gmail.com";
-    $scope.password = "Dochill8#=M";
+    $scope.email = "";
+    $scope.password = "";
     $scope.user = null;
     $scope.rdv_tab = "coming";
 
@@ -30,6 +30,25 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
     });
 	
 	$scope.init = function() {
+        let session = localStorage.getItem("session");
+        let credentials = localStorage.getItem("credentials");
+        if (session) {
+            session = JSON.parse(session);
+            //debugger;
+            let expires_at = new Date(session.session.expires_at * 1000);
+            if (expires_at > new Date()) {
+                global.user = session.user;
+            }
+        }
+        if (credentials) {
+            credentials = JSON.parse(credentials);
+            $scope.email = credentials.email;
+            $scope.password = credentials.password;
+            self.sync();
+            setTimeout(function() {
+                $("#login_form ul li").addClass("item-input-focused");
+            }, 500);
+        }
         if (global.hasOwnProperty('active_tab')) {
             $scope.menu_item = global.active_tab;
         }
@@ -39,6 +58,10 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
             $$("#formulaire_login").hide();
             $$("#page_profile").show();
         }
+        MyApp.fw7.app.on('ProfileUpdate', function (a) {
+            $scope.user = a;
+            self.sync();
+        });
 	};
 
     //bandzagilles@yahoo.fr
@@ -50,10 +73,11 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
         let passw = $scope.password;
         console.log(email + " / " + passw);
         MyApp.fw7.app.preloader.show();
-        supe.auth.signIn({
+        var data = {
             email: email,
             password: passw
-        }).then((response) => {
+        };
+        supe.auth.signIn(data).then((response) => {
             MyApp.fw7.app.preloader.hide();
             console.log(response);
             if (response.error) {
@@ -65,6 +89,13 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
                 self.sync();
                 $$("#formulaire_login").hide();
                 $$("#page_profile").show();
+                self.updateuser(response.user);
+                localStorage.setItem("session", JSON.stringify(response));
+                let remindMe = document.getElementById("rememberme").checked;
+                if (remindMe) {
+                    debugger;
+                    localStorage.setItem("credentials", JSON.stringify(data));
+                }
             }
         }).catch((error) => {
             MyApp.fw7.app.preloader.hide();
@@ -99,14 +130,23 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
         });
     };
 
+    $scope.forgotpw = function() {
+        supe.auth.api.resetPasswordForEmail($scope.forgot_login).then((response) => {
+            console.log(response);
+        }).catch((error) => {
+            console.warn(error);
+        });
+    };
+
     $scope.logout = function() {
         $scope.user = null;
         self.sync();
         MyApp.fw7.app.preloader.show();
         setTimeout(function() {
-            $$("#formulaire_login").show();
             $$("#page_profile").hide();
+            $$("#formulaire_login").show();
             MyApp.fw7.app.preloader.hide();
+            localStorage.removeItem("session");
         }, 500);
     };
 
@@ -114,6 +154,20 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
         global.active_tab = tab_name;
         $scope.menu_item = tab_name;
         self.sync();
+    };
+
+    self.updateuser = function(user) {
+        supe.from('users')
+        .update({ 
+            "full_name": user.user_metadata.full_name,
+            "telephone": user.user_metadata.telephone
+        })
+        .eq('id', user.id)
+        .then((response) => {
+            console.log(response);
+        }).catch((error) => {
+            console.warn(error);
+        });
     };
 
     self.sync = function () { 

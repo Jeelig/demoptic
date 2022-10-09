@@ -1,5 +1,5 @@
 <template>
-	<div class="page" data-name="opticien">
+	<div class="page" data-name="opticien" ng-controller="OpticienController" ng-init="init()">
 		<div class="navbar">
 			<div class="navbar-bg"></div>
 			<div class="navbar-inner sliding">
@@ -11,9 +11,11 @@
 				</div>
 				<div class="title">Mon opticien</div>
 				<div class="right">
-					<a href="#" class="link">
-						<div class="f7-icons">heart_fill</div>
+					<a href="#" class="link" @click="${like}" id="idontlike">
 						<div class="f7-icons">heart</div>
+					</a>
+					<a href="#" class="link" @click="${unlike}" id="ilike" style="display: none;">
+						<div class="f7-icons">heart_fill</div>
 					</a>
 				</div>
 			</div>
@@ -28,10 +30,10 @@
 						<table cellspacing="0" cellpadding="0">
 							<tr>
 								<td rowspan="2"><div><img src="assets/img/optic/horaires.png"/></div></td>
-								<td>Mardi - Samedi</td>
+								<td>${opticien.ouverture}</td>
 							</tr>
 							<tr>
-								<td>9h30-12h30 et 14h00-19h00</td>
+								<td>${opticien.horaires}</td>
 							</tr>
 						</table>
 						<div class="opt_adr">${opticien.adresse}</div>
@@ -45,28 +47,43 @@
 				<div class="list media-list inset" style="margin-top: 20px; text-align: left;">
 					
 					<div class="optic_title">${opticien.name}</div>
-					<div class="optic_expertize">Expertise monture sport</div>
-					<div class="f7-icons star">star_fill</div>
-					<div class="f7-icons star">star_fill</div>
-					<div class="f7-icons star">star_fill</div>
-					<div class="f7-icons star gray">star_fill</div>
-					<div class="f7-icons star gray">star_fill</div>
+					<div class="optic_expertize">${opticien.description}</div>
+					<div class="f7-icons star" ng-class="{'gray': optic.stars<1}">star_fill</div>
+					<div class="f7-icons star" ng-class="{'gray': optic.stars<2}">star_fill</div>
+					<div class="f7-icons star" ng-class="{'gray': optic.stars<3}">star_fill</div>
+					<div class="f7-icons star" ng-class="{'gray': optic.stars<4}">star_fill</div>
+					<div class="f7-icons star" ng-class="{'gray': optic.stars<5}">star_fill</div>
 
-					<img src="assets/img/lissac.png" style="width:100%; margin-top:20px;"/>
+					<img src=${opticien.encart1} style="width:100%; margin-top:20px;"/>
 
-					<div class="optic_tit_cat">Montures</div>
-
-					<div class="optic_scrolling_div">
+					<div class="carousel carousel-1">
 						<div>
 							<ul>
-								<li>Titane</li>
-								<li>Acetate</li>
-								<li>Plastique</li>
-								<li>Metallique</li>
-								<li>Titane</li>
-								<li>Acetate</li>
-								<li>Titane</li>
-								<li>Acetate</li>
+								<li><div><img src="assets/img/optic/examendevue.png" style="margin-top: 17px;"/></div></li>
+								<li><div><img src="assets/img/optic/centreville.png" style="margin-top: 4px;"/></div></li>
+								<li><div><img src="assets/img/optic/uvprotection.png" style="margin-top: 22px;"/></div></li>
+								<li><div><img src="assets/img/optic/lunettesdesport.png" style="margin-top: 17px;"/></div></li>
+								<li><div><img src="assets/img/optic/centrecommercial.png" style="margin-top: 10px;"/></div></li>
+								<li><div><img src="assets/img/optic/acceshandicape.png" style="margin-top: 6px;"/></div></li>
+							</ul>
+						</div>
+					</div>
+					
+
+					<div class="optic_tit_cat">Montures</div>
+					<div class="nSubText">Selectionnez un materiau et découvrez tous ses avantages *</div>
+
+					<div class="carousel carousel-2">
+						<div>
+							<ul>
+								<li class="cr_tita">Titane</li>
+								<li class="cr_acet">Acetate</li>
+								<li class="cr_plas">Plastique</li>
+								<li class="cr_meta">Metallique</li>
+								<li class="cr_bois">Bois</li>
+								<li class="cr_carb">Carbone</li>
+								<li class="cr_corn">Corne</li>
+								<li class="cr_recy">Recyclé</li>
 							</ul>
 						</div>
 					</div>
@@ -111,29 +128,62 @@
 		var id = props.id;
 		var opticien = {name:"toto"};
 
+		const like = () => {
+			supe.from('favoris')
+			.insert({ 
+				"user": global.user.id, 
+				"opticien": id
+			})
+			.then(function(e) {
+				meLike(true);
+			})
+			.catch(function(e) { console.warn(e) })
+		};
+		const unlike = () => {
+			supe.from('favoris')
+			.delete()
+			.eq('user', global.user.id)
+			.eq('opticien', id)
+			.then(function(e) {
+				meLike(false);
+			})
+			.catch(function(e) { console.warn(e) })
+		};
+
 		// Component Methods
 		const openAlert = () => {
 			$f7.dialog.alert("Hello World");
 		};
+		
 		const addValue = () => {
 			debugger;
 			$update();
 		};
+
 		const liked = () => {
 			supe.from('favoris')
 			.select("id")
 			.eq('opticien', id)
 			.then((response) => {
 				console.log(response);
-				//debugger;
-				if (response.data.length > 0) {
-					//debugger;
-					opticien.liked = true;
-				}
+				if (response.data.length > 0) meLike(true);
+				else meLike(false);
 			})
 			.catch((err) => {
-				console.warn(err)
+				console.warn(err);
+				meLike(false);
 			});
+		};
+
+		const meLike = function(status) {
+			if (status) {
+				document.getElementById("ilike").style.display = "block";
+				document.getElementById("idontlike").style.display = "none";
+			}
+			else {
+				document.getElementById("ilike").style.display = "none";
+				document.getElementById("idontlike").style.display = "block";
+			}
 		};
 
 		// Page Events
@@ -144,13 +194,18 @@
 			var self = this;
 			console.log("pageInit", page);
 			supe.from('Opticien')
-			.select(`id, name, adresse, email, telephone, image, website)`)
+			.select(`id, name, adresse, email, telephone, image, website, stars, Ville, CodePostal, description, encart1, encart2, horaires, ouverture)`)
 			.eq('id', id)
 			.then((response) => {
 				console.log(response);
 				opticien = response.data[0];
+				if (opticien.image == null ||
+					opticien.image == "") {
+					opticien.image = "assets/img/no.png"
+				}
 				$update();
 				liked();
+				MyApp.fw7.app.emit("opticien", opticien);
 			}).catch((error)=> {
 				console.warn(error);
 			});

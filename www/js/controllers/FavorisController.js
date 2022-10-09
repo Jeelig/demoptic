@@ -17,13 +17,15 @@ MyApp.angular.controller('FavorisController', ['$scope', '$rootScope', 'InitServ
 	$scope.init = function() {
         $scope.optics = [];
         self.sync();
+        MyApp.fw7.app.dialog.preloader('');
         setTimeout(function() {
             supe.from('favoris')
             .select(
-                "id, Opticien(id, name, adresse, email, telephone, image, website)"
+                "id, Opticien(id, name, adresse, email, telephone, image, website, Ville, stars)"
             )
             .eq('user', global.user.id)
             .then((response) => {
+                MyApp.fw7.app.dialog.close();
                 console.log(response);
                 if (response.error != null) {
                     console.warn(response.error.messages);
@@ -34,6 +36,7 @@ MyApp.angular.controller('FavorisController', ['$scope', '$rootScope', 'InitServ
                 }
             })
             .catch((err) => {
+                MyApp.fw7.app.dialog.close();
                 console.warn(err)
             });
         }, 500);

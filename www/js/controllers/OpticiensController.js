@@ -20,7 +20,7 @@ MyApp.angular.controller('OpticiensController', ['$scope', '$rootScope', 'InitSe
         setTimeout(function() {
             supe.from('Opticien')
                 .select(`
-                    id, created_at, name, image, adresse
+                    id, created_at, name, image, adresse, Ville, CodePostal, stars
                 `)
             .then((response) => {
                 console.log(response);

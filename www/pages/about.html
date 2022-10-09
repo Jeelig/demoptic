@@ -39,31 +39,26 @@
                         <div class="f7-icons fleche_bas">arrow_right_circle_fill</div>
                         <div class="optic_distance">2 km</div>
                         <a href="/opticien/{{optic.id}}/" class="item-link item-content">
-                            <div class="item-media"><img ng-src="{{optic.image}}" width="44" /></div>
+                            <div class="item-media"><img ng-src="{{optic.image || 'assets/img/no.png'}}" width="48" style="border-radius: 5px;" /></div>
                             <div class="item-inner">
-                                <div class="item-title-row">
+                                <div class="item-title-row" style="margin-top: -6px; font-size:13px;">
                                     <div class="item-title">{{optic.name}}</div>
                                 </div>
-                                <div class="item-subtitle">{{optic.adresse}}</div>
+                                <div class="item-subtitle" style="font-size:12px;">{{optic.Ville}}</div>
+                                <div class="item-subtitle of-stars">
+                                    <div class="f7-icons star" ng-class="{'shine': optic.stars>=1}">star_fill</div>
+                                    <div class="f7-icons star" ng-class="{'shine': optic.stars>=2}">star_fill</div>
+                                    <div class="f7-icons star" ng-class="{'shine': optic.stars>=3}">star_fill</div>
+                                    <div class="f7-icons star" ng-class="{'shine': optic.stars>=4}">star_fill</div>
+                                    <div class="f7-icons star" ng-class="{'shine': optic.stars>=5}">star_fill</div>
+                                </div>
                             </div>
                         </a>
                     </li>
                 </ul>
             </div>
-            
+
         </div>
 
-        <!--
-		<div class="block-title">About My App</div>
-		<div class="block block-strong">
-			<p>Fugiat perspiciatis excepturi, soluta quod non ullam deleniti. Nobis sint nemo consequuntur, fugiat. Eius perferendis animi autem incidunt vel quod tenetur nostrum, voluptate omnis quasi quidem illum consequuntur, a, quisquam.</p>
-			<p>Laudantium neque magnam vitae nemo quam commodi, in cum dolore obcaecati laborum, excepturi harum, optio qui, consequuntur? Obcaecati dolor sequi nesciunt culpa quia perspiciatis, reiciendis ex debitis, ut tenetur alias.</p>
-		</div>
-		<div class="block">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni molestiae laudantium dignissimos est nobis delectus nemo ea alias voluptatum architecto, amet similique, saepe iste consectetur in repellat ut minus quibusdam!</p>
-			<p>Molestias et distinctio porro nesciunt ratione similique, magni doloribus, rerum nobis, aliquam quae reiciendis quasi modi. Nam a recusandae, fugiat in ea voluptates fuga eius, velit corrupti reprehenderit dignissimos consequatur!</p>
-			<p>Blanditiis, cumque quo adipisci. Molestiae, dolores dolorum quos doloremque ipsa ullam eligendi commodi deserunt doloribus inventore magni? Ea mollitia veniam nostrum nihil, iusto doloribus a at! Ea molestiae ullam delectus!</p>
-		</div>
-        -->
 	</div>
 </div>

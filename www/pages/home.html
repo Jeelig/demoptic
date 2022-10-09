@@ -194,7 +194,7 @@
                         <div class="pf_help"><img src="assets/img/acc/aide.png" style="width: 75px;"></div>
                         <div class="pf_full_name">{{user.user_metadata.full_name}}</div>
                         <div class="pf_email">{{user.email}}</div>
-                        <div class="pf_phone">07 66 38 97 09</div>
+                        <div class="pf_phone">{{user.user_metadata.telephone}}</div>
                         <ul>
                             <li>
                                 <a href="/profile/" style="color: #FFF;">
@@ -280,45 +280,12 @@
                                             <div class="item-inner">
                                                 <div class="item-title">Se souvenir de moi</div>
                                                 <div class="item-after">
-                                                    <label class="toggle toggle-init"> <input type="checkbox" checked name="toggle" value="yes" /><i class="toggle-icon"></i> </label>
+                                                    <label class="toggle toggle-init"> <input type="checkbox" checked name="toggle" value="yes" id="rememberme" /><i class="toggle-icon"></i> </label>
                                                 </div>
                                             </div>
                                         </div>
                                     </li>
                                 </ul>
-                                <!--
-                                <ul>
-                                    <li>
-                                        <div class="item-content item-input">
-                                            <div class="item-inner">
-                                                <div class="item-title item-label">Identifiant</div>
-                                                <div class="item-input-wrap">
-                                                    <input type="text" name="login" placeholder="Identifiant" id="log_login" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="item-content item-input">
-                                            <div class="item-inner">
-                                                <div class="item-title item-label">Mot de passe</div>
-                                                <div class="item-input-wrap">
-                                                    <input type="password" name="password" placeholder="Mot de passe" id="log_pw" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="item-content">
-                                            <div class="item-inner">
-                                                <div class="item-title">Se souvenir de moi</div>
-                                                <div class="item-after">
-                                                    <label class="toggle toggle-init"> <input type="checkbox" checked name="toggle" value="yes" /><i class="toggle-icon"></i> </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>-->
 
                                 <div class="block block-strong row no-after no-before" style="margin: 0 !important; padding-top: 0 !important; padding-bottom: 0 !important;">
                                     <div class="col"><a class="button button-fill button-round" id="loginbtn" href="#" ng-click="Login()">Connexion</a></div>
@@ -326,6 +293,10 @@
                                 
                                 <div class="block block-strong row no-after no-before" style="margin: 0 !important; padding-top: 15px !important; padding-bottom: 0 !important;">
                                     <div class="col"><a class="button" href="#" onclick="$('#register_form').show(); $('#login_form').hide();">Inscrivez-vous</a></div>
+                                </div>
+                                
+                                <div class="block block-strong row no-after no-before" style="margin: 0 !important; padding-top: 15px !important; padding-bottom: 0 !important;">
+                                    <div class="col"><a class="button" href="#" onclick="$('#forgot_form').show(); $('#login_form').hide();" style="margin-top:-10px; text-transform:none;">Mot de passe oublié ?</a></div>
                                 </div>
                                 
                             </div>
@@ -337,7 +308,7 @@
                                             <div class="item-inner">
                                                 <div class="item-title item-label">Identifiant *</div>
                                                 <div class="item-input-wrap">
-                                                    <input type="text" name="login" placeholder="Votre adresse email" ng-model="reg_login" required/>
+                                                    <input type="text" name="login" placeholder="" ng-model="reg_login" required/>
                                                 </div>
                                             </div>
                                         </div>
@@ -347,7 +318,7 @@
                                             <div class="item-inner">
                                                 <div class="item-title item-label">Prénom / Nom *</div>
                                                 <div class="item-input-wrap">
-                                                    <input type="text" name="firstname" placeholder="Nom et prénom" ng-model="reg_fullname" required/>
+                                                    <input type="text" name="firstname" placeholder="" ng-model="reg_fullname" required/>
                                                 </div>
                                             </div>
                                         </div>
@@ -357,7 +328,7 @@
                                             <div class="item-inner">
                                                 <div class="item-title item-label">Mot de passe *</div>
                                                 <div class="item-input-wrap">
-                                                    <input type="password" name="password" placeholder="Mot de passe" ng-model="reg_password" required />
+                                                    <input type="password" name="password" placeholder="" ng-model="reg_password" required />
                                                 </div>
                                             </div>
                                         </div>
@@ -367,7 +338,7 @@
                                             <div class="item-inner">
                                                 <div class="item-title item-label">Confirmer le Mot de passe *</div>
                                                 <div class="item-input-wrap">
-                                                    <input type="password" name="password" placeholder="Confirmer le Mot de passe" ng-model="reg_password_confirm" required/>
+                                                    <input type="password" name="password" placeholder="" ng-model="reg_password_confirm" required/>
                                                 </div>
                                             </div>
                                         </div>
@@ -377,7 +348,7 @@
                                             <div class="item-inner">
                                                 <div class="item-title item-label">Téléphone</div>
                                                 <div class="item-input-wrap">
-                                                    <input type="text" name="phone" placeholder="Nom et prénom" ng-model="reg_phone" />
+                                                    <input type="text" name="phone" placeholder="" ng-model="reg_phone" />
                                                 </div>
                                             </div>
                                         </div>
@@ -389,6 +360,30 @@
                                 
                                 <div class="block block-strong row no-after no-before" style="margin: 0 !important; padding-top: 15px !important; padding-bottom: 0 !important;">
                                     <div class="col"><a class="button" href="#" onclick="$('#register_form').hide(); $('#login_form').show();">Connectez-vous</a></div>
+                                </div>
+                                
+                            </div>
+
+
+                            <div id="forgot_form" style="display: none;">
+                                <ul>
+                                    <li>
+                                        <div class="item-content item-input">
+                                            <div class="item-inner">
+                                                <div class="item-title item-label">Identifiant *</div>
+                                                <div class="item-input-wrap">
+                                                    <input type="text" name="login" placeholder="" ng-model="forgot_login" required/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="block block-strong row no-after no-before" style="margin: 0 !important; padding-top: 0 !important; padding-bottom: 0 !important; margin-top:15px !important;">
+                                    <div class="col"><a class="button button-fill button-round" href="#" ng-click="forgotpw()">Réinitialiser</a></div>
+                                </div>
+                                
+                                <div class="block block-strong row no-after no-before" style="margin: 0 !important; padding-top: 15px !important; padding-bottom: 0 !important;">
+                                    <div class="col"><a class="button" href="#" onclick="$('#forgot_form').hide(); $('#login_form').show();">Connectez-vous</a></div>
                                 </div>
                                 
                             </div>

@@ -8,35 +8,11 @@ MyApp.angular.controller('OpticienController', ['$scope', '$rootScope', 'InitSer
 	var self = this;
 	var rootEvents = [];
 	
-    $scope.optics = [];
-
-    InitService.addEventListener('ready', function () {
-        log('OpticienController: ok, DOM ready'); // DOM ready
-    });
-	
 	$scope.init = function() {
-        $scope.optics = [];
-        self.sync();
-        debugger;
-        console.log(MyApp.fw7.app.router.currentRoute.params);
-        /*
-        supe.from('Opticien')
-            .select(`
-                id, created_at, name, image, adresse
-            `)
-        .then((response) => {
-            console.log(response);
-            if (response.error != null) {
-                console.warn(response.error.messages);
-            }
-            else {
-                $scope.optics = response.data;
-                self.sync();
-            }
-        })
-        .catch((err) => {
-            console.warn(err.response.text)
-        });*/
+        MyApp.fw7.app.on("opticien", function(e) {
+            $scope.optic = e;
+            self.sync();
+        });
 	};
 
     self.sync = function () { 

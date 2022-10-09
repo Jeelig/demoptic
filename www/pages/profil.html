@@ -10,7 +10,7 @@
 			</div>
 			<div class="title">Mon profil</div>
 			<div class="right">
-				<a href="#" class="link" ng-click="init()">
+				<a href="#" class="link" ng-click="UpdatePassword()">
 					<div class="f7-icons">lock</div>
 				</a>
 			</div>
@@ -57,11 +57,11 @@
                                 <div class="item-inner">
                                     <div class="item-title item-label">Téléphone</div>
                                     <div class="item-input-wrap">
-                                        <input type="text" name="telephone" placeholder="Téléphone" value="09 87 65 43 21" />
+                                        <input type="text" name="telephone" placeholder="Téléphone" ng-model="user.user_metadata.telephone" />
                                     </div>
                                 </div>
                             </div>
-                        </li>
+                        </li><!--
                         <li class="item-content item-input item-input-focused">
                             <div class="item-inner">
                                 <div class="item-title item-floating-label">Champ</div>
@@ -70,11 +70,11 @@
                                     <span class="input-clear-button"></span>
                                 </div>
                             </div>
-                        </li>
+                        </li>-->
                     </ul>
 
                     <div class="block block-strong row no-after no-before" style="margin: 15px 0 0 0 !important; padding-top: 0 !important; padding-bottom: 0 !important;">
-                        <div class="col"><a class="button button-fill button-round" id="loginbtn" href="#" ng-click="Login()">Mettre à jour</a></div>
+                        <div class="col"><a class="button button-fill button-round" id="loginbtn" href="#" ng-click="UpdateProfile()">Mettre à jour</a></div>
                     </div>
                     
                 </div>

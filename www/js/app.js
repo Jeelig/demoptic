@@ -47,7 +47,7 @@ MyApp.fw7 = {
 	app : new Framework7({
 
     //var app = new Framework7({
-        name: "My Afro Maps", // App name
+        name: "Optic Store Finder", // App name
         theme: "md", // Automatic theme detection
         el: "#app", // App root element
         id: "io.framework7.myapp", // App bundle ID

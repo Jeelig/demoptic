@@ -388,6 +388,7 @@
 }
 .opticien_blue_area .imgr img {
     height: 120px;
+    border-radius: 5px;
 }
 .opticien_blue_area .contr {
     text-align: left;
@@ -458,6 +459,88 @@
     font-weight: 500;
 }
 
+/* Global Carousel */
+.carousel {
+    width: 100%;
+    padding: 5px;
+    margin-top: 20px;
+    overflow-x: scroll;
+}
+.carousel > div ul {
+    list-style-type: none;
+}
+.carousel > div ul li {
+    display: inline-block;
+    background-color: #CCC;
+    margin: 0 15px 0 2px;
+    font-size: 10px;
+    text-align: center;
+}
+
+/* Carousel 1 */
+.carousel.carousel-1 > div  {
+    width: 560px;
+}
+.carousel.carousel-1 > div ul li {
+    width: 62px;
+    height: 62px;
+    border-radius: 5px;
+    background-color: #FFF;
+    box-shadow: 0px 2px 6px 2px #bdbdbd;
+    overflow: hidden;
+}
+.carousel.carousel-1 > div ul li div {
+    text-align:center;
+}
+.carousel.carousel-1 > div ul li div img {
+    width:80%;
+}
+
+/* Carousel 2 */
+.carousel.carousel-2 > div  {
+    width: 900px;
+}
+.carousel.carousel-2 > div ul li {
+    width: 62px;
+    height: 62px;
+    border-radius: 5px;
+    background-color: #FFF;
+    box-shadow: 0px 2px 6px 2px #bdbdbd;
+    overflow: hidden;
+    padding-top: 40px;
+    color: #FFF;
+    background-size: 162% auto;
+}
+.carousel.carousel-2 > div ul li.cr_tita {
+    background-image: url('../assets/img/optic/titane.jpg');
+}
+.carousel.carousel-2 > div ul li.cr_acet {
+    background-image: url('../assets/img/optic/acetate.png');
+}
+.carousel.carousel-2 > div ul li.cr_plas {
+    background-image: url('../assets/img/optic/plastique.png');
+}
+.carousel.carousel-2 > div ul li.cr_meta {
+    background-image: url('../assets/img/optic/metallique.jpg');
+}
+.carousel.carousel-2 > div ul li.cr_bois {
+    background-image: url('../assets/img/optic/bois.jpg');
+}
+.carousel.carousel-2 > div ul li.cr_carb {
+    background-image: url('../assets/img/optic/carbone.jpg');
+}
+.carousel.carousel-2 > div ul li.cr_corn {
+    background-image: url('../assets/img/optic/bois.jpg');
+}
+.carousel.carousel-2 > div ul li.cr_recy {
+    background-image: url('../assets/img/optic/bois.jpg');
+}
+.carousel.carousel-2 > div ul li div img {
+    width:80%;
+}
+
+
+
 .optic_scrolling_div {
     width: 100%;
     overflow-x: scroll;
@@ -515,4 +598,21 @@
 
 .above_list_optk input {
     text-transform: none !important;
+}
+
+.item-subtitle.of-stars {
+    position: absolute;
+}
+.item-subtitle.of-stars .f7-icons {
+    font-size: 11px;
+}
+.item-subtitle.of-stars .f7-icons.shine {
+    color: #FCEA0D;
+}
+
+.nSubText {
+    color: #098FA1;
+    font-size: 12px;
+    margin-top: -8px;
+    margin-bottom: 10px;
 }
