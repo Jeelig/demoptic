@@ -36,7 +36,7 @@
 								<td>${opticien.horaires}</td>
 							</tr>
 						</table>
-						<div class="opt_adr">${opticien.adresse}</div>
+						<div class="opt_adr">${opticien.adresse} ${opticien.Ville} ${opticien.CodePostal}</div>
 						<div class="opt_web">${opticien.website}</div>
 					</div>
 				</div>
@@ -134,14 +134,14 @@
 			<div class="opticien_gray_area" style="height:130px;">
 
 				<div class="optic_tit_cat" style="padding: 15px;">GARANTIES & SAV*</div>
-				<div style="width:100%; overflow-x:scroll;">
-					<div style="padding: 0 15px; width:700px">
+				<div class="garant_car">
+					<div>
 						<ul>
-							<li><img src="assets/img/optic/mutuelle.jpg"/></li>
-							<li><img src="assets/img/optic/paiementcarte.png"/></li>
-							<li><img src="assets/img/optic/paiementcheque.png"/></li>
-							<li><img src="assets/img/optic/garantie.png" style="margin-top:8px"/></li>
-							<li><img src="assets/img/optic/entretien.png" style="margin-top:16px"/></li>
+							<li class="muti"><div>Mutuelle</div></li>
+							<li class="cart"><div>x3 sans frais</div></li>
+							<li class="paye"><div>x3 sans frais</div></li>
+							<li class="gara"><div>Garantie</div></li>
+							<li class="entr"><div>Entretien</div></li>
 						</ul>
 					</div>
 				</div>

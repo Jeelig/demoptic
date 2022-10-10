@@ -17,6 +17,9 @@ MyApp.angular.controller('ProfileController', ['$scope', '$rootScope', 'InitServ
 	$scope.init = function() {
         $scope.user = global.user;
         self.sync();
+        self.calendar = MyApp.fw7.app.calendar.create({
+            inputEl: '#calendar-input'
+        });
 	};
 
     $scope.UpdateProfile = function() {
@@ -24,6 +27,7 @@ MyApp.angular.controller('ProfileController', ['$scope', '$rootScope', 'InitServ
             "full_name": $scope.user.user_metadata.full_name,
             "telephone": $scope.user.user_metadata.telephone
         };
+        let birthdate = $$("#calendar-input").val();
         supe.auth.update({
             "data": data
         }).then(function(response) {

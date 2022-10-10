@@ -93,7 +93,6 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
                 localStorage.setItem("session", JSON.stringify(response));
                 let remindMe = document.getElementById("rememberme").checked;
                 if (remindMe) {
-                    debugger;
                     localStorage.setItem("credentials", JSON.stringify(data));
                 }
             }

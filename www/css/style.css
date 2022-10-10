@@ -632,7 +632,7 @@
 .opticien_gray_area ul li {
     display: inline-block;
     width: 75px;
-    height: 75px;
+    height: 80px;
     background-color: #FFF;
     border-radius: 5px;
     box-shadow: 3px 2px 4px #bdbdbd;
@@ -665,4 +665,41 @@
 }
 .nSubText.gray {
     color: #888;
+}
+
+.garant_car {
+    width:100%; overflow-x:scroll;
+}
+.garant_car > div {
+    padding: 0 15px; width:700px
+}
+.garant_car > div ul li {
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position-x: center;
+}
+.garant_car > div ul li.muti {
+    background-image: url("../assets/img/optic/mutuelle.jpg");
+}
+.garant_car > div ul li.cart {
+    background-image: url("../assets/img/optic/paiementcarte.png");
+    background-position-y: -5px;
+}
+.garant_car > div ul li.paye {
+    background-image: url("../assets/img/optic/paiementcheque.png");
+    background-size: 90% auto;
+}
+.garant_car > div ul li.gara {
+    background-image: url("../assets/img/optic/garantie.png");
+    background-size: 70% auto;
+    background-position-y: 10px;
+}
+.garant_car > div ul li.entr {
+    background-image: url("../assets/img/optic/entretien.png");
+    background-position-y:12px;
+}
+.garant_car > div ul li div {
+    padding-top:60px;
+    font-size: 11px;
+    text-align: center;
 }
