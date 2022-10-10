@@ -8,28 +8,28 @@ MyApp.angular.controller('OpticienController', ['$scope', '$rootScope', 'InitSer
 	var self = this;
 	var rootEvents = [];
     $scope.matieres = [{
-        id: 0, name: "Titane", class: "cr_tita",
+        id: 0, name: "Titane", class: "cr_tita", marques: "Ray-Ban, Gucci, Prada, Izipizi ...",
         description: "Resistantes et ultra légères, les montures en titane sont élégantes et ne vous laisseront pas de marque sur le nez."
     }, {
-        id: 1, name: "Acetate", class: "cr_acet",
+        id: 1, name: "Acetate", class: "cr_acet", marques: "Ray-Ban, Gucci, Prada, Izipizi ...",
         description: "Resistantes et ultra légères, les montures en acetate sont élégantes et ne vous laisseront pas de marque sur le nez."
     }, {
-        id: 2, name: "Plastique", class: "cr_plas",
+        id: 2, name: "Plastique", class: "cr_plas", marques: "Ray-Ban, Gucci, Prada, Izipizi ...",
         description: "Souples et ultra légères, les montures en plastique sont élégantes et ne vous laisseront pas de marque sur le nez."
     }, {
-        id: 3, name: "Métallique", class: "cr_meta",
+        id: 3, name: "Métallique", class: "cr_meta", marques: "Ray-Ban, Gucci, Prada, Izipizi ...",
         description: "Resistantes et ultra légères, les montures métallique sont élégantes et ne vous laisseront pas de marque sur le nez."
     }, {
-        id: 4, name: "Bois", class: "cr_bois",
+        id: 4, name: "Bois", class: "cr_bois", marques: "Ray-Ban, Gucci, Prada, Izipizi ...",
         description: "Resistantes et ultra légères, les montures en bois sont élégantes et ne vous laisseront pas de marque sur le nez."
     }, {
-        id: 5, name: "Carbone", class: "cr_carb",
+        id: 5, name: "Carbone", class: "cr_carb", marques: "Ray-Ban, Gucci, Prada, Izipizi ...",
         description: "Resistantes et ultra légères, les montures en carbone sont élégantes et ne vous laisseront pas de marque sur le nez."
     }, {
-        id: 6, name: "Corne", class: "cr_corn",
+        id: 6, name: "Corne", class: "cr_corn", marques: "Ray-Ban, Gucci, Prada, Izipizi ...",
         description: "Resistantes et ultra légères, les montures en corne sont élégantes et ne vous laisseront pas de marque sur le nez."
     }, {
-        id: 7, name: "Recyclé", class: "cr_recy",
+        id: 7, name: "Recyclé", class: "cr_recy", marques: "Ray-Ban, Gucci, Prada, Izipizi ...",
         description: "Resistantes et ultra légères, les montures recyclés sont élégantes et ne vous laisseront pas de marque sur le nez."
     }];
 	
