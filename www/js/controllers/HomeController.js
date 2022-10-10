@@ -34,7 +34,6 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
         let credentials = localStorage.getItem("credentials");
         if (session) {
             session = JSON.parse(session);
-            //debugger;
             let expires_at = new Date(session.session.expires_at * 1000);
             if (expires_at > new Date()) {
                 global.user = session.user;

@@ -71,7 +71,7 @@
         </div>
 
         <div class="tabs opt">
-            <div id="tab-home" class="page-content tab tab-active">
+            <div id="tab-home" class="page-content tab" ng-class="{'tab-active': menu_item=='home'}">
                 <div style="padding: 30px 40px 20px 40px; color: #098fa1; font-size: 20px; text-align: center;">
                     Un guide, votre liberté de choisir.
                 </div>
@@ -101,7 +101,7 @@
                     </div>
                 </a>
             </div>
-            <div id="tab-rdv" class="page-content tab">
+            <div id="tab-rdv" class="page-content tab" ng-class="{'tab-active': menu_item=='rdv'}">
                 <div class="rdv_list">
                     <ul>
                         <li ng-class="{'active': rdv_tab=='coming'}" ng-click="rdv_tab='coming'">A VENIR</li>
@@ -134,7 +134,7 @@
                     </p>
                 </div>
             </div>
-            <div id="tab-vsg" class="page-content tab">
+            <div id="tab-vsg" class="page-content tab" ng-class="{'tab-active': menu_item=='vsg'}">
                 <div class="block">
                     <p>VISAGISME</p>
                     <p>
@@ -161,7 +161,7 @@
                     </p>
                 </div>
             </div>
-            <div id="tab-trends" class="page-content tab">
+            <div id="tab-trends" class="page-content tab" ng-class="{'tab-active': menu_item=='trends'}">
                 <div class="block">
                     <p>TENDANCES</p>
                     <p>
@@ -188,7 +188,7 @@
                     </p>
                 </div>
             </div>
-            <div id="tab-user" class="page-content tab">
+            <div id="tab-user" class="page-content tab" ng-class="{'tab-active': menu_item=='account'}">
                 <div style="font-size:14px; display: none;" id="page_profile">
                     <div class="profile_blue_area">
                         <div class="pf_help"><img src="assets/img/acc/aide.png" style="width: 75px;"></div>
