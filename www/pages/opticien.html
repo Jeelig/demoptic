@@ -12,10 +12,10 @@
 				<div class="title">Mon opticien</div>
 				<div class="right">
 					<a href="#" class="link" @click="${like}" id="idontlike">
-						<div class="f7-icons">heart</div>
+						<i class="f7-icons">heart</i>
 					</a>
 					<a href="#" class="link" @click="${unlike}" id="ilike" style="display: none;">
-						<div class="f7-icons">heart_fill</div>
+						<i class="f7-icons">heart_fill</i>
 					</a>
 				</div>
 			</div>
@@ -76,26 +76,51 @@
 					<div class="carousel carousel-2">
 						<div>
 							<ul>
-								<li class="cr_tita">Titane</li>
-								<li class="cr_acet">Acetate</li>
-								<li class="cr_plas">Plastique</li>
-								<li class="cr_meta">Metallique</li>
-								<li class="cr_bois">Bois</li>
-								<li class="cr_carb">Carbone</li>
-								<li class="cr_corn">Corne</li>
-								<li class="cr_recy">Recyclé</li>
+								<li ng-repeat="mat in matieres" class="{{mat.class}}" ng-click="changematiere(mat.id)">{{mat.name}}</li>
 							</ul>
 						</div>
 					</div>
 					
-					<div class="opt_info_resistance">
-						<div class="row no-gap">
-							<div class="col-15" style="text-align:center; padding-top: 4px;"><img src="assets/img/face/ampoule conseils.png" style="width:35px"/></div>
-							<div class="col-85" style="font-size:12px;">
-								Resistantes et ultra légères , les montures en titane sont élégantes et ne vous laisseront pas de marque sur le nez.
-							</div>
+					<div class="opt_info_resistance" ng-show="id_matiere!=-1">
+						<table>
+							<tr>
+								<td><img src="assets/img/face/ampoule conseils.png" style="width:35px"/></td>
+								<td>{{matieres[id_matiere].description}}</td>
+							</tr>
+						</table>
+					</div>
+
+					
+					<div class="optic_tit_cat" style="margin-top:30px">Verres</div>
+					<div class="nSubText" style="color:#CCC">Essilor ...</div>
+
+					
+					<div class="optic_tit_cat" style="margin-top:30px">Lentilles</div>
+					<div class="carousel carousel-3">
+						<div>
+							<ul>
+								<li><img src="assets/img/optic/acuvue.png" style="margin-top: 8px; width: 80%;"/></li>
+								<li><img src="assets/img/optic/freshlook.png" style="margin-top: 0px;"/></li>
+								<li><img src="assets/img/optic/dailies.png" style="margin-top: 28px;"/></li>
+							</ul>
 						</div>
 					</div>
+					
+
+					<div class="optic_tit_cat" style="margin-top:30px">Produits d'entretien</div>
+					<div class="carousel carousel-4">
+						<div>
+							<ul>
+								<li><img src="assets/img/optic/optifree.png" style="width: 100%;"/></li>
+								<li><img src="assets/img/optic/ophtalmic.png" style="margin-top: 30px; width: 90%;"/></li>
+							</ul>
+						</div>
+					</div>
+
+					
+					<img src=${opticien.encart2} style="width:100%; margin-top:20px;"/>
+
+
 
 				</div>
 
@@ -104,14 +129,31 @@
 			
 			<div class="opticien_gray_area" style="height:130px;">
 
-				<div style="padding: 15px;">
-					<div class="optic_tit_cat">GARANTIES & SAV*</div>
-					<ul>
-						<li><img src="assets/img/optic/mutuelle.jpg"/></li>
-						<li><img src="assets/img/optic/paiementcarte.png"/></li>
-						<li><img src="assets/img/optic/paiementcheque.png"/></li>
-					</ul>
+				<div class="optic_tit_cat" style="padding: 15px;">GARANTIES & SAV*</div>
+				<div style="width:100%; overflow-x:scroll;">
+					<div style="padding: 0 15px; width:700px">
+						<ul>
+							<li><img src="assets/img/optic/mutuelle.jpg"/></li>
+							<li><img src="assets/img/optic/paiementcarte.png"/></li>
+							<li><img src="assets/img/optic/paiementcheque.png"/></li>
+							<li><img src="assets/img/optic/garantie.png" style="margin-top:8px"/></li>
+							<li><img src="assets/img/optic/entretien.png" style="margin-top:16px"/></li>
+						</ul>
+					</div>
 				</div>
+				
+				<div style="padding: 30px 20px 0 20px;">
+					<div class="nSubText gray">Apicil, April, Henner, Harmonie...</div>
+					
+					<div class="nSubText gray">Réseaux santé : Viamedis, Itelis, Korélio, Santéclair</div>
+					
+					<div class="nSubText">* Voir conditions en magasin</div>
+				</div>
+
+				<div style="padding: 20px;">
+					<button class="col button button-raised button-fill button-round">Prendre rendez-vous</button>
+				</div>
+
 			</div>
 			
 		</div>
@@ -177,12 +219,12 @@
 
 		const meLike = function(status) {
 			if (status) {
-				document.getElementById("ilike").style.display = "block";
-				document.getElementById("idontlike").style.display = "none";
+				$$("#ilike").show();
+				$$("#idontlike").hide();
 			}
 			else {
-				document.getElementById("ilike").style.display = "none";
-				document.getElementById("idontlike").style.display = "block";
+				$$("#ilike").hide();
+				$$("#idontlike").show();
 			}
 		};
 

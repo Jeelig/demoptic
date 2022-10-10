@@ -510,6 +510,7 @@
     padding-top: 40px;
     color: #FFF;
     background-size: 162% auto;
+    cursor: pointer;
 }
 .carousel.carousel-2 > div ul li.cr_tita {
     background-image: url('../assets/img/optic/titane.jpg');
@@ -539,6 +540,40 @@
     width:80%;
 }
 
+/* Carousel 3 */
+.carousel.carousel-3 > div  {
+    width: 900px;
+}
+.carousel.carousel-3 > div ul li {
+    width: 75px;
+    height: 75px;
+    border-radius: 5px;
+    background-color: #FFF;
+    box-shadow: 0px 2px 6px 2px #bdbdbd;
+    overflow: hidden;
+    color: #FFF;
+    cursor: pointer;
+    text-align: center;
+}
+.carousel.carousel-3 > div ul li img {
+    width:100%;
+}
+
+/* Carousel 4 */
+.carousel.carousel-4 > div  {
+    width: 900px;
+}
+.carousel.carousel-4 > div ul li {
+    width: 75px;
+    height: 75px;
+    border-radius: 5px;
+    background-color: #FFF;
+    box-shadow: 0px 2px 6px 2px #bdbdbd;
+    overflow: hidden;
+    color: #FFF;
+    cursor: pointer;
+}
+
 
 
 .optic_scrolling_div {
@@ -566,6 +601,18 @@
     border-radius: 60px;
     margin-top:20px;
     color: #1459AC;
+}
+.opt_info_resistance table {
+    width:95%;
+    margin:0 auto;
+}
+.opt_info_resistance table tr td:nth-child(odd) {
+    width:15%;
+    vertical-align: middle;
+}
+.opt_info_resistance table tr td:nth-child(even) {
+    vertical-align: middle;
+    font-size:12px;
 }
 
 .opticien_gray_area {
@@ -615,4 +662,7 @@
     font-size: 12px;
     margin-top: -8px;
     margin-bottom: 10px;
+}
+.nSubText.gray {
+    color: #888;
 }
