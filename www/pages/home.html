@@ -25,6 +25,19 @@
             <a href="#" class="link">Right Link</a>
         </div>
         </div>-->
+
+        <div class="OpticFirstLaunch">
+            <div class="ofl_close" onclick="document.querySelector('.OpticFirstLaunch').remove()">X</div>
+            <div class="ofl_text1">Votre guide pour choisir vos lunettes.</div>
+            <div class="ofl_text2">Vos critères, vos choix.</div>
+            <div class="ofl_text3">Une expérience client intuitive avec des opticiens au service de votre vision</div>
+            <div class="ofl_img"><img src="assets/img/ouv/pictoouverture.png"/></div>
+            <div class="ofl_text4">Vivez une expérience <br>unique.</div>
+            <div class="ofl_btn">
+                <button class="col button button-raised button-fill button-round" onclick="document.querySelector('.OpticFirstLaunch').remove()">Se connecter</button>
+            </div>
+        </div>
+
         <div class="toolbar tabbar tabbar-labels toolbar-bottom" style="background-color: #fff; border-top: solid 1px #000; height: 85px;">
             <div class="toolbar-inner" style="margin: 8px 0 8px 0;">
                 <a href="#tab-home" class="tab-link tab-link-active" ng-click="setTab('home')">
@@ -109,29 +122,33 @@
                     </ul>
                 </div>
                 <div class="block">
-                    <p>RENDEZ-VOUS</p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam enim quia molestiae facilis laudantium voluptates obcaecati officia cum, sit libero commodi. Ratione illo suscipit temporibus sequi iure ad laboriosam
-                        accusamus?
-                    </p>
-                    <p>
-                        Saepe explicabo voluptas ducimus provident, doloremque quo totam molestias! Suscipit blanditiis eaque exercitationem praesentium reprehenderit, fuga accusamus possimus sed, sint facilis ratione quod, qui dignissimos
-                        voluptas! Aliquam rerum consequuntur deleniti.
-                    </p>
-                    <p>
-                        Totam reprehenderit amet commodi ipsum nam provident doloremque possimus odio itaque, est animi culpa modi consequatur reiciendis corporis libero laudantium sed eveniet unde delectus a maiores nihil dolores? Natus,
-                        perferendis.
-                    </p>
-                    <p>
-                        Atque quis totam repellendus omnis alias magnam corrupti, possimus aspernatur perspiciatis quae provident consequatur minima doloremque blanditiis nihil maxime ducimus earum autem. Magni animi blanditiis similique iusto,
-                        repellat sed quisquam!
-                    </p>
-                    <p>Suscipit, facere quasi atque totam. Repudiandae facilis at optio atque, rem nam, natus ratione cum enim voluptatem suscipit veniam! Repellat, est debitis. Modi nam mollitia explicabo, unde aliquid impedit! Adipisci!</p>
-                    <p>Deserunt adipisci tempora asperiores, quo, nisi ex delectus vitae consectetur iste fugiat iusto dolorem autem. Itaque, ipsa voluptas, a assumenda rem, dolorum porro accusantium, officiis veniam nostrum cum cumque impedit.</p>
-                    <p>
-                        Laborum illum ipsa voluptatibus possimus nesciunt ex consequatur rem, natus ad praesentium rerum libero consectetur temporibus cupiditate atque aspernatur, eaque provident eligendi quaerat ea soluta doloremque. Iure fugit,
-                        minima facere.
-                    </p>
+                    <div ng-show="rdv_tab=='coming'" ng-click="rdv_tab='coming'" style="margin: 0 10px;">
+                        <p>RENDEZ-VOUS à venir</p>
+                        
+                        <div class="rdv">
+                            <div class="rdv_date">Mercredi 22 décembre à 14:00</div>
+                            <div class="rdv_esta">
+                                <table>
+                                    <tr>
+                                        <td><img src="https://mustcmzsfjqsriltocne.supabase.co/storage/v1/object/sign/imagesopticiens/optic2000.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXNvcHRpY2llbnMvb3B0aWMyMDAwLndlYnAiLCJpYXQiOjE2NjU1ODAwNTIsImV4cCI6MTk4MDk0MDA1Mn0.rGdgYoThpbExE85VSYJQDVorPeXdV2DyKahK3bupKrQ" style="width:100%; border-radius:10px;"/></td>
+                                        <td>
+                                            <div class="f7-icons">arrow_right_circle_fill</div>
+                                            <span>Histoire d'y voir</span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="rdv_actions">
+                                <button class="col button button-raised button-fill button-small button-round">Transpmettre mes formes de montures</button>
+                                <button class="col button button-raised button-fill button-small button-round color-black">Annuler le rendez-vous</button>
+                                <div class="trans_ordonnance"><span class="f7-icons">paperclip</span> Transmettre mon ordonnance</div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div ng-show="rdv_tab=='past'" ng-click="rdv_tab='past'">
+                        <p>RENDEZ-VOUS passés</p>
+                    </div>
                 </div>
             </div>
             <div id="tab-vsg" class="page-content tab" ng-class="{'tab-active': menu_item=='vsg'}">
@@ -164,28 +181,60 @@
             <div id="tab-trends" class="page-content tab" ng-class="{'tab-active': menu_item=='trends'}">
                 <div class="block">
                     <p>TENDANCES</p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam enim quia molestiae facilis laudantium voluptates obcaecati officia cum, sit libero commodi. Ratione illo suscipit temporibus sequi iure ad laboriosam
-                        accusamus?
-                    </p>
-                    <p>
-                        Saepe explicabo voluptas ducimus provident, doloremque quo totam molestias! Suscipit blanditiis eaque exercitationem praesentium reprehenderit, fuga accusamus possimus sed, sint facilis ratione quod, qui dignissimos
-                        voluptas! Aliquam rerum consequuntur deleniti.
-                    </p>
-                    <p>
-                        Totam reprehenderit amet commodi ipsum nam provident doloremque possimus odio itaque, est animi culpa modi consequatur reiciendis corporis libero laudantium sed eveniet unde delectus a maiores nihil dolores? Natus,
-                        perferendis.
-                    </p>
-                    <p>
-                        Atque quis totam repellendus omnis alias magnam corrupti, possimus aspernatur perspiciatis quae provident consequatur minima doloremque blanditiis nihil maxime ducimus earum autem. Magni animi blanditiis similique iusto,
-                        repellat sed quisquam!
-                    </p>
-                    <p>Suscipit, facere quasi atque totam. Repudiandae facilis at optio atque, rem nam, natus ratione cum enim voluptatem suscipit veniam! Repellat, est debitis. Modi nam mollitia explicabo, unde aliquid impedit! Adipisci!</p>
-                    <p>Deserunt adipisci tempora asperiores, quo, nisi ex delectus vitae consectetur iste fugiat iusto dolorem autem. Itaque, ipsa voluptas, a assumenda rem, dolorum porro accusantium, officiis veniam nostrum cum cumque impedit.</p>
-                    <p>
-                        Laborum illum ipsa voluptatibus possimus nesciunt ex consequatur rem, natus ad praesentium rerum libero consectetur temporibus cupiditate atque aspernatur, eaque provident eligendi quaerat ea soluta doloremque. Iure fugit,
-                        minima facere.
-                    </p>
+                    
+                    <div class="block-title">Expandable Cards</div>
+                    <div class="card card-expandable">
+                        <div class="card-content">
+                            <div class="bg-color-red" style="height: 300px;">
+                                <div class="card-header text-color-white display-block">
+                                    Framework7<br />
+                                    <small style="opacity: 0.7;">Build Mobile Apps</small>
+                                </div>
+                                <a href="#" class="link card-close card-opened-fade-in color-white" style="position: absolute; right: 15px; top: 15px;">
+                                    <i class="icon f7-icons">xmark_circle_fill</i>
+                                </a>
+                            </div>
+                            <div class="card-content-padding">
+                                <p>
+                                    Framework7 - is a free and open source HTML mobile framework to develop hybrid mobile apps or web apps with iOS or Android (Material) native look and feel. It is also an indispensable prototyping apps tool to show working
+                                    app prototype as soon as possible in case you need to.
+                                </p>
+                                <p>
+                                    The main approach of the Framework7 is to give you an opportunity to create iOS and Android (Material) apps with HTML, CSS and JavaScript easily and clear. Framework7 is full of freedom. It doesn't limit your imagination or
+                                    offer ways of any solutions somehow. Framework7 gives you freedom!
+                                </p>
+                                <p>Framework7 is not compatible with all platforms. It is focused only on iOS and Android (Material) to bring the best experience and simplicity.</p>
+                                <p>Framework7 is definitely for you if you decide to build iOS and Android hybrid app (Cordova or Capacitor) or web app that looks like and feels as great native iOS or Android (Material) apps.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card-expandable">
+                        <div class="card-content">
+                            <div class="bg-color-yellow" style="height: 300px;">
+                                <div class="card-header text-color-black display-block">
+                                    Framework7<br />
+                                    <small style="opacity: 0.7;">Build Mobile Apps</small>
+                                </div>
+                                <a href="#" class="link card-close card-opened-fade-in color-black" style="position: absolute; right: 15px; top: 15px;">
+                                    <i class="icon f7-icons">xmark_circle_fill</i>
+                                </a>
+                            </div>
+                            <div class="card-content-padding">
+                                <p>
+                                    Framework7 - is a free and open source HTML mobile framework to develop hybrid mobile apps or web apps with iOS or Android (Material) native look and feel. It is also an indispensable prototyping apps tool to show working
+                                    app prototype as soon as possible in case you need to.
+                                </p>
+                                <p>
+                                    The main approach of the Framework7 is to give you an opportunity to create iOS and Android (Material) apps with HTML, CSS and JavaScript easily and clear. Framework7 is full of freedom. It doesn't limit your imagination or
+                                    offer ways of any solutions somehow. Framework7 gives you freedom!
+                                </p>
+                                <p>Framework7 is not compatible with all platforms. It is focused only on iOS and Android (Material) to bring the best experience and simplicity.</p>
+                                <p>Framework7 is definitely for you if you decide to build iOS and Android hybrid app (Cordova or Capacitor) or web app that looks like and feels as great native iOS or Android (Material) apps.</p>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
             <div id="tab-user" class="page-content tab" ng-class="{'tab-active': menu_item=='account'}">

@@ -82,7 +82,7 @@ body {
 
 .md .tabbar-label {
     color: #000;
-    font-size: 11px !important;
+    font-size: 9px !important;
 }
 
 .toolbar-inner .icon {
@@ -727,4 +727,172 @@ body {
 .parameter-security .list.simple-list ul li {
     padding: 0; 
     font-size: 12px;
+    line-height: 18px;
+
+    word-break: break-word;
+   white-space: pre-wrap;
+   -moz-white-space: pre-wrap;  
 }
+.parameter-security .list.simple-list ul li label.toggle {
+    margin-top: -107px;
+}
+
+.OpticFirstLaunch {
+    position: absolute;
+    z-index: 8888888888;
+    width: 100%;
+    height: 100%;
+    background-color: #FFF;
+    text-align: center;
+}
+.OpticFirstLaunch .ofl_text1 {
+    margin-top: 60px;
+    color: #098FA1;
+}
+.OpticFirstLaunch .ofl_text2 {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--f7-button-fill-pressed-bg-color, var(--f7-theme-color-shade));
+    padding: 20px 20px;
+}
+.OpticFirstLaunch .ofl_text3 {
+    color: #AAA;
+    font-size: 12px;
+    padding: 0 30px;
+}
+.OpticFirstLaunch .ofl_text4 {
+    margin-top: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--f7-button-fill-pressed-bg-color, var(--f7-theme-color-shade));
+}
+.OpticFirstLaunch .ofl_img {
+    margin-top: 30px;
+}
+.OpticFirstLaunch .ofl_btn {
+    bottom: 50px;
+    position: absolute;
+    width: 70%;
+    left: 15%;
+}
+.OpticFirstLaunch .ofl_btn button {
+    text-transform: none;
+}
+.OpticFirstLaunch .ofl_img img {
+    width:65%;
+}
+.OpticFirstLaunch .ofl_close {
+    position:absolute;
+    right: 20px;
+    top: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #1A2A84;
+}
+
+.rdv {
+    box-shadow: 0px 2px 6px 2px #bdbdbd;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.rdv .rdv_date {
+    font-size: 15px;
+    padding: 10px;
+    border-bottom: solid 1px #444;
+}
+.rdv .rdv_esta {
+    padding: 10px;
+    border-bottom: solid 1px #444;
+}
+.rdv .rdv_esta table {
+    width:100%;
+}
+.rdv .rdv_esta tr td:nth-of-type(odd) {
+    width:80px; 
+    height: 80px; 
+    overflow: hidden;
+}
+.rdv .rdv_esta tr td:nth-of-type(even) {
+    vertical-align: middle; 
+    text-align:left;
+}
+.rdv .rdv_esta tr td .f7-icons {
+    position: absolute;
+    right: 32px;
+    font-size: 22px;
+    color: #1A2A84;
+}
+.rdv .rdv_actions {
+    
+}
+.rdv .rdv_actions button {
+    font-size: 11px;
+    text-transform: none;
+    margin: 0 auto;
+    margin-top: 15px;
+    width: 90%;
+}
+.rdv .trans_ordonnance {
+    margin-top: 15px;
+    font-size: 12px;
+}
+.rdv .trans_ordonnance span.f7-icons {
+    font-size: 14px;
+}
+
+
+
+.demo-card-header-pic .card-header {
+    height: 40vw;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+  }
+
+  .demo-card-header-pic .card-content-padding .date {
+    color: #8e8e93;
+  }
+
+  .demo-facebook-card .card-header {
+    display: block;
+    padding: 10px;
+  }
+
+  .demo-facebook-card .demo-facebook-avatar {
+    float: left;
+  }
+
+  .demo-facebook-card .demo-facebook-name {
+    margin-left: 44px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .demo-facebook-card .demo-facebook-date {
+    margin-left: 44px;
+    font-size: 13px;
+    color: #8e8e93;
+  }
+
+  .demo-facebook-card .card-footer {
+    background: #fafafa;
+  }
+
+  .demo-facebook-card .card-footer a {
+    color: #81848b;
+    font-weight: 500;
+  }
+
+  .demo-facebook-card .card-content img {
+    display: block;
+  }
+
+  .demo-facebook-card .card-content-padding {
+    padding: 15px 10px;
+  }
+
+  .demo-facebook-card .card-content-padding .likes {
+    color: #8e8e93;
+  }

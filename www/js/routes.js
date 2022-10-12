@@ -33,6 +33,10 @@ var routes = [
     url: './pages/legal.html',
   },
   {
+    path: '/rdv/',
+    url: './pages/rdv.html',
+  },
+  {
     path: '/opticien/:id/',
     componentUrl: './pages/opticien.html',
   },

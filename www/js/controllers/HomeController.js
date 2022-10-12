@@ -32,6 +32,7 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
 	$scope.init = function() {
         let session = localStorage.getItem("session");
         let credentials = localStorage.getItem("credentials");
+        let firstlaunch = localStorage.getItem("firstlaunch");
         if (session) {
             session = JSON.parse(session);
             let expires_at = new Date(session.session.expires_at * 1000);
@@ -48,6 +49,14 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
                 $("#login_form ul li").addClass("item-input-focused");
             }, 500);
         }
+        if (!firstlaunch) localStorage.setItem("firstlaunch", true);
+        else {
+            setTimeout(function() {
+                document.querySelector('.OpticFirstLaunch').remove();
+            }, 50);
+        }
+        //else localStorage.setItem("firstlaunch", true);
+
         if (global.hasOwnProperty('active_tab')) {
             $scope.menu_item = global.active_tab;
         }
@@ -76,20 +85,20 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
             email: email,
             password: passw
         };
-        supe.auth.signIn(data).then((response) => {
+        supe.auth.signInWithPassword(data).then((response) => {
             MyApp.fw7.app.preloader.hide();
             console.log(response);
             if (response.error) {
                 alert(response.error.message);
             }
             else {
-                $scope.user = response.user;
-                global.user = response.user;
+                $scope.user = response.data.user;
+                global.user = response.data.user;
                 self.sync();
                 $$("#formulaire_login").hide();
                 $$("#page_profile").show();
-                self.updateuser(response.user);
-                localStorage.setItem("session", JSON.stringify(response));
+                self.updateuser(response.data.user);
+                localStorage.setItem("session", JSON.stringify(response.data));
                 let remindMe = document.getElementById("rememberme").checked;
                 if (remindMe) {
                     localStorage.setItem("credentials", JSON.stringify(data));
