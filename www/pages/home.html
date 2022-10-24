@@ -115,6 +115,7 @@
                 </a>
             </div>
             <div id="tab-rdv" class="page-content tab" ng-class="{'tab-active': menu_item=='rdv'}">
+                <div class="button_green takerdv"><i class="f7-icons">search</i> Prendre rendez-vous</div>
                 <div class="rdv_list">
                     <ul>
                         <li ng-class="{'active': rdv_tab=='coming'}" ng-click="rdv_tab='coming'">A VENIR</li>
@@ -125,21 +126,23 @@
                     <div ng-show="rdv_tab=='coming'" ng-click="rdv_tab='coming'" style="margin: 0 10px;">
                         <p>RENDEZ-VOUS à venir</p>
                         
-                        <div class="rdv">
-                            <div class="rdv_date">Mercredi 22 décembre à 14:00</div>
+                        <div class="rdv" ng-repeat="rdv in rdvs track by rdv.id">
+                            <div class="rdv_date">
+                                {{getDate(rdv, 'day')}} {{getDate(rdv, 'date')}} {{getDate(rdv, 'month')}} à {{rdv.time.substring(0, 5)}}
+                            </div>
                             <div class="rdv_esta">
                                 <table>
-                                    <tr>
-                                        <td><img src="https://mustcmzsfjqsriltocne.supabase.co/storage/v1/object/sign/imagesopticiens/optic2000.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXNvcHRpY2llbnMvb3B0aWMyMDAwLndlYnAiLCJpYXQiOjE2NjU1ODAwNTIsImV4cCI6MTk4MDk0MDA1Mn0.rGdgYoThpbExE85VSYJQDVorPeXdV2DyKahK3bupKrQ" style="width:100%; border-radius:10px;"/></td>
+                                    <tr ng-click="OpenOpticien(rdv.opticien.id)">
+                                        <td><img ng-src="{{rdv.opticien.image}}" style="width:100%; border-radius:10px;"/></td>
                                         <td>
-                                            <div class="f7-icons">arrow_right_circle_fill</div>
-                                            <span>Histoire d'y voir</span>
+                                            <div class="f7-icons" style="cursor: pointer;">arrow_right_circle_fill</div>
+                                            <span>{{rdv.opticien.name}}</span>
                                         </td>
                                     </tr>
                                 </table>
                             </div>
                             <div class="rdv_actions">
-                                <button class="col button button-raised button-fill button-small button-round">Transpmettre mes formes de montures</button>
+                                <button class="col button button-raised button-fill button-small button-round">Transmettre mes formes de montures</button>
                                 <button class="col button button-raised button-fill button-small button-round color-black">Annuler le rendez-vous</button>
                                 <div class="trans_ordonnance"><span class="f7-icons">paperclip</span> Transmettre mon ordonnance</div>
                             </div>
@@ -181,7 +184,7 @@
             <div id="tab-trends" class="page-content tab" ng-class="{'tab-active': menu_item=='trends'}">
                 <div class="block">
                     <p>TENDANCES</p>
-                    
+                    <!--
                     <div class="block-title">Expandable Cards</div>
                     <div class="card card-expandable">
                         <div class="card-content">
@@ -233,7 +236,7 @@
                             </div>
                         </div>
                     </div>
-
+                    -->
 
                 </div>
             </div>

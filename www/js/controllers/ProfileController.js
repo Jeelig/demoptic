@@ -25,14 +25,18 @@ MyApp.angular.controller('ProfileController', ['$scope', '$rootScope', 'InitServ
     $scope.UpdateProfile = function() {
         let data = {
             "full_name": $scope.user.user_metadata.full_name,
-            "telephone": $scope.user.user_metadata.telephone
+            "telephone": $scope.user.user_metadata.telephone,
+            //"DateDeNaissance": document.getElementById("calendar-input").value, //$scope.user.user_metadata.DateDeNaissance,
+            "Region": $scope.user.user_metadata.Region,
+            "Sexe": $scope.user.user_metadata.Sexe,
+            "Ville": $scope.user.user_metadata.Ville
         };
         let birthdate = $$("#calendar-input").val();
-        supe.auth.update({
+        supe.auth.updateUser({
             "data": data
         }).then(function(response) {
             console.log(response);
-            global.user = response.user;
+            global.user = response.data.user;
             supe.from('users')
             .update(data)
             .eq('id', $scope.user.id)

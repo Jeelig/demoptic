@@ -325,8 +325,148 @@ body {
 }
 .op_text_circle .content {
     color:#3C3C3B;
+    font-size: 12px;
 }
 
+form.list .item-content input {
+    font-size: 14px;
+}
+form.list .item-content select {
+    font-size: 14px;
+}
+.RdvTitle {
+    font-size: 12px !important;
+    color:#7ea0ff;
+}
+.RdvTitle > div {
+    font-size: 17px;
+    margin-top: 3px;
+    font-weight: bold;
+    color:#FFFFFF;
+    text-transform: uppercase;
+}
+
+.rdv_title {
+    text-align: center;
+    margin-top: 35px;
+    font-weight: bold;
+}
+
+ul.list_of_motifs {
+    list-style-type: none;
+    margin:0;
+    padding: 0;
+}
+ul.list_of_motifs li {
+    height: 50px;
+    margin-bottom: 12px;
+    padding-top: 12px;
+    padding-left: 15px;
+    font-size: 14px;
+    border-radius: 7px;
+    cursor: pointer;
+    border-top: solid 1px #EEE;
+    border-left: solid 1px #EEE;
+}
+ul.list_of_motifs li > div {
+    font-size: 12px;
+    color: #AAA;
+}
+ul.list_of_motifs li.lunettes {
+    box-shadow: 3px 2px 4px #208b6d;
+}
+ul.list_of_motifs li.alentilles {
+    box-shadow: 3px 2px 4px #0a175a;
+}
+ul.list_of_motifs li.lentilles {
+    box-shadow: 3px 2px 4px #4edaf1;
+}
+ul.list_of_motifs li.reparations {
+    box-shadow: 3px 2px 4px #f91313;
+}
+ul.list_of_motifs li.ajustage {
+    box-shadow: 3px 2px 4px #ff8936;
+}
+ul.list_of_motifs li.clickcollect {
+    box-shadow: 3px 2px 4px #ffef29;
+}
+
+.rdv_ctr_cal {
+    margin:20px 30px;
+    /*min-height: 400px;*/
+    background-color: #F2F2F2;
+    border-radius: 6px;
+    padding: 6px;
+}
+.rdv_ctr_cal .cal1 {
+    background-color: #FFF;
+    min-height: 50px;
+    border-radius: 6px;
+    margin-bottom: 6px;
+}
+.creneaux {
+    margin: 0 15px;
+    border-top: solid 1px #777;
+    padding-top: 8px;
+}
+.creneaux ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.creneaux ul li {
+    display: inline-block;
+    width: 23%;
+}
+.creneaux ul li div {
+    background-color: #DAE1EA;
+    text-align: center;
+    padding: 6px 0;
+    border-radius: 7px;
+    margin: 0 5px 6px 2px;
+    cursor: pointer;
+}
+.creneaux ul li div.active {
+    background-color: #1A3D87;
+    color: #FFF;
+}
+
+.oth_creneaux {
+    background-color: #C6DFE2;
+    border-radius: 6px;
+    font-size: 11px;
+    text-align: center;
+    padding: 20px;
+    margin-top: 6px;
+}
+
+.creneau_date {
+    padding:15px;
+    cursor: pointer;
+}
+
+.ct_recap {
+    margin: 30px 30px;
+    border-radius: 4px;
+    box-shadow: 2px 4px 15px #ccc;
+    padding: 10px 15px 35px 15px;
+    min-height: 400px;
+}
+.recap_title {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+.recap_message {
+    margin-bottom: 30px;
+}
+.recap_submessage {
+    margin-top: 30px;
+    font-size: 11px;
+    text-align: center;
+}
 
 .above_list_optk {
     min-height: 350px;
@@ -843,6 +983,14 @@ body {
 }
 
 
+.navbar .title {
+    font-size: 17px;
+}
+.links-list a {
+    font-size: 14px;
+}
+
+
 
 .demo-card-header-pic .card-header {
     height: 40vw;
@@ -896,3 +1044,25 @@ body {
   .demo-facebook-card .card-content-padding .likes {
     color: #8e8e93;
   }
+
+.button_green {
+    background-image: linear-gradient(to right, #3BB7B1, #0A8FA1);
+    text-transform: none;
+}
+
+.mat-active {
+    border: solid 3px #3BB7B1 !important;
+}
+
+.takerdv {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    border-radius: 50px;
+    color: #FFF;
+    padding: 5px 10px;
+    z-index: 99999;
+}
+.takerdv i {
+    font-size: 14px;
+}

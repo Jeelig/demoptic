@@ -21,7 +21,7 @@
   
   
   <script type="text/javascript" src="js/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
   <script type="text/javascript" src="js/angular-touch.js"></script>
   <script type="text/javascript" src="js/ngTouch.min.js"></script>
   
@@ -32,7 +32,9 @@
   <link rel="stylesheet" href="css/app.css">
   <link rel="stylesheet" href="css/style.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 </head>
+
 <body ng-controller="MainController" ng-init="init()" id="body" class="noselect" ontouchstart="">
 
   <div id="app">
@@ -53,12 +55,12 @@
               <ul><!--
                 <li><a href="#">Accueil</a></li>-->
                 <li><a href="/opticiens/" class="panel-close" data-view=".view-main">Trouver mon opticien</a></li>
-                <li><a href="#">Tendances</a></li>
-                <li><a href="#">Comment ça marche</a></li>
+                <!--<li><a href="#">Tendances</a></li>-->
+                <li><a href="/howitworks/" class="panel-close" data-view=".view-main">Comment ça marche</a></li>
                 <li><a href="#">Opticiens indépendants</a></li>
-                <li><a href="#">Favoris</a></li>
+                <!--<li><a href="#">Favoris</a></li>-->
                 <li><a href="#">Paramètres</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="/contact/" class="panel-close" data-view=".view-main">Contact</a></li>
               </ul>
             </div>
           </div>

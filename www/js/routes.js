@@ -25,6 +25,14 @@ var routes = [
     url: './pages/parametres.html',
   },
   {
+    path: '/howitworks/',
+    url: './pages/howitworks.html',
+  },
+  {
+    path: '/contact/',
+    url: './pages/contact.html',
+  },
+  {
     path: '/partner/',
     url: './pages/partner.html',
   },

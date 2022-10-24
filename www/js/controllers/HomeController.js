@@ -52,13 +52,18 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
         if (!firstlaunch) localStorage.setItem("firstlaunch", true);
         else {
             setTimeout(function() {
-                document.querySelector('.OpticFirstLaunch').remove();
+                let el = document.querySelector('.OpticFirstLaunch');
+                if (el) el.remove();
             }, 50);
         }
         //else localStorage.setItem("firstlaunch", true);
 
         if (global.hasOwnProperty('active_tab')) {
             $scope.menu_item = global.active_tab;
+            if ($scope.menu_item) {
+                $scope.rdvs = [];
+                self.getRdv();
+            }
         }
 		else $scope.menu_item = 'home';
         if (!$scope.user && (global.user && (global.user != null))) {
@@ -72,10 +77,7 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
         });
 	};
 
-    //bandzagilles@yahoo.fr
-    //thisisNot@tez!
-    //gilles.bandza@gmail.com
-    //Dochill8#=M
+    
     $scope.Login = function() {
         let email = $scope.email;
         let passw = $scope.password;
@@ -160,7 +162,36 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
     $scope.setTab = function(tab_name) {
         global.active_tab = tab_name;
         $scope.menu_item = tab_name;
+        if (tab_name == 'rdv') {
+            self.getRdv();
+        }
         self.sync();
+    };
+
+    self.getRdv = function() {
+        supe.from('Rendezvous')
+        .select('id, date, time, utilisateur, opticien(id, name, image), motif, informations')
+        .eq('utilisateur', global.user.id)
+        .then((response) => {
+            console.log(response);
+            $scope.rdvs = response.data;
+            for (let i=0; i < $scope.rdvs.length; i++) {
+                $scope.rdvs[i].rdvdate = new Date($scope.rdvs[i].date);
+            }
+            self.sync();
+        }).catch((error) => {
+            console.warn(error);
+        });
+    };
+
+    $scope.OpenOpticien = function(id) {
+        mainView.router.navigate("/opticien/" + id + "/");
+    };
+
+    $scope.getDate = function(rdv, type) {
+        let date = rdv.rdvdate;
+        let result = GetDateitem(date, type);
+        return result;
     };
 
     self.updateuser = function(user) {

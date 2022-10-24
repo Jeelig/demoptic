@@ -36,7 +36,7 @@
 								<td>${opticien.horaires}</td>
 							</tr>
 						</table>
-						<div class="opt_adr">${opticien.adresse} ${opticien.Ville} ${opticien.CodePostal}</div>
+						<div class="opt_adr">${opticien.adresse}, ${opticien.CodePostal}, ${opticien.Ville}</div>
 						<div class="opt_web">${opticien.website}</div>
 					</div>
 				</div>
@@ -76,7 +76,7 @@
 					<div class="carousel carousel-2">
 						<div>
 							<ul>
-								<li ng-repeat="mat in matieres" class="{{mat.class}}" ng-click="changematiere(mat.id)">{{mat.name}}</li>
+								<li ng-repeat="mat in matieres track by mat.id" class="{{mat.class}}" ng-class="{'mat-active': mat.active==true}" ng-click="changematiere(mat.id)">{{mat.name}}</li>
 							</ul>
 						</div>
 					</div>
@@ -155,8 +155,8 @@
 				</div>
 
 				<div style="padding: 20px;">
-					<a href="/rdv/">
-						<button class="col button button-raised button-fill button-round">Prendre rendez-vous</button>
+					<a href="#">
+						<button class="col button button-raised button-fill button-round button_green" ng-click="SetOpticien()">Prendre rendez-vous</button>
 					</a>
 				</div>
 

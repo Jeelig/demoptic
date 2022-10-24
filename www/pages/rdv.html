@@ -8,34 +8,96 @@
 					<span class="if-not-md">Back</span>
 				</a>
 			</div>
-			<div class="title">Rendez-vous</div>
-			<div class="right"><!--
-				<a href="#" class="link" ng-click="init()">
-					<div class="f7-icons">eyeglasses</div>
-				</a>-->
+			<div class="title RdvTitle">
+				Prenez rendez-vous
+				<div>{{opticien.name}}</div>
+			</div>
+			<div class="right" ng-if="dateChoosed && (state != 'recap')">
+				<a href="#" class="link" ng-click="switchState('recap')">
+					<div class="f7-icons">arrow_right_circle_fill</div>
+				</a>
 			</div>
 		</div>
 	</div>
 	<div class="page-content">
-        <div style="padding-left: 15px; padding-right: 15px; background-color: #F2F2F2; padding-bottom: 80px;">
-            &nbsp;
-            <div class="op_text_circle">
-                <div class="title">Prendre Rendez-vous</div>
-                <div class="content">
-                    Des professionnels de santé diplômés qui prennent le temps de découvrir vos besoins
-                </div>
-            </div>
-        </div>
 
-        <div class="above_list_optk">
+		<div class="rdv_title" ng-show="state=='motif'">Sélectionnez un motif</div>
+		<div class="rdv_title" ng-show="state=='cdate'">Choisissez la date</div>
 
-            <form class="list" id="my-form" style="margin-top: 0px; margin-bottom: 15px; text-transform: none;">
-                <div style="margin:15px 15px 0 10px">
+		<div ng-show="state=='motif'" style="padding: 20px 30px">
 
-                </div>
-            </form>
+			<ul class="list_of_motifs">
+				<li ng-repeat="pr in prestations" ng-click="switchState(pr)" class="{{pr.class}}">{{pr.name}}<div>{{pr.subtext}}</div></li>
+			</ul>
 
-        </div>
-        
+		</div>
+
+		<div ng-show="state=='cdate'">
+
+			<div class="rdv_ctr_cal">
+				<div class="cal1" ng-repeat="cdi in calendaritems">
+					<div class="creneau_date" ng-click="ShowSlots(cdi)">
+						{{getDate(cdi.date, 'day')}} {{getDate(cdi.date, 'date')}} {{getDate(cdi.date, 'month')}}
+					</div>
+					<div class="creneaux" ng-show="cdi.showslots">
+						<ul>
+							<li ng-repeat="slot in cdi.slots"><div ng-click="ChooseSlot(cdi, slot)" ng-class="{'active': slot.active==true}">{{slot.view}}</div></li>
+						</ul>
+					</div>
+				</div>
+				<div class="oth_creneaux">
+					D'autres créneaux seront ajoutés au fur et à mesure
+				</div>
+			</div>
+			<!--
+			<div style="padding: 0 35px;" ng-if="dateChoosed">
+				<div class="f7-icons" style="position: absolute;z-index: 99;color: #FFF;margin-left: 20px;margin-top: 8px;font-size: 20px;">calendar_badge_plus</div>
+				<button class="col button button-raised button-fill button-round" style="text-transform: none;" ng-click="switchState('recap')">Valider</button>
+			</div>-->
+
+		</div>
+
+		<div ng-show="state=='recap'">
+
+			<div class="ct_recap">
+
+				<div class="f7-icons" style="float: right; font-size: 16px; cursor:pointer;" ng-click="state='cdate'"">xmark</div>
+
+				<div class="recap_title">Informations importantes</div>
+				<div class="recap_message">N’oubliez pas d’apporter les pièces suivantes au rendez - vous :</div>
+
+				<table>
+					<tr>
+						<td><img src="assets/img/home/check.png" style="width: 20px;"/></td>
+						<td style="padding: 10px;">Une ordonnance valable</td>
+					</tr>
+					<tr>
+						<td><img src="assets/img/home/check.png" style="width: 20px;"/></td>
+						<td style="padding: 10px;">Votre carte vitable</td>
+					</tr>
+					<tr>
+						<td><img src="assets/img/home/check.png" style="width: 20px;"/></td>
+						<td style="padding: 10px;">Votre mutuelle</td>
+					</tr>
+				</table>
+				<!--<ul>
+					<li>Une ordonnance valable</li>
+					<li>Votre carte vitable</li>
+					<li>Votre mutuelle</li>
+				</ul>-->
+
+				<div class="recap_submessage">
+					En confirmant ce rendez-vous, vous vous engagez à l’honorer. <br>
+					En cas d’imprévu, pensez à l’annuler
+				</div>
+
+				<div style="padding: 0; margin-top:20px;">
+					<button class="col button button-raised button-fill button-round" style="text-transform: none;" ng-click="confirm()">Confirmer le rendez-vous</button>
+				</div>
+	
+			</div>
+
+		</div>
+
 	</div>
 </div>

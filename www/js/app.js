@@ -653,3 +653,73 @@ function DoMail() {
 	
 }
 
+function GetDateitem(date, type) {
+	let result = null;
+	switch(type) {
+		case "date": result = date.getDate();
+			break;
+		case "day": result = date.getDay();
+			if (result == 1) result = "Lundi";
+			else if (result == 2) result = "Mardi";
+			else if (result == 3) result = "Mercredi";
+			else if (result == 4) result = "Jeudi";
+			else if (result == 5) result = "Vendredi";
+			else if (result == 6) result = "Samedi";
+			else if (result == 0) result = "Dimanche";
+			break;
+		case "month": result = date.getMonth();
+			if (result == 0) result = "Janvier";
+			else if (result == 1) result = "Février";
+			else if (result == 2) result = "Mars";
+			else if (result == 3) result = "Avril";
+			else if (result == 4) result = "Mai";
+			else if (result == 5) result = "Juin";
+			else if (result == 6) result = "Juillet";
+			else if (result == 7) result = "Août";
+			else if (result == 8) result = "Septembre";
+			else if (result == 9) result = "Octobre";
+			else if (result == 10) result = "Novembre";
+			else if (result == 11) result = "Décembre";
+			break;
+	}
+	return result;
+}
+
+function addMinutes(date, minutes) {
+    return new Date(date.getTime() + minutes*60000);
+}
+
+function GetSlots(data, duree) {
+	let id = 0;
+	for (let i = 0; i < data.length; i++) {
+		if (data[i].opt_creneau.length > 0) {
+			let slots = [];
+			for(let j = 0; j < data[i].opt_creneau.length; j++) {
+				let slot = data[i].opt_creneau[j];
+				slot.start_time = data[i].date + "T" + slot.heure_debut + ".000";
+				slot.start_time = new Date(slot.start_time);
+				slot.end_time = data[i].date + "T" + slot.heure_fin + ".000";
+				slot.end_time = new Date(slot.end_time);
+				//console.log(slot.start_time + " / " + slot.end_time);
+				
+				let nextSlotStart = slot.start_time;
+				
+				while (addMinutes(nextSlotStart, duree) <= slot.end_time) {
+					let mySlot = {};
+					mySlot.id = id;
+					mySlot.start = nextSlotStart;
+					mySlot.end = addMinutes(nextSlotStart, duree);
+					mySlot.view = (mySlot.start.getHours() < 10) ? ("0" + mySlot.start.getHours().toString()) : mySlot.start.getHours().toString();
+					mySlot.view += ":";
+					mySlot.view += (mySlot.start.getMinutes() < 10) ? ("0" + mySlot.start.getMinutes().toString()) : mySlot.start.getMinutes().toString();
+					//console.log("New slot : " + mySlot.start.toString() + " -> " + mySlot.end.toString());
+					nextSlotStart = mySlot.end;
+					slots.push(mySlot);
+					id++;
+				}
+			}
+			data[i].slots = slots;
+		}
+	}
+	return data;
+}
