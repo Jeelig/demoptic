@@ -22,8 +22,10 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
     $scope.password = "";
     $scope.user = null;
     $scope.rdv_tab = "coming";
-
+    $scope.top_article = {};
+    
     $scope.optics = [];
+    $scope.trends = [];
 
     InitService.addEventListener('ready', function () {
         log('HomePageController: ok, DOM ready'); // DOM ready
@@ -40,6 +42,10 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
                 global.user = session.user;
             }
         }
+        $scope.current = {
+            image: "assets/img/trends/geometric.png"
+        };
+    
         if (credentials) {
             credentials = JSON.parse(credentials);
             $scope.email = credentials.email;
@@ -57,7 +63,8 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
             }, 50);
         }
         //else localStorage.setItem("firstlaunch", true);
-
+        $scope.trend_menu = "discover";
+        self.sync();
         if (global.hasOwnProperty('active_tab')) {
             $scope.menu_item = global.active_tab;
             if ($scope.menu_item) {
@@ -77,6 +84,14 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
         });
 	};
 
+    $scope.checkFutur = function(date) {
+        return (new Date() > date);
+    };
+
+    $scope.setArticle = function(a) {
+        $scope.current = a;
+        self.sync();
+    };
     
     $scope.Login = function() {
         let email = $scope.email;
@@ -165,7 +180,24 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
         if (tab_name == 'rdv') {
             self.getRdv();
         }
+        else if (tab_name == 'trends') {
+            self.getTop();
+            self.getTrends();
+        }
         self.sync();
+    };
+
+    self.getTop = function() {
+        supe.from('tendances_articles')
+        .select('*')
+        .is('top', true)
+        .then((response) => {
+            console.log(response);
+            $scope.top_article = response.data[0];
+            self.sync();
+        }).catch((error) => {
+            console.warn(error);
+        });
     };
 
     self.getRdv = function() {
@@ -178,6 +210,18 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
             for (let i=0; i < $scope.rdvs.length; i++) {
                 $scope.rdvs[i].rdvdate = new Date($scope.rdvs[i].date);
             }
+            self.sync();
+        }).catch((error) => {
+            console.warn(error);
+        });
+    };
+
+    self.getTrends = function() {
+        supe.from('tendances_categories')
+        .select("id, name, tendances_articles(id, titre, soustitre, image, contenu)")
+        .then((response) => {
+            console.log(response);
+            $scope.trends = response.data;
             self.sync();
         }).catch((error) => {
             console.warn(error);

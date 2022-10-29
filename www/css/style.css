@@ -166,8 +166,11 @@ body {
 }
 
 .tabs.opt .page-content.tab {
-    padding-top: 0;
+    padding-top: 0px;
     padding-bottom: 240px;
+}
+.tabs.opt .page-content.tab#tab-rdv {
+    padding-top: 40px;
 }
 
 .around_login {
@@ -286,6 +289,10 @@ body {
 
 .rdv_list {
     background-color: #1459AC;
+    position: fixed;
+    width: 100%;
+    z-index: 999999;
+    margin-top:-41px;
 }
 .rdv_list ul {
     list-style-type: none;
@@ -1066,3 +1073,128 @@ ul.list_of_motifs li.clickcollect {
 .takerdv i {
     font-size: 14px;
 }
+
+.trends_btn {
+    text-align: right;
+    margin-bottom: 15px;
+}
+.trends_btn ul {
+    margin: 0;
+    padding: 0;
+}
+.trends_btn ul li {
+    list-style-type: none;
+    border-radius: 20px;
+    background-color: #CCC;
+    display: inline-block;
+    font-size: 8px;
+    padding: 8px 14px 6px 14px;
+    cursor: pointer;
+    margin-left: 6px;
+}
+.trends_btn ul li.active {
+    background-color: #3BB7B1;
+    color: #FFF;
+}
+
+.top_news {
+    overflow: hidden;
+    padding: 0 !important;
+}
+.top_news img {
+    width:100%;
+    border-radius: 18px;
+}
+
+.sub_trends_area {
+    padding: 20px 25px;
+}
+.sub_trends_area .ttitle {
+    color:var(--f7-theme-color);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-size: 12px;
+}
+.sub_trends_area div {
+    
+}
+.sub_trends_area div ul {
+    margin: 0;
+    padding: 0;
+}
+.sub_trends_area div ul li {
+    list-style-type: none;
+    width: 100px;
+    height: 150px;
+    display: inline-block;
+    margin-right: 12px;
+    border-radius: 12px;
+    background-size:cover;
+}
+.sub_trends_area div ul li > div {
+    float:left;
+    margin-top: 120px;
+    font-size: 9px;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.img_ctnr {
+    height: 340px;
+}
+.img_ctnr > div {
+    position: fixed;
+    z-index: -1;
+    height: 340px;
+    width: 100%;
+    background-size: cover;
+}
+.img_ctnr > div img {
+    width:100%;
+}
+
+.navbar-bg.art:before {
+    height: 0 !important;
+}
+
+.ppbuddy {
+    background-color: #FFF;
+    border-radius: 42px 42px 0 0;
+    margin-top: -37px;
+    padding-top: 1px;
+}
+.ppbuddy ul {
+    margin:18px 20px 0 0;
+    padding: 0;
+    text-align: right;
+}
+.ppbuddy ul li {
+    list-style-type: none;
+    display: inline-block;
+    text-align: right;
+    margin-left: 5px;
+}
+
+.mLine {
+    width:60%;
+    border-bottom: solid 1px #000;
+    margin:0 auto;
+    margin-top:18px;
+    margin-bottom: 20px;
+}
+
+.art_title {
+    text-align: center;
+    margin: 0 15px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-size: 17px;
+    color: var(--f7-theme-color);
+}
+.art_subtitle {
+    margin: 0 15px;
+    font-weight: bold;
+}
+

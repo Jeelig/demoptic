@@ -46,7 +46,22 @@ MyApp.angular.controller('MainController', ['$scope', '$compile', '$rootScope', 
         }
 		else {
 			console.log(PageFrom + "/" + PageName);
+			if ((PageFrom == "home") && (PageName == "opticien")) {
+				res = false;
+			}
 			if ((PageFrom == "home") && (PageName == "opticiens")) {
+				res = false;
+			}
+			if ((PageFrom == "rendezvous") && (PageName == "opticien")) {
+				res = false;
+			}
+			if ((PageFrom == "profile") && (PageName == "home")) {
+				res = false;
+			}
+			if ((PageFrom == "opticien") && (PageName == "home")) {
+				res = false;
+			}
+			if ((PageFrom == "opticiens") && (PageName == "home")) {
 				res = false;
 			}
 			if ((PageFrom == "opticiens") && (PageName == "opticien")) {

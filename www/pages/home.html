@@ -89,19 +89,19 @@
                     Un guide, votre liberté de choisir.
                 </div>
     
-                <a href="/opticiens/" class="item-content item-link">
+                <a href="#" class="item-content" ng-click="setTab('vsg')">
                     <div class="bluebloc">
                         <div class="kpm"><img src="assets/img/home/home_visage.png" style="width: auto; height: 65px;" /></div>
                         <div class="indic">Votre visage</div>
                     </div>
                 </a>
-                <a href="/opticiens/" class="item-content item-link">
+                <a href="#" class="item-content" onclick="window.open(encodeURI('https://opticsolutions.owiz.fittingbox.com/#/catalog'), '_system')">
                     <div class="bluebloc">
                         <div class="kpm"><img src="assets/img/home/home_face.png" style="width: auto; height: 67px;" /></div>
                         <div class="indic">Votre style</div>
                     </div>
                 </a>
-                <a href="/opticien/" class="item-content item-link">
+                <a href="/opticiens/" class="item-content item-link">
                     <div class="bluebloc">
                         <div class="kpm"><img src="assets/img/home/home_home.png" style="width: auto; height: 55px; margin-right: -20px;" /></div>
                         <div class="indic">Votre opticien</div>
@@ -115,7 +115,9 @@
                 </a>
             </div>
             <div id="tab-rdv" class="page-content tab" ng-class="{'tab-active': menu_item=='rdv'}">
-                <div class="button_green takerdv"><i class="f7-icons">search</i> Prendre rendez-vous</div>
+                <a href="/opticiens/">
+                    <div class="button_green takerdv"><i class="f7-icons">search</i> Prendre rendez-vous</div>
+                </a>
                 <div class="rdv_list">
                     <ul>
                         <li ng-class="{'active': rdv_tab=='coming'}" ng-click="rdv_tab='coming'">A VENIR</li>
@@ -126,7 +128,7 @@
                     <div ng-show="rdv_tab=='coming'" ng-click="rdv_tab='coming'" style="margin: 0 10px;">
                         <p>RENDEZ-VOUS à venir</p>
                         
-                        <div class="rdv" ng-repeat="rdv in rdvs track by rdv.id">
+                        <div class="rdv" ng-repeat="rdv in rdvs | orderBy: 'rdvdate' track by rdv.id" ng-hide="checkFutur(rdv.rdvdate)">
                             <div class="rdv_date">
                                 {{getDate(rdv, 'day')}} {{getDate(rdv, 'date')}} {{getDate(rdv, 'month')}} à {{rdv.time.substring(0, 5)}}
                             </div>
@@ -149,13 +151,36 @@
                         </div>
 
                     </div>
-                    <div ng-show="rdv_tab=='past'" ng-click="rdv_tab='past'">
+                    <div ng-show="rdv_tab=='past'" ng-click="rdv_tab='past'" style="margin: 0 10px;">
                         <p>RENDEZ-VOUS passés</p>
+                        
+                        <div class="rdv" ng-repeat="rdv in rdvs | orderBy: 'rdvdate' track by rdv.id" ng-show="checkFutur(rdv.rdvdate)">
+                            <div class="rdv_date">
+                                {{getDate(rdv, 'day')}} {{getDate(rdv, 'date')}} {{getDate(rdv, 'month')}} à {{rdv.time.substring(0, 5)}}
+                            </div>
+                            <div class="rdv_esta">
+                                <table>
+                                    <tr ng-click="OpenOpticien(rdv.opticien.id)">
+                                        <td><img ng-src="{{rdv.opticien.image}}" style="width:100%; border-radius:10px;"/></td>
+                                        <td>
+                                            <div class="f7-icons" style="cursor: pointer;">arrow_right_circle_fill</div>
+                                            <span>{{rdv.opticien.name}}</span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="rdv_actions">
+                                <button class="col button button-raised button-fill button-small button-round">Après vente</button>
+                                <!--<button class="col button button-raised button-fill button-small button-round color-black">Annuler le rendez-vous</button>
+                                <div class="trans_ordonnance"><span class="f7-icons">paperclip</span> Transmettre mon ordonnance</div>-->
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
             <div id="tab-vsg" class="page-content tab" ng-class="{'tab-active': menu_item=='vsg'}">
-                <div class="block">
+                <div class="block"><!--
                     <p>VISAGISME</p>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam enim quia molestiae facilis laudantium voluptates obcaecati officia cum, sit libero commodi. Ratione illo suscipit temporibus sequi iure ad laboriosam
@@ -178,65 +203,48 @@
                     <p>
                         Laborum illum ipsa voluptatibus possimus nesciunt ex consequatur rem, natus ad praesentium rerum libero consectetur temporibus cupiditate atque aspernatur, eaque provident eligendi quaerat ea soluta doloremque. Iure fugit,
                         minima facere.
-                    </p>
+                    </p>-->
                 </div>
             </div>
             <div id="tab-trends" class="page-content tab" ng-class="{'tab-active': menu_item=='trends'}">
-                <div class="block">
-                    <p>TENDANCES</p>
-                    <!--
-                    <div class="block-title">Expandable Cards</div>
-                    <div class="card card-expandable">
-                        <div class="card-content">
-                            <div class="bg-color-red" style="height: 300px;">
-                                <div class="card-header text-color-white display-block">
-                                    Framework7<br />
-                                    <small style="opacity: 0.7;">Build Mobile Apps</small>
-                                </div>
-                                <a href="#" class="link card-close card-opened-fade-in color-white" style="position: absolute; right: 15px; top: 15px;">
-                                    <i class="icon f7-icons">xmark_circle_fill</i>
-                                </a>
-                            </div>
-                            <div class="card-content-padding">
-                                <p>
-                                    Framework7 - is a free and open source HTML mobile framework to develop hybrid mobile apps or web apps with iOS or Android (Material) native look and feel. It is also an indispensable prototyping apps tool to show working
-                                    app prototype as soon as possible in case you need to.
-                                </p>
-                                <p>
-                                    The main approach of the Framework7 is to give you an opportunity to create iOS and Android (Material) apps with HTML, CSS and JavaScript easily and clear. Framework7 is full of freedom. It doesn't limit your imagination or
-                                    offer ways of any solutions somehow. Framework7 gives you freedom!
-                                </p>
-                                <p>Framework7 is not compatible with all platforms. It is focused only on iOS and Android (Material) to bring the best experience and simplicity.</p>
-                                <p>Framework7 is definitely for you if you decide to build iOS and Android hybrid app (Cordova or Capacitor) or web app that looks like and feels as great native iOS or Android (Material) apps.</p>
+                <div style="position: absolute; right: 15px; width: 16px;margin-top: 20px;"><img src="assets/img/home/bell.png" style="width:100%"/></div>
+                <div style="background-color: #F2F2F2; padding-top: 30px; padding-bottom:30px;">
+                    <div class="block" style="margin-top: 0;">
+                        <p style="color: var(--f7-theme-color); letter-spacing:3px; font-weight:bold;">
+                            RESTEZ INFORMÉ DES<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;DERNIERES TENANCES
+                        </p>
+
+                        <div class="trends_btn">
+                            <ul>
+                                <li ng-class="{'active': trend_menu=='discover'}" ng-click="trend_menu='discover'">Découvrir</li>
+                                <li ng-class="{'active': trend_menu=='saved'}" ng-click="trend_menu='saved'">Sauvegardés</li>
+                            </ul>
+                        </div>
+
+                        <div class="top_news" ng-show="trend_menu!='saved'">
+                            <a href="#" class="sheet-open" data-sheet=".my-sheet-swipe-to-close" ng-click="setArticle(top_article)">
+                                <img src="{{top_article.image}}" />
+                            </a>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div style="background-color:#FFF; min-height:300px;margin-top: -50px; border-radius: 40px 40px 0 0;">
+
+                    <div class="sub_trends_area" ng-repeat="trend in trends">
+                        <div class="ttitle">{{trend.name}}</div>
+                        <div style="overflow-x: scroll;">
+                            <div style="width: 500px;">
+                                <ul>
+                                    <li ng-repeat="article in trend.tendances_articles" ng-show="trend_menu!='saved'" ng-click="setArticle(article)" style="background-image:url({{article.image}});" class="sheet-open" data-sheet=".my-sheet-swipe-to-close">
+                                        <div>{{article.titre}}</div>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="card card-expandable">
-                        <div class="card-content">
-                            <div class="bg-color-yellow" style="height: 300px;">
-                                <div class="card-header text-color-black display-block">
-                                    Framework7<br />
-                                    <small style="opacity: 0.7;">Build Mobile Apps</small>
-                                </div>
-                                <a href="#" class="link card-close card-opened-fade-in color-black" style="position: absolute; right: 15px; top: 15px;">
-                                    <i class="icon f7-icons">xmark_circle_fill</i>
-                                </a>
-                            </div>
-                            <div class="card-content-padding">
-                                <p>
-                                    Framework7 - is a free and open source HTML mobile framework to develop hybrid mobile apps or web apps with iOS or Android (Material) native look and feel. It is also an indispensable prototyping apps tool to show working
-                                    app prototype as soon as possible in case you need to.
-                                </p>
-                                <p>
-                                    The main approach of the Framework7 is to give you an opportunity to create iOS and Android (Material) apps with HTML, CSS and JavaScript easily and clear. Framework7 is full of freedom. It doesn't limit your imagination or
-                                    offer ways of any solutions somehow. Framework7 gives you freedom!
-                                </p>
-                                <p>Framework7 is not compatible with all platforms. It is focused only on iOS and Android (Material) to bring the best experience and simplicity.</p>
-                                <p>Framework7 is definitely for you if you decide to build iOS and Android hybrid app (Cordova or Capacitor) or web app that looks like and feels as great native iOS or Android (Material) apps.</p>
-                            </div>
-                        </div>
-                    </div>
-                    -->
 
                 </div>
             </div>
@@ -447,5 +455,79 @@
             </div>
         </div>
         
-    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        <div class="sheet-modal my-sheet-swipe-to-close" style="height: 100vh; --f7-sheet-bg-color: #fff;">
+            <div class="sheet-modal-inner">
+                <div class="page-content">
+                    <div class="img_ctnr">
+                        <div style="background-image: url({{current.image}})"></div>
+                    </div>
+                    <div class="ppbuddy">
+                        <ul>
+                            <li><i class="f7-icons">lock_circle</i></li>
+                            <li><i class="f7-icons">logo_instagram</i></li>
+                            <li><i class="f7-icons">arrowshape_turn_up_right_circle</i></li>
+                            <li><i class="f7-icons">bookmark_fill</i></li>
+                        </ul>
+                        <div class="mLine"></div>
+                        <div class="art_title sheet-close">{{current.titre}}</div>
+                        <div class="art_subtitle">{{current.soustitre}}</div>
+                        <div class="block">{{current.contenu}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
 

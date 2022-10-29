@@ -41,6 +41,10 @@ var routes = [
     url: './pages/legal.html',
   },
   {
+    path: '/independants/',
+    url: './pages/independants.html',
+  },
+  {
     path: '/rdv/',
     url: './pages/rdv.html',
   },

@@ -20,13 +20,18 @@ MyApp.angular.controller('ProfileController', ['$scope', '$rootScope', 'InitServ
         self.calendar = MyApp.fw7.app.calendar.create({
             inputEl: '#calendar-input'
         });
+        setTimeout(() => {
+            if (global.user.user_metadata.DateDeNaissance != null) {
+                self.calendar.setValue([new Date(global.user.user_metadata.DateDeNaissance[0])]);
+            }   
+        }, 200);
 	};
 
     $scope.UpdateProfile = function() {
         let data = {
             "full_name": $scope.user.user_metadata.full_name,
             "telephone": $scope.user.user_metadata.telephone,
-            //"DateDeNaissance": document.getElementById("calendar-input").value, //$scope.user.user_metadata.DateDeNaissance,
+            "DateDeNaissance": self.calendar.getValue(), //$scope.user.user_metadata.DateDeNaissance,
             "Region": $scope.user.user_metadata.Region,
             "Sexe": $scope.user.user_metadata.Sexe,
             "Ville": $scope.user.user_metadata.Ville
@@ -37,6 +42,10 @@ MyApp.angular.controller('ProfileController', ['$scope', '$rootScope', 'InitServ
         }).then(function(response) {
             console.log(response);
             global.user = response.data.user;
+            let session = localStorage.getItem("session");
+            session = JSON.parse(session);
+            session.user = response.data.user;
+            localStorage.setItem("session", JSON.stringify(session));
             supe.from('users')
             .update(data)
             .eq('id', $scope.user.id)
@@ -49,6 +58,13 @@ MyApp.angular.controller('ProfileController', ['$scope', '$rootScope', 'InitServ
         }).catch((error) => {
             console.warn(error);
         });
+    };
+
+
+    $scope.tobbi = function() {
+        let test = 0;
+        debugger;
+        console.log(test);
     };
 
     $scope.UpdatePassword = function() {
