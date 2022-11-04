@@ -58,6 +58,24 @@ MyApp.angular.controller('MainController', ['$scope', '$compile', '$rootScope', 
 			if ((PageFrom == "profile") && (PageName == "home")) {
 				res = false;
 			}
+			if ((PageFrom == "howitworks") && (PageName == "home")) {
+				res = false;
+			}
+			if ((PageFrom == "rendezvous") && (PageName == "clickncollect")) {
+				res = false;
+			}
+			if ((PageFrom == "clickncollect") && (PageName == "rendezvous")) {
+				res = false;
+			}
+			if ((PageFrom == "contact") && (PageName == "home")) {
+				res = false;
+			}
+			if ((PageFrom == "independants") && (PageName == "home")) {
+				res = false;
+			}
+			if ((PageFrom == "parameters") && (PageName == "home")) {
+				res = false;
+			}
 			if ((PageFrom == "opticien") && (PageName == "home")) {
 				res = false;
 			}

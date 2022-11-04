@@ -20,7 +20,25 @@
 
         <div style="padding-left: 15px; padding-right: 15px; background-color: #F2F2F2; padding-bottom: 80px;">
             <div class="f7-icons place_icon">placemark</div>
-            <button class="col button button-raised button-fill button-round" style="margin-top:15px;">Localiser ma position</button>
+            <div class="searchpro2" ng-click="filter=!filter"><i class="f7-icons">search</i></div>
+            <div style="width:calc(100% - 40px)">
+                <button class="col button button-raised button-fill button-round" style="margin-top:15px; text-transform: none; color: #bbc6ff;">Localiser ma position</button>
+            </div>
+            
+            <form class="list" id="my-form" style="margin-top: 0px; margin-bottom: 15px;" ng-show="filter">
+                <div id="login_form">
+                    <ul>
+                        <li class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-input-wrap">
+                                    <input type="text" placeholder="Votre recherche ..." ng-model="search" />
+                                    <span class="input-clear-button"></span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </form>
 
             <div class="op_text_circle">
                 <div class="title">DECOUVREZ</div>
@@ -35,7 +53,7 @@
             <div class="list media-list inset">
                 <div class="preloader" ng-show="optics.length<=0"></div>
                 <ul ng-show="optics.length>0">
-                    <li ng-repeat="optic in optics">
+                    <li ng-repeat="optic in optics | filter:search">
                         <div class="f7-icons fleche_bas">arrow_right_circle_fill</div>
                         <div class="optic_distance">2 km</div>
                         <a href="/opticien/{{optic.id}}/" class="item-link item-content">

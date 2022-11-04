@@ -12,11 +12,6 @@
 				Prenez rendez-vous
 				<div>{{opticien.name}}</div>
 			</div>
-			<div class="right" ng-if="dateChoosed && (state != 'recap')">
-				<a href="#" class="link" ng-click="switchState('recap')">
-					<div class="f7-icons">arrow_right_circle_fill</div>
-				</a>
-			</div>
 		</div>
 	</div>
 	<div class="page-content">
@@ -49,11 +44,6 @@
 					D'autres créneaux seront ajoutés au fur et à mesure
 				</div>
 			</div>
-			<!--
-			<div style="padding: 0 35px;" ng-if="dateChoosed">
-				<div class="f7-icons" style="position: absolute;z-index: 99;color: #FFF;margin-left: 20px;margin-top: 8px;font-size: 20px;">calendar_badge_plus</div>
-				<button class="col button button-raised button-fill button-round" style="text-transform: none;" ng-click="switchState('recap')">Valider</button>
-			</div>-->
 
 		</div>
 
@@ -80,11 +70,6 @@
 						<td style="padding: 10px;">Votre mutuelle</td>
 					</tr>
 				</table>
-				<!--<ul>
-					<li>Une ordonnance valable</li>
-					<li>Votre carte vitable</li>
-					<li>Votre mutuelle</li>
-				</ul>-->
 
 				<div class="recap_submessage">
 					En confirmant ce rendez-vous, vous vous engagez à l’honorer. <br>

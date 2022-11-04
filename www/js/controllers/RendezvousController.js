@@ -68,8 +68,9 @@ MyApp.angular.controller('RendezvousController', ['$scope', '$rootScope', 'InitS
             $scope.state = "cdate";
             $scope.prestation = presta ? presta : $scope.prestation;
         }
-        else if (presta.type == "ccl")
-            $scope.state = "cdate";
+        else if (presta.type == "ccl") {
+            mainView.router.navigate("/clickncollect/");
+        }//$scope.state = "cdate";
         self.sync();
     };
 
@@ -95,6 +96,9 @@ MyApp.angular.controller('RendezvousController', ['$scope', '$rootScope', 'InitS
                 slot.active = true;
                 $scope.slot = slot;
                 $scope.dateChoosed = true;
+                setTimeout(function() {
+                    $scope.switchState('recap');
+                }, 150);
             }
             else cdi.slots[i].active = false;
         }
@@ -117,9 +121,8 @@ MyApp.angular.controller('RendezvousController', ['$scope', '$rootScope', 'InitS
         }])
         .then(function(e) {
             console.log(e);
-            mainView.router.navigate("/");
-            MyApp.fw7.app.dialog.alert('Votre rendez-vous a été créé !', {
-                animate : false
+            MyApp.fw7.app.dialog.alert('Votre rendez-vous a été créé !', "Merci", function() {
+                mainView.router.navigate("/");
             });
         })
         .catch(function(e) {

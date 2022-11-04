@@ -22,7 +22,7 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
     $scope.password = "";
     $scope.user = null;
     $scope.rdv_tab = "coming";
-    $scope.top_article = {};
+    $scope.top_article = null;
     
     $scope.optics = [];
     $scope.trends = [];
@@ -78,11 +78,17 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
             $$("#formulaire_login").hide();
             $$("#page_profile").show();
         }
+        self.swiper = MyApp.fw7.app.swiper.get('.demo-swiper1');
         MyApp.fw7.app.on('ProfileUpdate', function (a) {
             $scope.user = a;
             self.sync();
         });
 	};
+
+    $scope.setColor = function(color) {
+        $scope.color = color;
+        self.sync();
+    };
 
     $scope.checkFutur = function(date) {
         return (new Date() > date);
@@ -201,6 +207,7 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
     };
 
     self.getRdv = function() {
+        if (!global.user || !global.user.id) return;
         supe.from('Rendezvous')
         .select('id, date, time, utilisateur, opticien(id, name, image), motif, informations')
         .eq('utilisateur', global.user.id)
@@ -250,6 +257,28 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
         }).catch((error) => {
             console.warn(error);
         });
+    };
+
+    $scope.NbAvenir = function(rdvs) {
+        if (!rdvs || (rdvs.length <= 0)) return 0;
+        else {
+            let count = 0;
+            for(let i = 0; i < rdvs.length; i++) {
+                if (rdvs[i].rdvdate > new Date()) count++;
+            }
+            return count;
+        }
+    };
+
+    $scope.NbPassed = function(rdvs) {
+        if (!rdvs || (rdvs.length <= 0)) return 0;
+        else {
+            let count = 0;
+            for(let i = 0; i < rdvs.length; i++) {
+                if (rdvs[i].rdvdate < new Date()) count++;
+            }
+            return count;
+        }
     };
 
     self.sync = function () { 

@@ -85,7 +85,7 @@
 
         <div class="tabs opt">
             <div id="tab-home" class="page-content tab" ng-class="{'tab-active': menu_item=='home'}">
-                <div style="padding: 30px 40px 20px 40px; color: #098fa1; font-size: 20px; text-align: center;">
+                <div style="padding: 30px 40px 20px 40px; color: #098fa1; font-size: 20px; font-size: 14px; text-align: center;">
                     Un guide, votre liberté de choisir.
                 </div>
     
@@ -126,8 +126,8 @@
                 </div>
                 <div class="block">
                     <div ng-show="rdv_tab=='coming'" ng-click="rdv_tab='coming'" style="margin: 0 10px;">
-                        <p>RENDEZ-VOUS à venir</p>
-                        
+                        <!--<p>RENDEZ-VOUS à venir</p>-->
+                        <div class="nordv" ng-show="NbAvenir(rdvs)<=0">Aucun rendez-vous à venir</div>
                         <div class="rdv" ng-repeat="rdv in rdvs | orderBy: 'rdvdate' track by rdv.id" ng-hide="checkFutur(rdv.rdvdate)">
                             <div class="rdv_date">
                                 {{getDate(rdv, 'day')}} {{getDate(rdv, 'date')}} {{getDate(rdv, 'month')}} à {{rdv.time.substring(0, 5)}}
@@ -135,7 +135,7 @@
                             <div class="rdv_esta">
                                 <table>
                                     <tr ng-click="OpenOpticien(rdv.opticien.id)">
-                                        <td><img ng-src="{{rdv.opticien.image}}" style="width:100%; border-radius:10px;"/></td>
+                                        <td><img ng-src="{{rdv.opticien.image || 'assets/img/no.png'}}" style="width:100%; border-radius:10px;"/></td>
                                         <td>
                                             <div class="f7-icons" style="cursor: pointer;">arrow_right_circle_fill</div>
                                             <span>{{rdv.opticien.name}}</span>
@@ -149,11 +149,10 @@
                                 <div class="trans_ordonnance"><span class="f7-icons">paperclip</span> Transmettre mon ordonnance</div>
                             </div>
                         </div>
-
                     </div>
                     <div ng-show="rdv_tab=='past'" ng-click="rdv_tab='past'" style="margin: 0 10px;">
-                        <p>RENDEZ-VOUS passés</p>
-                        
+                        <!--<p>RENDEZ-VOUS passés</p>-->
+                        <div class="nordv" ng-show="NbPassed(rdvs)<=0">Aucun rendez-vous passé</div>
                         <div class="rdv" ng-repeat="rdv in rdvs | orderBy: 'rdvdate' track by rdv.id" ng-show="checkFutur(rdv.rdvdate)">
                             <div class="rdv_date">
                                 {{getDate(rdv, 'day')}} {{getDate(rdv, 'date')}} {{getDate(rdv, 'month')}} à {{rdv.time.substring(0, 5)}}
@@ -161,7 +160,7 @@
                             <div class="rdv_esta">
                                 <table>
                                     <tr ng-click="OpenOpticien(rdv.opticien.id)">
-                                        <td><img ng-src="{{rdv.opticien.image}}" style="width:100%; border-radius:10px;"/></td>
+                                        <td><img ng-src="{{rdv.opticien.image || 'assets/img/no.png'}}" style="width:100%; border-radius:10px;"/></td>
                                         <td>
                                             <div class="f7-icons" style="cursor: pointer;">arrow_right_circle_fill</div>
                                             <span>{{rdv.opticien.name}}</span>
@@ -175,36 +174,183 @@
                                 <div class="trans_ordonnance"><span class="f7-icons">paperclip</span> Transmettre mon ordonnance</div>-->
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
             <div id="tab-vsg" class="page-content tab" ng-class="{'tab-active': menu_item=='vsg'}">
-                <div class="block"><!--
-                    <p>VISAGISME</p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam enim quia molestiae facilis laudantium voluptates obcaecati officia cum, sit libero commodi. Ratione illo suscipit temporibus sequi iure ad laboriosam
-                        accusamus?
-                    </p>
-                    <p>
-                        Saepe explicabo voluptas ducimus provident, doloremque quo totam molestias! Suscipit blanditiis eaque exercitationem praesentium reprehenderit, fuga accusamus possimus sed, sint facilis ratione quod, qui dignissimos
-                        voluptas! Aliquam rerum consequuntur deleniti.
-                    </p>
-                    <p>
-                        Totam reprehenderit amet commodi ipsum nam provident doloremque possimus odio itaque, est animi culpa modi consequatur reiciendis corporis libero laudantium sed eveniet unde delectus a maiores nihil dolores? Natus,
-                        perferendis.
-                    </p>
-                    <p>
-                        Atque quis totam repellendus omnis alias magnam corrupti, possimus aspernatur perspiciatis quae provident consequatur minima doloremque blanditiis nihil maxime ducimus earum autem. Magni animi blanditiis similique iusto,
-                        repellat sed quisquam!
-                    </p>
-                    <p>Suscipit, facere quasi atque totam. Repudiandae facilis at optio atque, rem nam, natus ratione cum enim voluptatem suscipit veniam! Repellat, est debitis. Modi nam mollitia explicabo, unde aliquid impedit! Adipisci!</p>
-                    <p>Deserunt adipisci tempora asperiores, quo, nisi ex delectus vitae consectetur iste fugiat iusto dolorem autem. Itaque, ipsa voluptas, a assumenda rem, dolorum porro accusantium, officiis veniam nostrum cum cumque impedit.</p>
-                    <p>
-                        Laborum illum ipsa voluptatibus possimus nesciunt ex consequatur rem, natus ad praesentium rerum libero consectetur temporibus cupiditate atque aspernatur, eaque provident eligendi quaerat ea soluta doloremque. Iure fugit,
-                        minima facere.
-                    </p>-->
+                
+                <div data-pagination='{"el": ".swiper-pagination"}' data-space-between="50" class="swiper swiper-init demo-swiper1">
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-wrapper for_vsg">
+                        <div class="swiper-slide">
+                            <div class="vsg_graydv pic_area" style="background-image: url('assets/img/face/face.jpg');">
+                                <!--<a href="">Prendre une photo</a>-->
+                                <div data-pagination='{"el": ".swiper-pagination"}' data-space-between="10" data-direction="vertical"
+                                    class="swiper swiper-init demo-swiper bilik">
+                                    <div class="swiper-pagination"></div>
+                                    <div class="swiper-wrapper for_face">
+                                        <div class="swiper-slide indication">
+                                            <img src="assets/img/face/handex2.png"/>
+                                            <div>Swiper vers le haut ou le bas pour essayer les différentes formes de visage</div>
+                                        </div>
+                                        <div class="swiper-slide"><img src="assets/img/face/form1.png"/></div>
+                                        <div class="swiper-slide"><img src="assets/img/face/form2.png"/></div>
+                                        <div class="swiper-slide"><img src="assets/img/face/form3.png"/></div>
+                                        <div class="swiper-slide"><img src="assets/img/face/form4.png"/></div>
+                                        <div class="swiper-slide"><img src="assets/img/face/form5.png" style="width: 65%;"/></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="vsg_graydv" style="padding-top:50px; margin-top:-35px; position:absolute; z-index:-1;">
+                                <div class="vsg_title2">Visage carré</div>
+                                <div class="vsg_body1">
+                                    Front large, mâchoire saillante. Lignes bien définies, contour anguleux.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="vsg_graydv">
+                                <div class="timeline medium-sides">
+                                    <div class="timeline-item" style="margin-bottom: -10px">
+                                        <div class="timeline-item-date">&nbsp;</div>
+                                        <div class="timeline-item-divider"></div>
+                                        <div class="timeline-item-content">
+                                            <div class="timeline-item-inner">Sélectionnez la couleur de vos cheveux</div>
+                                            <div class="hairs_color">
+                                                <form class="list" style="margin-top: 0px; margin-bottom:0; text-transform: none;">
+                                                    <div>
+                                                        <ul>
+                                                            <li class="item-content item-input">
+                                                                <div class="item-inner">
+                                                                    <div class="item-input-wrap input-dropdown-wrap">
+                                                                        <select placeholder="Veuillez choisir" placeholder="Cheveux foncés (châtain cendré, brun foncé, noir ...)">
+                                                                            <option value="">&nbsp;</option>
+                                                                            <option value="Blond">Blond</option>
+                                                                            <option value="Brun">Brun</option>
+                                                                            <option value="Châtain cendré">Châtain cendré</option>
+                                                                            <option value="Châtain foncé">Châtain foncé</option>
+                                                                            <option value="Noir">Noir</option>
+                                                                            <option value="Roux">Roux</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-item-date">&nbsp;</div>
+                                        <div class="timeline-item-divider"></div>
+                                        <div class="timeline-item-content">
+                                            <div class="timeline-item-inner">Sélectionnez la couleur de vos yeux</div>
+                                            <div class="eyes_color">
+                                                <table>
+                                                    <tr>
+                                                        <td><div class="dark"></div></td>
+                                                        <td><div class="brown"></div></td>
+                                                        <td><div class="green"></div></td>
+                                                        <td><div class="blue"></div></td>
+                                                        <td><div class="gray"></div></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-item-date">&nbsp;</div>
+                                        <div class="timeline-item-divider"></div>
+                                        <div class="timeline-item-content">
+                                            <div class="timeline-item-inner">Sélectionnez votre teint</div>
+                                            <div class="skins_color">
+                                                <ul>
+                                                    <li><div class="clr1" ng-class="{'active': color=='clr1'}" ng-click="setColor('clr1')"></div></li>
+                                                    <li><div class="clr2" ng-class="{'active': color=='clr2'}" ng-click="setColor('clr2')"></div></li>
+                                                    <li><div class="clr3" ng-class="{'active': color=='clr3'}" ng-click="setColor('clr3')"></div></li>
+                                                    <li><div class="clr4" ng-class="{'active': color=='clr4'}" ng-click="setColor('clr4')"></div></li>
+                                                    <li><div class="clr5" ng-class="{'active': color=='clr5'}" ng-click="setColor('clr5')"></div></li>
+                                                    <li><div class="clr6" ng-class="{'active': color=='clr6'}" ng-click="setColor('clr6')"></div></li>
+                                                    <li><div class="clr7" ng-class="{'active': color=='clr7'}" ng-click="setColor('clr7')"></div></li>
+                                                    <li><div class="clr8" ng-class="{'active': color=='clr8'}" ng-click="setColor('clr8')"></div></li>
+                                                    <li><div class="clr9" ng-class="{'active': color=='clr9'}" ng-click="setColor('clr9')"></div></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="margin-top:20px">
+                                <div class="vsg_title">Hiver</div>
+                                <div class="vsg_text_content">
+                                    Couleurs froides et vives.
+                                </div>
+                                <div class="vsg_title green"><i class="f7-icons">eyeglasses</i></div>
+                                <div class="vsg_text_content">
+                                    Optez pour du métal ou l’acétate de couleurs froides et soutenues, bleus froids, vert bouteille, framboise
+                                </div>
+                                <div class="vsg_title red"><i class="f7-icons">eyeglasses</i></div>
+                                <div class="vsg_text_content">
+                                    Évitez les couleurs chaudes et les teintes pastel comme le rose poudré.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="vsg_graydv">
+                                <div class="vsg_big_title">Trouver votre style</div>
+                                <div class="vsg_info_bulle">
+                                    <div class="lgt_blb_vsg1"><img src="assets/img/face/ampoule conseils.png"></div>
+                                    Autres formes
+                                </div>
+                                <div class="vsg_info_block">
+                                    Cliquez ici pour votre essayage virtuel et enregistrez votre 1er coup de coeur.
+                                </div>
+                                <div class="vsg_info_block">
+                                    Cliquez ici pour votre essayage virtuel et enregistrez votre 1er coup de coeur.
+                                </div>
+                                <div class="vsg_info_block">
+                                    Cliquez ici pour votre essayage virtuel et enregistrez votre 1er coup de coeur.
+                                </div>
+                            </div>
+                            <div style="margin:15px 40px">
+                                <button class="col button button-raised button-fill button-round">Sauvegarder mes choix</button>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="vsg_graydv">
+                                <div class="vsg_big_title">Trouver votre style</div>
+                                <div class="vsg_info_bulle">
+                                    <div class="lgt_blb_vsg1"><img src="assets/img/face/ampoule conseils.png"></div>
+                                    Autres formes
+                                </div>
+                                <div class="vsg_info_block">
+                                    <div class="head">
+                                        <div class="lgt_blb_vsg2"><img src="assets/img/face/ampoule conseils.png"></div>
+                                        Astuces formes 
+                                    </div>
+                                    <div>
+                                        Les formes rectangulaires donnent un côté dynamique et mature.
+                                    </div>
+                                    <div>
+                                        Les formes papillonnantes mettent en valeur le regard. 
+                                    </div>
+                                    <div>
+                                        Les formes rondes apportent un côté visage enfantin, insouciant
+                                    </div>
+                                    <div class="sub">
+                                        A vous de choisir le style qui vous définit le mieux !
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="margin:15px 40px">
+                                <button class="col button button-raised button-fill button-round">Sauvegarder mes choix</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+
             </div>
             <div id="tab-trends" class="page-content tab" ng-class="{'tab-active': menu_item=='trends'}">
                 <div style="position: absolute; right: 15px; width: 16px;margin-top: 20px;"><img src="assets/img/home/bell.png" style="width:100%"/></div>
@@ -222,9 +368,9 @@
                             </ul>
                         </div>
 
-                        <div class="top_news" ng-show="trend_menu!='saved'">
+                        <div class="top_news" ng-show="trend_menu!='saved'" ng-if="top_article">
                             <a href="#" class="sheet-open" data-sheet=".my-sheet-swipe-to-close" ng-click="setArticle(top_article)">
-                                <img src="{{top_article.image}}" />
+                                <img ng-src="{{top_article.image}}" />
                             </a>
                         </div>
                         

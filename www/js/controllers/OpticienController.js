@@ -64,6 +64,11 @@ MyApp.angular.controller('OpticienController', ['$scope', '$rootScope', 'InitSer
             MyApp.fw7.app.dialog.alert('Veuillez vous connecter pour prendre rendez-vous');
     };
 
+    $scope.setPayM = function(e) {
+        $scope.iActive = e;
+        self.sync();
+    };
+
     self.sync = function () { 
         if (!$scope.$$phase) { 
             $scope.$digest();

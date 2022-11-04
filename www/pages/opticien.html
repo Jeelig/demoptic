@@ -22,7 +22,7 @@
 		</div>
 		<div class="page-content" style="background-color: #F2F2F2;">
 
-			<div class="opticien_blue_area" style="height:130px;">
+			<div class="opticien_blue_area" style="min-height:130px; padding-bottom:70px;">
 				<div class="row no-gap" style="padding-top:20px">
 					<div class="col-40 imgr"><img src=${opticien.image}/></div>
 					<div class="col-60 contr">
@@ -59,12 +59,13 @@
 					<div class="carousel carousel-1">
 						<div>
 							<ul>
-								<li><div><img src="assets/img/optic/examendevue.png" style="margin-top: 17px;"/></div></li>
-								<li><div><img src="assets/img/optic/centreville.png" style="margin-top: 4px;"/></div></li>
-								<li><div><img src="assets/img/optic/uvprotection.png" style="margin-top: 22px;"/></div></li>
-								<li><div><img src="assets/img/optic/lunettesdesport.png" style="margin-top: 17px;"/></div></li>
-								<li><div><img src="assets/img/optic/centrecommercial.png" style="margin-top: 10px;"/></div></li>
-								<li><div><img src="assets/img/optic/acceshandicape.png" style="margin-top: 6px;"/></div></li>
+								<li><div><img src="assets/img/optic/examendevue.png" style="margin-top: 25px;"/></div><div class="subi">Vérification vue</div></li>
+								<li><div><img src="assets/img/optic/centreville.png" style="margin-top: 4px;"/></div><div class="subi">Centre ville</div></li>
+								<li><div><img src="assets/img/optic/uvprotection.png" style="margin-top: 28px;"/></div><div class="subi">UV protection</div></li>
+								<li><div><img src="assets/img/optic/lunettesdesport.png" style="margin-top: 24px;"/></div><div class="subi">Sport</div></li>
+								<li><div><img src="assets/img/optic/centrecommercial.png" style="margin-top: 10px;"/></div><div class="subi">Centre commercial</div></li>
+								<li><div><img src="assets/img/optic/acceshandicape.png" style="margin-top: 6px;"/></div><div class="subi">Accès handicapé</div></li>
+								<li><div><img src="assets/img/optic/lens.png" style="margin-top:16px;"/></div><div class="subi">Adaptation lentilles</div></li>
 							</ul>
 						</div>
 					</div>
@@ -120,11 +121,8 @@
 							</ul>
 						</div>
 					</div>
-
 					
 					<img src=${opticien.encart2} style="width:100%; margin-top:20px;"/>
-
-
 
 				</div>
 
@@ -137,11 +135,12 @@
 				<div class="garant_car">
 					<div>
 						<ul>
-							<li class="muti"><div>Mutuelle</div></li>
-							<li class="cart"><div>x3 sans frais</div></li>
-							<li class="paye"><div>x3 sans frais</div></li>
-							<li class="gara"><div>Garantie</div></li>
-							<li class="entr"><div>Entretien</div></li>
+							<li class="lncs" ng-class="{'active': iActive=='lncs'}" ng-click="setPayM('lncs')"><div>Lunettes cassées</div></li>
+							<li class="muti" ng-class="{'active': iActive=='mutu'}" ng-click="setPayM('mutu')"><div>Mutuelle</div></li>
+							<li class="cart" ng-class="{'active': iActive=='3xca'}" ng-click="setPayM('3xca')"><div>x3 sans frais</div></li>
+							<li class="paye" ng-class="{'active': iActive=='3xck'}" ng-click="setPayM('3xck')"><div>x3 sans frais</div></li>
+							<!--<li class="gara" ng-class="{'active': iActive=='gara'}" ng-click="setPayM('gara')"><div>Garantie</div></li>-->
+							<li class="entr" ng-class="{'active': iActive=='entr'}" ng-click="setPayM('entr')"><div>Entretien</div></li>
 						</ul>
 					</div>
 				</div>

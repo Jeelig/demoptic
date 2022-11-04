@@ -49,6 +49,10 @@ var routes = [
     url: './pages/rdv.html',
   },
   {
+    path: '/clickncollect/',
+    url: './pages/clickncollect.html',
+  },
+  {
     path: '/opticien/:id/',
     componentUrl: './pages/opticien.html',
   },
