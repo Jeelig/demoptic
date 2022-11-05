@@ -39,7 +39,7 @@ MyApp.angular.controller('MainController', ['$scope', '$compile', '$rootScope', 
     var cancompile = function(e) {
         let res = true;
 		let PageName = e.detail.name;
-		let PageFrom = e.detail.pageFrom.name;
+		let PageFrom = e.detail.pageFrom ? null : e.detail.pageFrom.name;
         if ((compiledonce.indexOf(PageName) >= 0) &&            // Page should be compiled once
             (global.compiledpages.indexOf(PageName) >= 0)) {    // Page has already been compiled
             res = false;
