@@ -57,6 +57,10 @@ var routes = [
     componentUrl: './pages/opticien.html',
   },
   {
+    path: '/aftersale/:id/',
+    componentUrl: './pages/aftersale.html',
+  },
+  {
     path: '/form/',
     url: './pages/form.html',
   },

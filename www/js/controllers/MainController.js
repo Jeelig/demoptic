@@ -65,6 +65,9 @@ MyApp.angular.controller('MainController', ['$scope', '$compile', '$rootScope', 
 			if ((PageFrom == "howitworks") && (PageName == "home")) {
 				res = false;
 			}
+			if ((PageFrom == "aftersale") && (PageName == "home")) {
+				res = false;
+			}
 			if ((PageFrom == "rendezvous") && (PageName == "clickncollect")) {
 				res = false;
 			}

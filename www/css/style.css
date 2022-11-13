@@ -314,7 +314,7 @@ body {
 .place_icon {
     position: absolute;
     color: #FFF;
-    margin: 5px 0 0 14px;
+    margin: 19px 0 0 14px;
     z-index: 99;
     font-size: 24px;
 }
@@ -1385,6 +1385,7 @@ ul.list_of_motifs li.clickcollect {
 .timeline-item-inner {
     padding: 0;
     background-color: transparent;
+    margin-top: -3px;
 }
 .timeline-item-inner {
     box-shadow:none;
@@ -1515,6 +1516,7 @@ ul.list_of_motifs li.clickcollect {
     border-radius: 50%;
     text-align: center;
     cursor:pointer;
+    margin-top: 15px;
 }
 .searchpro2 i {
     margin-top: 7px;
@@ -1578,3 +1580,114 @@ ul.essayage_list li > div > div {
     text-align: center;
     background-color: #F00;
 }
+
+.timeline-item.finish .timeline-item-divider {
+    background: #777;
+}
+
+.notation {
+    text-align: center;
+    padding-top: 10px;
+}
+.notation .f7-icons.star {
+    font-size: 22px;
+    color: #FCEA0D;
+    margin-right: 6px;
+    cursor: pointer;
+}
+.notation .f7-icons.star.gray {
+    color: #CCC;
+}
+
+.timeline-item.finish .timeline-item-divider:after, 
+.timeline-item.finish .timeline-item-divider:before {
+    background-color: transparent !important;
+}
+
+#search-form .input:not(.input-outline):after, 
+#search-form .item-input:not(.item-input-outline) .item-input-wrap:after {
+    width: 96%;
+    left: 2%;
+}
+
+#search-form .input-with-value .input-clear-button, 
+#search-form .input-with-value~.input-clear-button, 
+#search-form .item-input-with-value .input-clear-button {
+    margin-right: 10px;
+}
+
+.zone_inconfort {
+    width: 100%;
+    height: 32px;
+    line-height: 32px;
+    padding-left: 10px;
+    color: #888;
+    cursor: pointer;
+    background-color: #EEE;
+}
+
+.zinconfort {
+    display: block;
+    width: 100%;
+    height: 100vh;
+    background-color: #FFF;
+    z-index: 9999999;
+    position: absolute;
+    padding-top: 100px;
+    text-align: center;
+    cursor: pointer;
+    top:0;
+}
+.zinconfort img {
+    width:95%;
+    margin-left: 0.5%;
+}
+
+.zone_casse {
+    padding-top: 10px;
+}
+.zone_casse ul {
+    margin: 0;
+    padding: 0;
+}
+.zone_casse ul li {
+    list-style-type: none;
+    display: inline-block;
+    width:30%;
+}
+.zone_casse ul li > div {
+    border: solid 1px #EEE;
+    margin: 0 6px;
+    font-size: 11px;
+    text-align: center;
+    cursor: pointer;
+}
+.zone_casse ul li.active > div {
+    border: solid 1px rgb(14, 109, 89);
+}
+.zone_casse ul li > div img {
+    width:100%;
+}
+
+.join_pic {
+    color: #1A2A84;
+    margin-top: 10px;
+}
+.join_pic i {
+    font-size: 16px;
+}
+
+
+.image_casse {
+    width: 100%;
+    height: 32px;
+    line-height: 32px;
+    padding-left: 10px;
+    color: #888;
+    cursor: pointer;
+    margin-top: 5px;
+    background-color: #EEE;
+}
+
+
+

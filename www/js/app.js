@@ -723,3 +723,7 @@ function GetSlots(data, duree) {
 	}
 	return data;
 }
+
+function aleo() {
+	console.log("toto !");
+}
