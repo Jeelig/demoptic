@@ -19,7 +19,13 @@
 	<div class="page-content">
 
         <div style="padding-left: 15px; padding-right: 15px; margin-top: -15px; padding-top: 15px;background-color:#F2F2F2; padding-bottom: 80px;">
-            <div class="f7-icons place_icon">placemark</div>
+            
+            <div class="searchwidget" ng-show="filter">
+                <input type="text" placeholder="Recherche ..." style="position: absolute; margin: 10px 0 0 10px; color: #FFF;"/>
+                <div class="f7-icons" ng-click="filter=!filter" style="color:#FFF; margin-top:4px; margin-left:calc(100% - 32px); cursor:pointer;">multiply_circle</div>
+            </div>
+
+            <div class="f7-icons place_icon" ng-click="filter=!filter">placemark</div>
             <div class="searchpro2" ng-click="filter=!filter"><i class="f7-icons">search</i></div>
             <div style="width:calc(100% - 40px)">
                 <button class="col button button-raised button-fill button-round" style="margin-top:15px; text-transform: none; color: #bbc6ff;">Localiser ma position</button>

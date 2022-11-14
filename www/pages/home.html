@@ -169,8 +169,11 @@
                                 </table>
                             </div>
                             <div class="rdv_actions">
-                                <a href="/aftersale/{{rdv.id}}/">
-                                    <button class="col button button-raised button-fill button-small button-round">Après vente</button>
+                                <a href="/aftersale/{{rdv.id}}/" ng-if="!rdv.note">
+                                    <button class="col button button-raised button-fill button-small button-round">Après vente {{rdv.note}}</button>
+                                </a>
+                                <a href="#" ng-if="rdv.note" class="disabled">
+                                    <button class="col button button-raised button-fill button-small button-round" disabled>Terminé</button>
                                 </a>
                             </div>
                         </div>

@@ -46,11 +46,14 @@ MyApp.angular.controller('RendezvousController', ['$scope', '$rootScope', 'InitS
         });
         $scope.opticien = localStorage.getItem("opticien");
         $scope.opticien = JSON.parse($scope.opticien);
-        //debugger;
+        self.getcalendar();
         self.sync();
+	};
+
+    self.getcalendar = function() {
         supe.from("opt_calendar").
         select("id, date, opticien, opt_creneau(id, heure_debut, heure_fin)").
-        eq('opticien', 1).
+        eq('opticien', $scope.opticien.id).
         then(function(e) {
             console.log(e);
             $scope.calendaritems = e.data;
@@ -59,8 +62,8 @@ MyApp.angular.controller('RendezvousController', ['$scope', '$rootScope', 'InitS
         }).
         catch(function(e) {
             console.warn(e);
-        })
-	};
+        });
+    };
 
     $scope.switchState = function(presta) {
         if (presta == 'recap') $scope.state = "recap";

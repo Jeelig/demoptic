@@ -14,6 +14,8 @@
             </div>
         </div>
 
+        <div style="height: 0;"><input type="file" id="file" accept="image/*"/></div>
+
 		<div class="zinconfort" style="display:none">
 			<img src="assets/img/av/zonedinconfort.png" usemap="#workmap" ng-click="ClickArea('VL gauche')"/>
 			<div class="f7-icons" ng-click="HideInconfort()">xmark_circle</div>
@@ -26,6 +28,8 @@
 			<area shape="poly" coords="1403,470,1181,869,1045,681" onclick="aleo('zone nasale')">
 			<area shape="poly" coords="395,848,740,1050,1115,898,920,807,624,797" onclick="aleo('vision de près')">
 		</map>-->
+
+        <div class="hider" ng-class="{'ng-hide': !disabled}"></div>
 
         <div class="page-content">
             
@@ -85,6 +89,19 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Merci pour votre confiance (FINISH) -->
+                    <div class="timeline-item finish" style="margin-bottom: -10px" ng-show="(recu=='no') && (callback=='no')">
+                        <div class="timeline-item-date"></div>
+                        <div class="timeline-item-divider"></div>
+                        <div class="timeline-item-content">
+                            <div class="timeline-item-inner">Merci pour votre confiance</div>
+                            <div style="width: 75%; margin: 0 auto; margin-top: 12px;">
+                                <a href="#" class="" ng-click="vote(2)">
+                                    <button class="col button button-raised button-fill button-small button-round button_green ">Valider</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <!-- Êtes-vous satisfaits ? -->
                     <div class="timeline-item" ng-show="recu=='yes'">
                         <div class="timeline-item-date"></div>
@@ -129,19 +146,19 @@
                         </div>
                     </div>
                     <!-- Reprendre un rendez-vous (Esthétique) -->
-                    <div class="timeline-item finish" style="margin-bottom: -10px" ng-show="(note<=3) && (origin=='Esthétique')">
+                    <div class="timeline-item finish" style="margin-bottom: -10px" ng-show="(recu=='yes') && (note<=3) && (origin=='Esthétique')">
                         <div class="timeline-item-date"></div>
                         <div class="timeline-item-divider"></div>
                         <div class="timeline-item-content">
                             <div>
-                                <a href="/aftersale/4/" class="">
+                                <a href="#" ng-click="vote(4)">
                                     <button class="col button button-raised button-fill button-small button-round">Reprendre un rendez-vous</button>
                                 </a>
                             </div>
                         </div>
                     </div>
                     <!-- Zone de l'inconfort ? -->
-                    <div class="timeline-item" style="margin-bottom: -10px" ng-show="(origin=='Inconfort') && (note!='' && note<=3)">
+                    <div class="timeline-item" style="margin-bottom: -10px" ng-show="(recu=='yes') && (origin=='Inconfort') && (note!='' && note<=3)">
                         <div class="timeline-item-date"></div>
                         <div class="timeline-item-divider"></div>
                         <div class="timeline-item-content">
@@ -150,7 +167,7 @@
                         </div>
                     </div>
                     <!-- Être rappelé pour ... ? -->
-                    <div class="timeline-item" style="margin-bottom: -10px" ng-show="(note<=3) && (origin=='Inconfort') && (zoneinconfort!='')">
+                    <div class="timeline-item" style="margin-bottom: -10px" ng-show="(recu=='yes') && (note<=3) && (origin=='Inconfort') && (zoneinconfort!='')">
                         <div class="timeline-item-date"></div>
                         <div class="timeline-item-divider"></div>
                         <div class="timeline-item-content">
@@ -175,20 +192,20 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Reprendre un rendez-vous (Esthétique) -->
-                    <div class="timeline-item finish" style="margin-bottom: -10px" ng-show="(note<=3) && (origin=='Inconfort') && (zoneinconfort!='') && reason_callback">
+                    <!-- Reprendre un rendez-vous (Inconfort) -->
+                    <div class="timeline-item finish" style="margin-bottom: -10px" ng-show="(recu=='yes') && (note<=3) && (origin=='Inconfort') && (zoneinconfort!='') && reason_callback">
                         <div class="timeline-item-date"></div>
                         <div class="timeline-item-divider"></div>
                         <div class="timeline-item-content">
                             <div>
-                                <a href="#" class="">
+                                <a href="#" ng-click="vote(5)">
                                     <button class="col button button-raised button-fill button-small button-round">Reprendre un rendez-vous</button>
                                 </a>
                             </div>
                         </div>
                     </div>
                     <!-- Sélectionner la partie cassée ? -->
-                    <div class="timeline-item" style="margin-bottom: -10px" ng-show="(note<=3) && (origin=='Casse')">
+                    <div class="timeline-item" style="margin-bottom: -10px" ng-show="(recu=='yes') && (note<=3) && (origin=='Casse')">
                         <div class="timeline-item-date"></div>
                         <div class="timeline-item-divider"></div>
                         <div class="timeline-item-content">
@@ -197,19 +214,19 @@
                                 <ul>
                                     <li ng-click="zonecasse='right'" ng-class="{'active': zonecasse=='right'}">
                                         <div>
-                                            <div><img src="assets/img/optic/br_droite.jpeg"/></div>
+                                            <div><img src="assets/img/optic/br_droite.png"/></div>
                                             <div>Branche<br/>droite</div>
                                         </div>
                                     </li>
                                     <li ng-click="zonecasse='left'" ng-class="{'active': zonecasse=='left'}">
                                         <div>
-                                            <div><img src="assets/img/optic/br_gauche.jpeg"/></div>
+                                            <div><img src="assets/img/optic/br_gauche.png"/></div>
                                             <div>Branche<br/>gauche</div>
                                         </div>
                                     </li>
                                     <li ng-click="zonecasse='center'" ng-class="{'active': zonecasse=='center'}">
                                         <div>
-                                            <div><img src="assets/img/optic/lunettes2.png"/></div>
+                                            <div><img src="assets/img/optic/lunettes_cassees.png"/></div>
                                             <div>Face<br/><span style="color:white">...</span></div>
                                         </div>
                                     </li>
@@ -218,33 +235,50 @@
                         </div>
                     </div>
                     <!-- Envoyer une photo -->
-                    <div class="timeline-item" style="margin-bottom: -10px" ng-show="zonecasse && (note<=3) && (origin=='Casse')">
+                    <div class="timeline-item" style="margin-bottom: -10px" ng-show="zonecasse && (recu=='yes') && (note<=3) && (origin=='Casse')">
                         <div class="timeline-item-date"></div>
                         <div class="timeline-item-divider"></div>
                         <div class="timeline-item-content">
                             <div class="timeline-item-inner">Envoyez une photo</div>
-                            <div class="image_casse"></div>
-                            <div class="join_pic">
+                            <div class="image_casse" ng-click="getfile()">{{image_casse}}</div>
+                            <div class="join_pic" ng-click="getfile()">
                                 <i class="f7-icons">paperclip</i> Joindre une photo
                             </div>
                         </div>
                     </div>
-                    <!-- Votre opticien vous contactera ? -->
-                    <div class="timeline-item finish" style="margin-bottom: -10px" ng-show="callback=='yes'">
+                    <!-- Envoyer à mon opticien -->
+                    <div class="timeline-item finish" style="margin-bottom: -10px" ng-show="zonecasse && image_casse && (recu=='yes') && (note<=3) && (origin=='Casse')">
+                        <div class="timeline-item-date"></div>
+                        <div class="timeline-item-divider"></div>
+                        <div class="timeline-item-content">
+                            <div>
+                                <a href="#" ng-click="vote(6)">
+                                    <button class="col button button-raised button-fill button-small button-round">Envoyer à mon opticien</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Votre opticien vous contactera (FINISH) -->
+                    <div class="timeline-item finish" style="margin-bottom: -10px" ng-show="(recu=='no') && (callback=='yes')">
                         <div class="timeline-item-date"></div>
                         <div class="timeline-item-divider"></div>
                         <div class="timeline-item-content">
                             <div class="timeline-item-inner">Votre opticien vous recontactera</div>
+                            <div style="width: 75%; margin: 0 auto; margin-top: 12px;">
+                                <a href="#" class="" ng-click="vote(1)">
+                                    <button class="col button button-raised button-fill button-small button-round button_green ">Valider</button>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <!-- Votre opticien vous contactera ? -->
+                    <!-- Merci pour votre confiance (FINISH) -->
                     <div class="timeline-item finish" style="margin-bottom: -10px" ng-show="(recu=='yes') && (note!='' && note>3)">
                         <div class="timeline-item-date"></div>
                         <div class="timeline-item-divider"></div>
                         <div class="timeline-item-content">
                             <div class="timeline-item-inner">Merci pour votre confiance</div>
                             <div style="width: 75%; margin: 0 auto; margin-top: 12px;">
-                                <a href="/aftersale/4/" class="">
+                                <a href="#" class="" ng-click="vote(3)">
                                     <button class="col button button-raised button-fill button-small button-round button_green ">Valider</button>
                                 </a>
                             </div>

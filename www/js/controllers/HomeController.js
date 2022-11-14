@@ -24,6 +24,7 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
     $scope.rdv_tab = "coming";
     $scope.top_article = null;
     
+    $scope.rdvs = [];
     $scope.optics = [];
     $scope.trends = [];
 
@@ -45,7 +46,16 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
         $scope.current = {
             image: "assets/img/trends/geometric.png"
         };
-    
+        
+        MyApp.fw7.app.on("RdvTermine", function(id, note) {
+            for (let i = 0; i < $scope.rdvs.length; i++) {
+                if ($scope.rdvs[i].id == parseInt(id)) {
+                    $scope.rdvs[i].note = note;
+                    self.sync();
+                }
+            }
+        });
+
         if (credentials) {
             credentials = JSON.parse(credentials);
             $scope.email = credentials.email;
@@ -209,7 +219,7 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
     self.getRdv = function() {
         if (!global.user || !global.user.id) return;
         supe.from('Rendezvous')
-        .select('id, date, time, utilisateur, opticien(id, name, image), motif, informations')
+        .select('id, date, time, utilisateur, note, opticien(id, name, image), motif, informations')
         .eq('utilisateur', global.user.id)
         .then((response) => {
             console.log(response);
