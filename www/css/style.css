@@ -991,10 +991,10 @@ ul.list_of_motifs li.clickcollect {
     color: #1A2A84;
 }
 .rdv .rdv_actions {
-    
+    color: #000;
 }
 .rdv .rdv_actions button {
-    font-size: 11px;
+    font-size: 10px;
     text-transform: none;
     margin: 0 auto;
     margin-top: 15px;
@@ -1002,7 +1002,7 @@ ul.list_of_motifs li.clickcollect {
 }
 .rdv .trans_ordonnance {
     margin-top: 15px;
-    font-size: 12px;
+    font-size: 10px;
 }
 .rdv .trans_ordonnance span.f7-icons {
     font-size: 14px;
@@ -1135,7 +1135,7 @@ ul.list_of_motifs li.clickcollect {
     font-size: 12px;
 }
 .sub_trends_area div {
-    
+    color: inherit;
 }
 .sub_trends_area div ul {
     margin: 0;
@@ -1392,16 +1392,16 @@ ul.list_of_motifs li.clickcollect {
 }
 
 .eyes_color {
-    
+    color: inherit;
 }
 .eyes_color table {
     width: 100%;
 }
 .eyes_color table tr {
-    
+    color: inherit;
 }
 .eyes_color table tr td {
-    
+    color: inherit;
 }
 .eyes_color table tr td div {
     width:30px;

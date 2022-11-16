@@ -700,25 +700,30 @@ function GetSlots(data, duree) {
 				slot.start_time = new Date(slot.start_time);
 				slot.end_time = data[i].date + "T" + slot.heure_fin + ".000";
 				slot.end_time = new Date(slot.end_time);
-				//console.log(slot.start_time + " / " + slot.end_time);
 				
 				let nextSlotStart = slot.start_time;
 				
 				while (addMinutes(nextSlotStart, duree) <= slot.end_time) {
 					let mySlot = {};
 					mySlot.id = id;
+					mySlot.parent = {
+						"id": slot.id,
+						"start": slot.start_time,
+						"end": slot.end_time,
+						"date_id": data[i].id
+					};
 					mySlot.start = nextSlotStart;
 					mySlot.end = addMinutes(nextSlotStart, duree);
 					mySlot.view = (mySlot.start.getHours() < 10) ? ("0" + mySlot.start.getHours().toString()) : mySlot.start.getHours().toString();
 					mySlot.view += ":";
 					mySlot.view += (mySlot.start.getMinutes() < 10) ? ("0" + mySlot.start.getMinutes().toString()) : mySlot.start.getMinutes().toString();
-					//console.log("New slot : " + mySlot.start.toString() + " -> " + mySlot.end.toString());
 					nextSlotStart = mySlot.end;
 					slots.push(mySlot);
 					id++;
 				}
 			}
-			data[i].slots = slots;
+			if (slots.length > 0)
+				data[i].slots = slots;
 		}
 	}
 	return data;
@@ -727,3 +732,8 @@ function GetSlots(data, duree) {
 function aleo() {
 	console.log("toto !");
 }
+
+function addMinutes(date, minutes) {
+    return new Date(date.getTime() + minutes*60000);
+}
+

@@ -95,8 +95,11 @@ MyApp.angular.controller('AfterSaleController', ['$scope', '$rootScope', 'InitSe
                 if (data.note) MyApp.fw7.app.emit("RdvTermine", $scope.id, data.note);
                 if (openRdv) {
                     localStorage.setItem("opticien", JSON.stringify($scope.rdv.opticien));
-                    if (global.user && global.user.id)
+                    if (global.user && global.user.id) {
+                        $scope.disabled = false;
+                        self.sync();
                         mainView.router.navigate("/rdv/");
+                    }
                 }
             }
             else {

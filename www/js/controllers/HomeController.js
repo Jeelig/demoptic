@@ -219,7 +219,7 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
     self.getRdv = function() {
         if (!global.user || !global.user.id) return;
         supe.from('Rendezvous')
-        .select('id, date, time, utilisateur, note, opticien(id, name, image), motif, informations')
+        .select('id, date, time, utilisateur, note, opticien(id, name, image), motif, informations').order('date')
         .eq('utilisateur', global.user.id)
         .then((response) => {
             console.log(response);
@@ -230,6 +230,12 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
             self.sync();
         }).catch((error) => {
             console.warn(error);
+        });
+    };
+
+    $scope.CancelRdv = function(rdv) {
+        MyApp.fw7.app.dialog.confirm('Souhaitez-vous annuler ce rendez-vous ?', function () {
+            console.log("Cancel rdv !");
         });
     };
 

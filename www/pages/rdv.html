@@ -30,13 +30,15 @@
 		<div ng-show="state=='cdate'">
 
 			<div class="rdv_ctr_cal">
-				<div class="cal1" ng-repeat="cdi in calendaritems">
+				<div class="cal1" ng-repeat="cdi in calendaritems" ng-show="cdi.slots.length>0">
 					<div class="creneau_date" ng-click="ShowSlots(cdi)">
 						{{getDate(cdi.date, 'day')}} {{getDate(cdi.date, 'date')}} {{getDate(cdi.date, 'month')}}
 					</div>
 					<div class="creneaux" ng-show="cdi.showslots">
 						<ul>
-							<li ng-repeat="slot in cdi.slots"><div ng-click="ChooseSlot(cdi, slot)" ng-class="{'active': slot.active==true}">{{slot.view}}</div></li>
+							<li ng-repeat="slot in cdi.slots | orderBy : 'view'">
+								<div ng-click="ChooseSlot(cdi, slot)" ng-class="{'active': slot.active==true}">{{slot.view}}</div>
+							</li>
 						</ul>
 					</div>
 				</div>
