@@ -1714,3 +1714,47 @@ ul.essayage_list li > div > div {
     border-radius: 35px;
     background-color: var(--f7-theme-color);
 }
+
+#mydiv {
+    position: absolute;
+    z-index: 9;
+    background-color: #f1f1f1;
+    text-align: center;
+    border: 1px solid #d3d3d3;
+}
+
+#mydivheader {
+    padding: 10px;
+    cursor: move;
+    z-index: 10;
+    background-color: #2196F3;
+    color: #fff;
+}
+
+.cgu {
+    padding: 30px 15px;
+}
+.cgu h1 {
+    
+}
+.cgu h2 {
+    
+}
+.cgu p {
+    
+}
+.mgl-10 {
+    margin-left: 10px;
+}
+.mgl-20 {
+    margin-left: 20px;
+}
+.pidica {
+    position: initial !important;
+    right: 30px;
+    margin-top: -20px !important;
+    float: right;
+}
+.pidica img {
+    height: 30px !important;
+}

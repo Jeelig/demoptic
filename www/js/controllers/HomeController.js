@@ -183,6 +183,7 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
         self.sync();
         MyApp.fw7.app.preloader.show();
         setTimeout(function() {
+            global.user = null;
             $$("#page_profile").hide();
             $$("#formulaire_login").show();
             MyApp.fw7.app.preloader.hide();

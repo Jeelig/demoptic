@@ -17,6 +17,18 @@ MyApp.angular.controller('OpticiensController', ['$scope', '$rootScope', 'InitSe
 	$scope.init = function() {
         $scope.optics = [];
         self.sync();
+        if (global.user && global.user.id)
+            self.getOpticiens();
+        else {
+            MyApp.fw7.app.dialog.confirm('Veuillez vous connecter pour avoir accès aux opticiens', function () {
+                mainView.router.back();
+            }, function () {
+                mainView.router.back();
+            });
+        }
+	};
+
+    self.getOpticiens = function() {
         setTimeout(function() {
             supe.from('Opticien')
                 .select(`
@@ -36,7 +48,7 @@ MyApp.angular.controller('OpticiensController', ['$scope', '$rootScope', 'InitSe
                 console.warn(err.response.text)
             });
         }, 500);
-	};
+    };
 
     self.sync = function () { 
         if (!$scope.$$phase) { 

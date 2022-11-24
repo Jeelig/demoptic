@@ -197,7 +197,15 @@
                                             <div>Swiper vers le haut ou le bas pour essayer les différentes formes de visage</div>
                                         </div>
                                         <div class="swiper-slide"><img src="assets/img/face/form1.png"/></div>
-                                        <div class="swiper-slide"><img src="assets/img/face/form2.png"/></div>
+                                        <div class="swiper-slide">
+                                            <!--<img src="assets/img/face/form2.png"/>-->
+                                            <div id="mydiv">
+                                                <div id="mydivheader">Click here to move</div>
+                                                <p>Move</p>
+                                                <p>this</p>
+                                                <p>DIV</p>
+                                            </div>
+                                        </div>
                                         <div class="swiper-slide"><img src="assets/img/face/form3.png"/></div>
                                         <div class="swiper-slide"><img src="assets/img/face/form4.png"/></div>
                                         <div class="swiper-slide"><img src="assets/img/face/form5.png" style="width: 65%;"/></div>
@@ -421,15 +429,16 @@
                     </div>
                     <div class="profile_white_above">
                         <ul>
-                            <li>
+                            <!--<li>
                                 <div><img src="assets/img/acc/mesproches.png"/></div>
                                 <span>Mes proches</span>
                                 <span class="gray">Ajoutez les profils de vos proches</span>
-                            </li>
+                            </li>-->
                             <li>
                                 <a href="/favoris/" style="color: #FFF;">
                                     <div><img src="assets/img/acc/mesfavoris.png"/></div>
                                     <span>Mes favoris</span>
+                                    <span class="gray">Mes opticiens favoris</span>
                                 </a>
                             </li>
                             <li>
@@ -449,6 +458,10 @@
                                     <div><img src="assets/img/acc/mentionslegales.png"/></div>
                                     <span>Mentions légales</span>
                                 </a>
+                            </li>
+                            <li style="height:5px; margin-bottom: 15px;">
+                                <div class="pidica"><img src="assets/img/insta-icon.png" style="height: 26px !important; margin-left:10px;"/></div>
+                                <div class="pidica"><img src="assets/img/fb-icon.png" style="margin-top: -2px;"/></div>
                             </li>
                             <li ng-click="logout()">
                                 <div><img src="assets/img/acc/deconexion.png"/></div>

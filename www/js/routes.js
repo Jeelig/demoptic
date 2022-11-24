@@ -33,6 +33,10 @@ var routes = [
     url: './pages/contact.html',
   },
   {
+    path: '/cgu/',
+    url: './pages/cgu.html',
+  },
+  {
     path: '/partner/',
     url: './pages/partner.html',
   },
