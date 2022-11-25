@@ -1743,11 +1743,17 @@ ul.essayage_list li > div > div {
 .cgu p {
     
 }
+.cgu b {
+    color:blue;
+}
 .mgl-10 {
     margin-left: 10px;
 }
 .mgl-20 {
     margin-left: 20px;
+}
+.mgl-30 {
+    margin-left: 30px;
 }
 .pidica {
     position: initial !important;
