@@ -12,7 +12,7 @@
                 </div>
                 <div class="title">Optic Store Finder</div>
                 <div class="right">
-                    <a href="#" class="link icon-only">
+                    <a href="/favoris/" class="link icon-only">
                         <i class="icon material-icons" style="color: #000;">star_border</i>
                     </a>
                 </div>
@@ -25,6 +25,20 @@
             <a href="#" class="link">Right Link</a>
         </div>
         </div>-->
+
+		<div style="height: 0;"><input type="file" id="file" accept="image/*"/></div>
+
+        <div class="fab-backdrop"></div>
+        <div class="fab fab-right-bottom" ng-class="{'hidden': menu_item!='vsg'}">
+            <a href="#">
+                <i class="icon f7-icons">camera</i>
+                <i class="icon f7-icons">camera_on_rectangle_fill</i>
+            </a>
+            <div class="fab-buttons fab-buttons-top">
+                <a class="fab-label-button" href="#" ng-click="GetPicture('from_camera')"><span><i class="icon f7-icons" style="font-size:21px">camera_viewfinder</i></span><span class="fab-label">Prendre une photo</span></a>
+                <a class="fab-label-button" href="#" ng-click="GetPicture('from_image')"><span><i class="icon f7-icons" style="font-size:21px">photo</i></span></span><span class="fab-label">Importer depuis la galerie</span></a>
+            </div>
+        </div>
 
         <div class="OpticFirstLaunch">
             <div class="ofl_close" onclick="document.querySelector('.OpticFirstLaunch').remove()">X</div>
@@ -186,7 +200,7 @@
                     <div class="swiper-pagination"></div>
                     <div class="swiper-wrapper for_vsg">
                         <div class="swiper-slide">
-                            <div class="vsg_graydv pic_area" style="background-image: url('assets/img/face/face.jpg');">
+                            <div class="vsg_graydv pic_area" style="background-image: url('assets/img/no2.png'); background-repeat: no-repeat; background-size: 100% auto;">
                                 <!--<a href="">Prendre une photo</a>-->
                                 <div data-pagination='{"el": ".swiper-pagination"}' data-space-between="10" data-direction="vertical"
                                     class="swiper swiper-init demo-swiper bilik">
@@ -198,13 +212,13 @@
                                         </div>
                                         <div class="swiper-slide"><img src="assets/img/face/form1.png"/></div>
                                         <div class="swiper-slide">
-                                            <!--<img src="assets/img/face/form2.png"/>-->
-                                            <div id="mydiv">
+                                            <img src="assets/img/face/form2.png"/>
+                                            <!--<div id="mydiv">
                                                 <div id="mydivheader">Click here to move</div>
                                                 <p>Move</p>
                                                 <p>this</p>
                                                 <p>DIV</p>
-                                            </div>
+                                            </div>-->
                                         </div>
                                         <div class="swiper-slide"><img src="assets/img/face/form3.png"/></div>
                                         <div class="swiper-slide"><img src="assets/img/face/form4.png"/></div>
@@ -212,7 +226,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="vsg_graydv" style="padding-top:50px; margin-top:-35px; position:absolute; z-index:-1;">
+                            <div class="vsg_graydv bottom" style="display:none">
                                 <div class="vsg_title2">Visage carré</div>
                                 <div class="vsg_body1">
                                     Front large, mâchoire saillante. Lignes bien définies, contour anguleux.
@@ -408,7 +422,11 @@
             <div id="tab-user" class="page-content tab" ng-class="{'tab-active': menu_item=='account'}">
                 <div style="font-size:14px; display: none;" id="page_profile">
                     <div class="profile_blue_area">
-                        <div class="pf_help"><img src="assets/img/acc/aide.png" style="width: 75px;"></div>
+                        <div class="pf_help">
+                            <a href="/howitworks/">
+                                <img src="assets/img/acc/aide.png" style="width: 75px;">
+                            </a>
+                        </div>
                         <div class="pf_full_name">{{user.user_metadata.full_name}}</div>
                         <div class="pf_email">{{user.email}}</div>
                         <div class="pf_phone">{{user.user_metadata.telephone}}</div>

@@ -17,29 +17,39 @@ MyApp.angular.controller('FavorisController', ['$scope', '$rootScope', 'InitServ
 	$scope.init = function() {
         $scope.optics = [];
         self.sync();
-        MyApp.fw7.app.dialog.preloader('');
-        setTimeout(function() {
-            supe.from('favoris')
-            .select(
-                "id, Opticien(id, name, adresse, email, telephone, image, website, Ville, stars)"
-            )
-            .eq('user', global.user.id)
-            .then((response) => {
-                MyApp.fw7.app.dialog.close();
-                console.log(response);
-                if (response.error != null) {
-                    console.warn(response.error.messages);
-                }
-                else {
-                    $scope.optics = response.data;
-                    self.sync();
-                }
-            })
-            .catch((err) => {
-                MyApp.fw7.app.dialog.close();
-                console.warn(err)
+        
+        if (!global.user || !global.user.id) {
+            MyApp.fw7.app.dialog.confirm('Veuillez vous connecter pour avoir accès à cette fonctionnalité', function () {
+                mainView.router.back();
+            }, function () {
+                mainView.router.back();
             });
-        }, 500);
+        }
+        else {
+        MyApp.fw7.app.dialog.preloader('');
+            setTimeout(function() {
+                supe.from('favoris')
+                .select(
+                    "id, Opticien(id, name, adresse, email, telephone, image, website, Ville, stars)"
+                )
+                .eq('user', global.user.id)
+                .then((response) => {
+                    MyApp.fw7.app.dialog.close();
+                    console.log(response);
+                    if (response.error != null) {
+                        console.warn(response.error.messages);
+                    }
+                    else {
+                        $scope.optics = response.data;
+                        self.sync();
+                    }
+                })
+                .catch((err) => {
+                    MyApp.fw7.app.dialog.close();
+                    console.warn(err)
+                });
+            }, 500);
+        }
 	};
 
     self.sync = function () { 

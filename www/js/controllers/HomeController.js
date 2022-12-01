@@ -1,6 +1,7 @@
 /*jslint browser: true*/
 /*global console, MyApp*/
 
+
 MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService', function ($scope, $rootScope, InitService) {
     
 	'use strict';
@@ -27,6 +28,33 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
     $scope.rdvs = [];
     $scope.optics = [];
     $scope.trends = [];
+
+    $scope.table_forms = {
+        "carre": {
+            title: "VISAGE CARRÉ",
+            description: "Front large, mâchoire saillante. Lignes bien définies, contour anguleux."
+        }, 
+        "ovale": {
+            title: "VISAGE OVALE",
+            description: "Front et mâchoire arrondis de même largeur. Equilibré en longueur et en largeur. Menton fin"
+        }, 
+        "rectangle": {
+            title: "VISAGE RECTANGLE",
+            description: "Comparable au visage carré mais plus allongé."
+        }, 
+        "rond": {
+            title: "VISAGE ROND",
+            description: "Front et mâchoire arrondis de même largeur. Longueur et largeur identique. Joues charnues, pommettes rebondies."
+        }, 
+        "triangle1": {
+            title: "VISAGE TRIANGLE BAS ou COEUR",
+            description: "ront large, mâchoire étroite. Pommettes peu saillantes, menton pointu."
+        }, 
+        "triangle2": {
+            title: "VISAGE TRIANGLE HAUT",
+            description: "Front large, mâchoire saillante. Lignes bien définies, contour anguleux."
+        }
+    };
 
     InitService.addEventListener('ready', function () {
         log('HomePageController: ok, DOM ready'); // DOM ready
@@ -88,7 +116,7 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
             $$("#formulaire_login").hide();
             $$("#page_profile").show();
         }
-        self.swiper = MyApp.fw7.app.swiper.get('.demo-swiper1');
+        self.swiper = null;
         MyApp.fw7.app.on('ProfileUpdate', function (a) {
             $scope.user = a;
             self.sync();
@@ -201,7 +229,33 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
             self.getTop();
             self.getTrends();
         }
+        else if (tab_name == "vsg") {
+            if (self.swiper == null) {
+                self.swiper = MyApp.fw7.app.swiper.get('.demo-swiper');
+                self.swiper.on('slideChange', function (e) {
+                    if (e && (e.activeIndex > 0)) {
+                        $$(".vsg_graydv.bottom").show();
+                        $(".fab.fab-right-bottom").addClass("shunpo");
+                        if (e.activeIndex == 1) self.setForms("rond");
+                        else if (e.activeIndex == 2) self.setForms("triangle1");
+                        else if (e.activeIndex == 3) self.setForms("carre");
+                        else if (e.activeIndex == 4) self.setForms("triangle2");
+                        else if (e.activeIndex == 5) self.setForms("rectangle");
+                        else if (e.activeIndex == 6) self.setForms("carre");
+                    }
+                    else {
+                        $$(".vsg_graydv.bottom").hide();
+                        $(".fab.fab-right-bottom").removeClass("shunpo");
+                    }
+                });
+            }
+        }
         self.sync();
+    };
+
+    self.setForms = function(form) {
+        $(".vsg_title2").html($scope.table_forms[form].title);
+        $(".vsg_body1").html($scope.table_forms[form].description);
     };
 
     self.getTop = function() {
@@ -222,6 +276,7 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
         supe.from('Rendezvous')
         .select('id, date, time, utilisateur, note, opticien(id, name, image), motif, informations').order('date')
         .eq('utilisateur', global.user.id)
+        .is('active', true)
         .then((response) => {
             console.log(response);
             $scope.rdvs = response.data;
@@ -237,6 +292,21 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
     $scope.CancelRdv = function(rdv) {
         MyApp.fw7.app.dialog.confirm('Souhaitez-vous annuler ce rendez-vous ?', function () {
             console.log("Cancel rdv !");
+            let data = { active: false };
+            supe.from('Rendezvous')
+            .update(data)
+            .eq('id', rdv.id)
+            .then(function(response) {
+                if (!response.error) {
+                    MyApp.fw7.app.dialog.alert("Rendez-vous annulé !", self.getRdv);
+                }
+                else {
+                    console.warn(response);
+                    alert("Veuillez re-essayer ulterieurement !");
+                }
+            }).catch((err) => {
+                alert("Veuillez re-essayer ulterieurement !");
+            });
         });
     };
 
@@ -296,6 +366,35 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
             }
             return count;
         }
+    };
+
+    self.togglefab = function() {
+        MyApp.fw7.app.fab.close(".fab.fab-right-bottom");
+    };
+
+    $scope.GetPicture = function(from) {
+        switch(from) {
+            case "from_image": self.getfile();
+                break;
+            case "from_camera":
+                break;
+        }
+    };
+
+    self.getfile = function() {
+        var elem = document.getElementById("file");
+        elem.addEventListener("change", self.onimage);
+        elem.click();
+    };
+
+    self.onimage = function() {
+        var elem = document.getElementById("file");
+        elem.removeEventListener("change", self.onimage);
+        self.togglefab();
+        var file = elem.files[0];
+        let url = URL.createObjectURL(file)
+        document.querySelector(".vsg_graydv.pic_area").style.background = "url(" + url + ")";
+        console.log("got image");
     };
 
     self.sync = function () { 
