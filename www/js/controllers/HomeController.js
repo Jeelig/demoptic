@@ -18,6 +18,11 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
     $scope.fabOpened = false;
     $scope.existunreadnotif = false;
     $scope.notifications = [];
+    $scope.firstPicTaken = false;
+    $scope.mode = "read";
+    $scope.pageVsg = "page1";
+    $scope.season = "";
+    $scope.eyes_color = "";
 
     $scope.email = "";
     $scope.password = "";
@@ -32,30 +37,77 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
     $scope.table_forms = {
         "carre": {
             title: "VISAGE CARRÉ",
-            description: "Front large, mâchoire saillante. Lignes bien définies, contour anguleux."
+            description: "Front large, mâchoire saillante. Lignes bien définies, contour anguleux.",
+            details: [
+                "Les montures papillon, rondes, ovales ou pantos, vont adoucir et allonger votre visage.",
+                "Les montures bicolores foncées en haut et claires en bas vont affiner la mâchoire.Choisissez une taille légèrement moins large que votre visage pour l’affiner."
+            ]
         }, 
         "ovale": {
             title: "VISAGE OVALE",
-            description: "Front et mâchoire arrondis de même largeur. Equilibré en longueur et en largeur. Menton fin"
+            description: "Front et mâchoire arrondis de même largeur. Equilibré en longueur et en largeur. Menton fin",
+            details: [
+                "Faites vous plaisir. Ovales, rondes, rectangulaires, arrondies, toutes les formes vous iront !",
+                "Les montures trop petites vont élargir le visage et inversement."
+            ]
         }, 
         "rectangle": {
             title: "VISAGE RECTANGLE",
-            description: "Comparable au visage carré mais plus allongé."
+            description: "Comparable au visage carré mais plus allongé.",
+            details: [
+                "Adoucissez vos traits en misant sur le contraste formes rondes ou arrondies type «œil de chat» ou «papillon» avec des lignes douces et votre visage rectiligne.",
+                "Les montures bicolores foncées en haut et claires en bas ou demi-cerclées vont briser vos contours bien définis."
+            ]
         }, 
         "rond": {
             title: "VISAGE ROND",
-            description: "Front et mâchoire arrondis de même largeur. Longueur et largeur identique. Joues charnues, pommettes rebondies."
+            description: "Front et mâchoire arrondis de même largeur. Longueur et largeur identique. Joues charnues, pommettes rebondies.",
+            details: [
+                "Les formes carrées, rectangulaires ou de forme géométrique, vous aideront à redessiner vos traits et à affirmer votre regard.",
+                "Privilégiez les montures anguleuses. Évitez les formes rondes."
+            ]
         }, 
         "triangle1": {
             title: "VISAGE TRIANGLE BAS ou COEUR",
-            description: "ront large, mâchoire étroite. Pommettes peu saillantes, menton pointu."
+            description: "Front large, mâchoire étroite. Pommettes peu saillantes, menton pointu.",
+            details: [
+                "Jouez sur la finesse, les montures fines, rondes ou ovales, étirées sur les bords inférieurs pour équilibrer la partie haute et basse de votre visage. Pourquoi pas des montures percées !",
+                "Privilégiez les montures à angles arrondis. Évitez les modèles trop grands ou imposants."
+            ]
         }, 
         "triangle2": {
             title: "VISAGE TRIANGLE HAUT",
-            description: "Front large, mâchoire saillante. Lignes bien définies, contour anguleux."
+            description: "Front étroit, mâchoire large. Morphologie assez rare.",
+            details: [
+                "Soutenez la finesse de votre front avec des montures marquées sur les tempes pour donner du volume à votre visage. Laissez vous tenter par des formes «papillon» .",
+                "Privilégiez les montures avec du volume ou de la fantaisie sur la partie supérieure."
+            ]
         }
     };
 
+    $scope.colorimetrie = {
+        "printemps": {
+            "description": "Couleurs nudes et lumineuses.",
+            "info": "Optez pour de l'acétate de couleurs naturelles, des clairs lumineux à base de jaune.",
+            "attention": "Évitez les couleurs froides comme le bleu ou le violet."
+        },
+        "été": {
+            "description": "Couleurs froides à dominante bleu.",
+            "info": "Optez pour de l’acétate transparent, des couleurs froides à base de bleu, des pastels lumineux ou du métal argenté.",
+            "attention": "Évitez les couleurs chaudes et les teintes de orange."
+        },
+        "automne": {
+            "description": "Couleurs chaudes et intenses.",
+            "info": "Optez pour du métal doré, de l’écaille ou de l’acétate coloré kaki ou marron.",
+            "attention": "Évitez les couleurs froides comme le violet et les teintes pastel."
+        },
+        "hiver": {
+            "description": "Couleurs froides et vives.",
+            "info": "Optez pour du métal ou l’acétate de couleurs froides et soutenues, bleus froids, vert bouteille, framboise",
+            "attention": "Évitez les couleurs chaudes et les teintes pastel comme le rose poudré."
+        }
+    };
+    
     InitService.addEventListener('ready', function () {
         log('HomePageController: ok, DOM ready'); // DOM ready
     });
@@ -64,6 +116,9 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
         let session = localStorage.getItem("session");
         let credentials = localStorage.getItem("credentials");
         let firstlaunch = localStorage.getItem("firstlaunch");
+        $scope.firstPicTaken = false;
+        $scope.mode = "read";
+        $scope.pageVsg = "page1";
         if (session) {
             session = JSON.parse(session);
             let expires_at = new Date(session.session.expires_at * 1000);
@@ -117,11 +172,26 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
             $$("#page_profile").show();
         }
         self.swiper = null;
+        //debugger;
         MyApp.fw7.app.on('ProfileUpdate', function (a) {
             $scope.user = a;
             self.sync();
         });
 	};
+
+    $scope.GoNext = function() {
+        $scope.mode = "read";
+        if ($scope.pageVsg == "page1") {
+            $scope.pageVsg = "page2";
+        }
+        else if ($scope.pageVsg == "page2") {
+            $scope.pageVsg = "page3";
+        }
+        else if ($scope.pageVsg == "page3") {
+            $scope.pageVsg = "page1";
+        }
+        self.sync();
+    };
 
     $scope.setColor = function(color) {
         $scope.color = color;
@@ -222,6 +292,7 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
     $scope.setTab = function(tab_name) {
         global.active_tab = tab_name;
         $scope.menu_item = tab_name;
+        $scope.mode = "read";
         if (tab_name == 'rdv') {
             self.getRdv();
         }
@@ -231,20 +302,26 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
         }
         else if (tab_name == "vsg") {
             if (self.swiper == null) {
-                self.swiper = MyApp.fw7.app.swiper.get('.demo-swiper');
+                self.swiper = MyApp.fw7.app.swiper.get('.swiper-forms');
+                global.swiper = self.swiper;
+                self.swiper2 = MyApp.fw7.app.swiper.get('.swiper-description');
+
+                //self.swiper2.disable();
                 self.swiper.on('slideChange', function (e) {
                     if (e && (e.activeIndex > 0)) {
-                        $$(".vsg_graydv.bottom").show();
+                        $$(".vsg_down").show();
+                        $$(".fab-edit").show();
                         $(".fab.fab-right-bottom").addClass("shunpo");
                         if (e.activeIndex == 1) self.setForms("rond");
-                        else if (e.activeIndex == 2) self.setForms("triangle1");
+                        else if (e.activeIndex == 2) self.setForms("ovale");
                         else if (e.activeIndex == 3) self.setForms("carre");
+                        else if (e.activeIndex == 5) self.setForms("triangle1");
                         else if (e.activeIndex == 4) self.setForms("triangle2");
-                        else if (e.activeIndex == 5) self.setForms("rectangle");
-                        else if (e.activeIndex == 6) self.setForms("carre");
+                        else if (e.activeIndex == 6) self.setForms("rectangle");
                     }
                     else {
-                        $$(".vsg_graydv.bottom").hide();
+                        $$(".vsg_down").hide();
+                        $$(".fab-edit").hide();
                         $(".fab.fab-right-bottom").removeClass("shunpo");
                     }
                 });
@@ -254,8 +331,59 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
     };
 
     self.setForms = function(form) {
-        $(".vsg_title2").html($scope.table_forms[form].title);
-        $(".vsg_body1").html($scope.table_forms[form].description);
+        $scope.form = form;
+        self.sync();
+        $(".vsg_title2.1st").html($scope.table_forms[form].title);
+        $(".vsg_body1.1st").html($scope.table_forms[form].description);
+        self.swiper.update();
+        self.swiper2.update();
+        self.swiper2.slideTo(0, 0)
+    };
+
+    $scope.moveForm = function(direction) {
+        let index = 0;
+        let value = null;
+        let property = "";
+        let item = $$(".swiper-forms .swiper-slide-active > div");
+        switch(direction) {
+            case "up": value = item.css("margin-top").replace("px", "");
+                item.animate({
+                    "margin-top": parseInt(value) - 10
+                });
+                break;
+            case "down": value = item.css("margin-top").replace("px", "");
+                item.animate({
+                    "margin-top": parseInt(value) + 10
+                });
+                break;
+            case "left": value = item.css("margin-left").replace("px", "");
+                item.animate({
+                    "margin-left": parseInt(value) - 10
+                });
+                break;
+            case "right": value = item.css("margin-left").replace("px", "");
+                item.animate({
+                    "margin-left": parseInt(value) + 10
+                });
+                break;
+            case "pinch": value = item.css("width").replace("px", "");
+                item.animate({
+                    "width": parseInt(value) - 10,
+                    "height": parseInt(value) - 10
+                });
+                break;
+            case "zoom": value = item.css("width").replace("px", "");
+                item.animate({
+                    "width": parseInt(value) + 10,
+                    "height": parseInt(value) + 10
+                });
+                break;
+        }
+        
+    };
+
+    $scope.SavePreferences = function() {
+        MyApp.fw7.app.dialog.alert("Vos choix ont été sauvegardés !", "Merci");
     };
 
     self.getTop = function() {
@@ -390,11 +518,16 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
     self.onimage = function() {
         var elem = document.getElementById("file");
         elem.removeEventListener("change", self.onimage);
-        self.togglefab();
-        var file = elem.files[0];
-        let url = URL.createObjectURL(file)
+        let url = URL.createObjectURL(elem.files[0])
         document.querySelector(".vsg_graydv.pic_area").style.background = "url(" + url + ")";
         console.log("got image");
+        //self.swiper.slideNext();
+            $scope.firstPicTaken = true;
+            self.sync();
+        self.togglefab();
+        setTimeout(() => {
+            self.swiper.update();
+        }, 500);
     };
 
     self.sync = function () { 
