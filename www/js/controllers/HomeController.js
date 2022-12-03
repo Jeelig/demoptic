@@ -539,9 +539,9 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
     self.onSuccess = function(imageURI) {
         //var image = document.getElementById('myImage');
         //image.src = imageURI;
-        //alert(imageURI);
         var random = Math.floor(Math.random()*1000);
         let newImagePath = imageURI + "?dummy=" + random;
+        alert(newImagePath);
         document.querySelector(".vsg_graydv.pic_area").style.backgroundImage = "url(" + newImagePath + ")";
         //$$(".pic_area").css("background-image", "url('" + imageURI + "')");
     }
