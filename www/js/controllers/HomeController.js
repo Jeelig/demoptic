@@ -543,6 +543,7 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
         let newImagePath = imageURI + "?dummy=" + random;
         alert(newImagePath);
         document.querySelector(".vsg_graydv.pic_area").style.backgroundImage = "url(" + newImagePath + ")";
+        $("#profileimg").attr("src", newImagePath);
         //$$(".pic_area").css("background-image", "url('" + imageURI + "')");
     }
     
