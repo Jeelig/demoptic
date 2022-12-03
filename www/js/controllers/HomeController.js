@@ -529,21 +529,28 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
             allowEdit: false, 
             sourceType: Camera.PictureSourceType.CAMERA,
             encodingType: Camera.EncodingType.JPEG,
-            destinationType: Camera.DestinationType.FILE_URI,
+            //destinationType: Camera.DestinationType.FILE_URI,
+            destinationType: Camera.DestinationType.DATA_URL,
             targetWidth: 350,
             targetHeight: 350
         });
     };
 
     
-    self.onSuccess = function(imageURI) {
+    self.onSuccess = function(imageData) { //(imageURI) {
         //var image = document.getElementById('myImage');
         //image.src = imageURI;
-        var random = Math.floor(Math.random()*1000);
+
+        /**/
+        var image = document.getElementById('profileimg');
+        image.src = "data:image/jpeg;base64," + imageData;
+        /**/
+
+        /*var random = Math.floor(Math.random()*1000);
         let newImagePath = imageURI + "?dummy=" + random;
         alert(newImagePath);
         document.querySelector(".vsg_graydv.pic_area").style.backgroundImage = "url(" + newImagePath + ")";
-        $("#profileimg").attr("src", newImagePath);
+        $("#profileimg").attr("src", newImagePath);*/
         //$$(".pic_area").css("background-image", "url('" + imageURI + "')");
     }
     
