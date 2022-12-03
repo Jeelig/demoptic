@@ -1934,7 +1934,7 @@ ul.essayage_list li > div > div {
 }
 .demo-swiper.swiper-forms .swiper-slide {
     background-color: transparent;
-    line-height: 14px;
+    line-height: 22px;
     font-size: 14px;
     color:#FFF;
 }
@@ -2044,8 +2044,18 @@ ul.essayage_list li > div > div {
     color: #42ad1f;
 }
 
-
-
+/*contact*/
+#my-contact-message {
+    padding: 40px 30px;
+    text-align: center;
+    font-size: 20px;
+}
+#my-contact-message .f7-icons {
+    font-size: 30px;
+    color: #12bb12;
+    display: block;
+    margin: 0 auto;
+}
 
 
 

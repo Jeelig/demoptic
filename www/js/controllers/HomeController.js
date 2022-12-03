@@ -525,8 +525,13 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
 
     self.takePicture = function() {
         navigator.camera.getPicture(self.onSuccess, self.onFail, { 
-            quality: 50,
-            destinationType: Camera.DestinationType.FILE_URI 
+            quality: 45,
+            allowEdit: true, 
+            sourceType: Camera.PictureSourceType.CAMERA,
+            encodingType: Camera.EncodingType.JPEG,
+            destinationType: Camera.DestinationType.FILE_URI,
+            targetWidth: 350,
+            targetHeight: 350
         });
     };
 
@@ -534,7 +539,8 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
     self.onSuccess = function(imageURI) {
         //var image = document.getElementById('myImage');
         //image.src = imageURI;
-        $(".pic_area").css("background-image", "url('" + imageURI + "')");
+        document.querySelector(".vsg_graydv.pic_area").style.backgroundImage = "url(" + imageURI + ")";
+        //$$(".pic_area").css("background-image", "url('" + imageURI + "')");
     }
     
     self.onFail = function(message) {
@@ -552,7 +558,7 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
         var elem = document.getElementById("file");
         elem.removeEventListener("change", self.onimage);
         let url = URL.createObjectURL(elem.files[0])
-        document.querySelector(".vsg_graydv.pic_area").style.background = "url(" + url + ")";
+        document.querySelector(".vsg_graydv.pic_area").style.backgroundImage = "url(" + url + ")";
         console.log("got image");
         //self.swiper.slideNext();
         $scope.firstPicTaken = true;

@@ -1,4 +1,4 @@
-<div class="page" data-name="contact" ng-controller="EssayagesController" ng-init="init()">
+<div class="page" data-name="contact" ng-controller="ContactController" ng-init="init()">
 	
 	<div class="navbar">
 		<div class="navbar-bg"></div>
@@ -10,62 +10,72 @@
 				</a>
 			</div>
 			<div class="title">Contact</div>
-			<div class="right">
-				<a href="#" class="link" ng-click="init()">
-					<div class="f7-icons">eyeglasses</div>
-				</a>
-			</div>
 		</div>
 	</div>
 
-	<div class="page-content parameter-security">
-        <div style="padding-left: 15px; padding-right: 15px; background-color: #F2F2F2; padding-bottom: 80px;">
+	<div class="page-content contact-page">
+        
+		<div style="padding-left: 15px; padding-right: 15px; background-color: #F2F2F2; padding-bottom: 80px;">
             &nbsp;
             <div class="op_text_circle">
-                <div class="title">Nous contacter</div>
+                <div class="title">Contactez-nous</div>
                 <div class="content">
-                    Des professionnels de santé diplômés qui prennent le temps de découvrir vos besoins
-
-					<div class="list simple-list">
-						<ul>
-							<li>
-								<span>Synchronisation du calendrier</span>
-								<label class="toggle toggle-init">
-									<input type="checkbox" checked />
-									<span class="toggle-icon"></span>
-								</label>
-							</li>
-							<li>
-								<span>Désactiver temporairement le compte</span>
-								<label class="toggle toggle-init">
-									<input type="checkbox" checked />
-									<span class="toggle-icon"></span>
-								</label>
-							</li>
-							<li>
-								<span>Fermer le compte</span>
-								<label class="toggle toggle-init">
-									<input type="checkbox" checked />
-									<span class="toggle-icon"></span>
-								</label>
-							</li>
-						</ul>
-					</div>
-
+                    N'hésitez pas à nous laisser un message en cas de question sans réponse via le formulaire ci-dessous
                 </div>
             </div>
-
         </div>
-		<!--
+
         <div class="above_list_optk">
 
-            <form class="list" id="my-form" style="margin-top: 0px; margin-bottom: 15px; text-transform: none;">
-                <div style="margin:15px 15px 0 10px">
+			<div id="my-contact-message" style="display:none">
+				<div class="f7-icons">checkmark_alt_circle</div>
+				Merci pour votre message<br/>
+				Nous reviendrons vers vous au plus vite
+			</div>
 
+            <form class="list" id="my-contact-form" style="margin-top: 0px; margin-bottom: 15px; text-transform: none;">
+                <div style="margin:15px 15px 0 10px">
+                    <ul>
+                        <li>
+                            <div class="item-content item-input">
+                                <div class="item-inner">
+                                    <div class="item-title item-label">Votre nom</div>
+                                    <div class="item-input-wrap">
+                                        <input type="text" name="fullname" placeholder="Nom complet" ng-model="contact.nom" />
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content item-input">
+                                <div class="item-inner">
+                                    <div class="item-title item-label">Votre adresse électronique</div>
+                                    <div class="item-input-wrap">
+                                        <input type="email" name="email" placeholder="Votre adresse email" ng-model="contact.email"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content item-input">
+                                <div class="item-inner">
+                                    <div class="item-title item-label">Message / Question</div>
+                                    <div class="item-input-wrap">
+										<textarea class="resizable" style="min-height:85px" ng-model="contact.message"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="block block-strong row no-after no-before" style="margin: 15px 0 0 0 !important; padding-top: 0 !important; padding-bottom: 0 !important;">
+                        <div class="col"><a class="button button-fill button-round" href="#" ng-click="submit()">Envoyer</a></div>
+                    </div>
+                    
                 </div>
             </form>
 
-        </div>-->
-        
+        </div>
+
 	</div>
 </div>
