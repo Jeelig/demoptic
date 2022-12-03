@@ -55,6 +55,9 @@ jobs:
       - name: Add Plugin Splashscreen
         run: cordova plugin add cordova-plugin-splashscreen
 
+      - name: Add Plugin camera
+        run: cordova plugin add https://github.com/apache/cordova-plugin-camera.git
+        
       #- name: Add Plugins firebase
       #  run: cordova plugin add cordova-plugin-firebase-lib --save
 
