@@ -27,6 +27,7 @@
         </div>-->
 
 		<div style="height: 0;"><input type="file" id="file" accept="image/*"/></div>
+        <img src="" id="profileimg" style="display:none"/>
 
         <div class="fab-backdrop"></div>
         <div class="fab fab-right-bottom" ng-class="{'hidden': menu_item!='vsg'}">
@@ -35,8 +36,8 @@
                 <i class="icon f7-icons">camera_on_rectangle_fill</i>
             </a>
             <div class="fab-buttons fab-buttons-top">
-                <a class="fab-label-button" href="#" ng-click="GetPicture('from_camera')"><span><i class="icon f7-icons" style="font-size:21px">camera_viewfinder</i></span><span class="fab-label">Prendre une photo</span></a>
-                <a class="fab-label-button" href="#" ng-click="GetPicture('from_image')"><span><i class="icon f7-icons" style="font-size:21px">photo</i></span></span><span class="fab-label">Importer depuis la galerie</span></a>
+                <a class="fab-label-button button_green" href="#" ng-click="GetPicture('from_camera')"><span><i class="icon f7-icons" style="font-size:21px">camera_viewfinder</i></span><span class="fab-label">Prendre une photo</span></a>
+                <a class="fab-label-button button_green" href="#" ng-click="GetPicture('from_image')"><span><i class="icon f7-icons" style="font-size:21px">photo</i></span></span><span class="fab-label">Importer depuis la galerie</span></a>
             </div>
         </div>
 
@@ -277,34 +278,6 @@
                 <div class="vsg_page_2" ng-show="pageVsg=='page2'">
                     <div class="vsg_graydv" style="padding-top:20px; padding-bottom: 20px;">
                         <div class="timeline medium-sides">
-                            <div class="timeline-item" style="margin-bottom: -10px">
-                                <div class="timeline-item-date">&nbsp;</div>
-                                <div class="timeline-item-divider"></div>
-                                <div class="timeline-item-content">
-                                    <div class="timeline-item-inner">Sélectionnez la couleur de vos cheveux</div>
-                                    <div class="hairs_color">
-                                        <form class="list" style="margin-top: 0px; margin-bottom:0; text-transform: none;">
-                                            <div>
-                                                <ul>
-                                                    <li class="item-content item-input">
-                                                        <div class="item-inner">
-                                                            <div class="item-input-wrap input-dropdown-wrap">
-                                                                <select placeholder="Veuillez choisir" placeholder="Cheveux foncés (châtain cendré, brun foncé, noir ...)" ng-model="season">
-                                                                    <option value="">&nbsp;</option>
-                                                                    <option value="printemps">Cheveux clairs (blond, blond vénitien, reflets dorés…)</option>
-                                                                    <option value="été">Cheveux clairs (blond ou châtain clair aux reflets cendrés)</option>
-                                                                    <option value="automne">Cheveux foncés (reflets chauds, roux, cuivré...)</option>
-                                                                    <option value="hiver">Cheveux foncés (châtain froid, brun foncé, noir…)</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="timeline-item">
                                 <div class="timeline-item-date">&nbsp;</div>
                                 <div class="timeline-item-divider"></div>
@@ -340,6 +313,34 @@
                                             <li><div class="clr8" ng-class="{'active': color=='clr8'}" ng-click="setColor('clr8')"></div></li>
                                             <li><div class="clr9" ng-class="{'active': color=='clr9'}" ng-click="setColor('clr9')"></div></li>
                                         </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="timeline-item" style="margin-bottom: -10px">
+                                <div class="timeline-item-date">&nbsp;</div>
+                                <div class="timeline-item-divider"></div>
+                                <div class="timeline-item-content">
+                                    <div class="timeline-item-inner">Sélectionnez la couleur de vos cheveux</div>
+                                    <div class="hairs_color">
+                                        <form class="list" style="margin-top: 0px; margin-bottom:0; text-transform: none;">
+                                            <div>
+                                                <ul>
+                                                    <li class="item-content item-input">
+                                                        <div class="item-inner">
+                                                            <div class="item-input-wrap input-dropdown-wrap">
+                                                                <select placeholder="Veuillez choisir" placeholder="Cheveux foncés (châtain cendré, brun foncé, noir ...)" ng-model="season">
+                                                                    <option value="">&nbsp;</option>
+                                                                    <option value="printemps">Cheveux clairs (blond, blond vénitien, reflets dorés…)</option>
+                                                                    <option value="été">Cheveux clairs (blond ou châtain clair aux reflets cendrés)</option>
+                                                                    <option value="automne">Cheveux foncés (reflets chauds, roux, cuivré...)</option>
+                                                                    <option value="hiver">Cheveux foncés (châtain froid, brun foncé, noir…)</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

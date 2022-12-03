@@ -23,6 +23,7 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
     $scope.pageVsg = "page1";
     $scope.season = "";
     $scope.eyes_color = "";
+    $scope.form = null;
 
     $scope.email = "";
     $scope.password = "";
@@ -325,6 +326,7 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
                         $(".fab.fab-right-bottom").removeClass("shunpo");
                     }
                 });
+                self.CheckChoices();
             }
         }
         self.sync();
@@ -343,6 +345,7 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
     $scope.moveForm = function(direction) {
         let index = 0;
         let value = null;
+        let value2 = null;
         let property = "";
         let item = $$(".swiper-forms .swiper-slide-active > div");
         switch(direction) {
@@ -367,15 +370,17 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
                 });
                 break;
             case "pinch": value = item.css("width").replace("px", "");
+                value2 = item.css("height").replace("px", "");
                 item.animate({
                     "width": parseInt(value) - 10,
-                    "height": parseInt(value) - 10
+                    "height": parseInt(value2) - 10
                 });
                 break;
             case "zoom": value = item.css("width").replace("px", "");
+                value2 = item.css("height").replace("px", "");
                 item.animate({
                     "width": parseInt(value) + 10,
-                    "height": parseInt(value) + 10
+                    "height": parseInt(value2) + 10
                 });
                 break;
         }
@@ -383,7 +388,16 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
     };
 
     $scope.SavePreferences = function() {
-        MyApp.fw7.app.dialog.alert("Vos choix ont été sauvegardés !", "Merci");
+        let profileImage = document.getElementById('profileimg');
+        let imgData = getBase64Image(profileImage);
+        let userChoices = {
+            form: $scope.form,
+            image: imgData
+        };
+        localStorage.setItem("userChoices", JSON.stringify(userChoices));
+        MyApp.fw7.app.dialog.alert("Vos choix ont été sauvegardés !", "Merci", function() {
+            $scope.GoNext();
+        });
     };
 
     self.getTop = function() {
@@ -504,10 +518,28 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
         switch(from) {
             case "from_image": self.getfile();
                 break;
-            case "from_camera":
+            case "from_camera": self.takePicture();
                 break;
         }
     };
+
+    self.takePicture = function() {
+        navigator.camera.getPicture(self.onSuccess, self.onFail, { 
+            quality: 50,
+            destinationType: Camera.DestinationType.FILE_URI 
+        });
+    };
+
+    
+    self.onSuccess = function(imageURI) {
+        //var image = document.getElementById('myImage');
+        //image.src = imageURI;
+        $(".pic_area").css("background-image", "url('" + imageURI + "')");
+    }
+    
+    self.onFail = function(message) {
+        alert('Failed because: ' + message);
+    }
 
     self.getfile = function() {
         var elem = document.getElementById("file");
@@ -516,18 +548,53 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
     };
 
     self.onimage = function() {
+        var fr = new FileReader();
         var elem = document.getElementById("file");
         elem.removeEventListener("change", self.onimage);
         let url = URL.createObjectURL(elem.files[0])
         document.querySelector(".vsg_graydv.pic_area").style.background = "url(" + url + ")";
         console.log("got image");
         //self.swiper.slideNext();
-            $scope.firstPicTaken = true;
-            self.sync();
+        $scope.firstPicTaken = true;
+        self.sync();
         self.togglefab();
         setTimeout(() => {
             self.swiper.update();
         }, 500);
+        //Set Image into img
+        fr.onload = function () {
+            document.getElementById("profileimg").src = fr.result;
+        }
+        fr.readAsDataURL(elem.files[0]);
+        /**/
+    };
+
+    self.CheckChoices = function() {
+        let choices = localStorage.getItem("userChoices");
+        if (choices != null) {
+            choices = JSON.parse(choices);
+            if (choices.hasOwnProperty("form")) {
+                $scope.firstPicTaken = true;
+                self.togglefab();
+                self.sync();
+                /**/
+                var image = new Image();
+                image.src = 'data:image/png;base64,' + choices.image;
+                document.getElementById("profileimg").appendChild(image);
+                $(".pic_area").css("background-image", "url('" + image.src + "')");
+                /**/
+                setTimeout(() => {
+                    self.swiper.update();
+                    let found = false;
+                    while (!found) {
+                        self.swiper.slideNext(0);
+                        if ($scope.form == choices.form) {
+                            found = true;
+                        }
+                    }
+                }, 500);
+            }
+        }
     };
 
     self.sync = function () { 
