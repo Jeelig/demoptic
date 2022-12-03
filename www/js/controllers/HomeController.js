@@ -544,6 +544,11 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
         /**/
         var image = document.getElementById('profileimg');
         image.src = "data:image/jpeg;base64," + imageData;
+
+        var image2 = new Image();
+        image2.src = 'data:image/png;base64,' + imageData;
+        //document.getElementById("profileimg").appendChild(image2);
+        $(".pic_area").css("background-image", "url('" + image2.src + "')");
         /**/
 
         /*var random = Math.floor(Math.random()*1000);
