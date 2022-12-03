@@ -1753,7 +1753,7 @@ ul.essayage_list li > div > div {
 .cgu {
     padding: 30px 15px;
 }
-.cgu h1 {
+/*.cgu h1 {
     
 }
 .cgu h2 {
@@ -1761,7 +1761,7 @@ ul.essayage_list li > div > div {
 }
 .cgu p {
     
-}
+}*/
 .cgu b {
     color:blue;
 }
@@ -1895,7 +1895,7 @@ ul.essayage_list li > div > div {
     background:red;
     display:inline-block;
     clip-path:polygon(var(--path));
-    -webkit-mask:paint(polygon-border)
+    /*-webkit-mask:paint(polygon-border)*/
 }
 
 .demo-swiper2 .swiper-wrapper {

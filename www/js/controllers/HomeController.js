@@ -526,7 +526,7 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
     self.takePicture = function() {
         navigator.camera.getPicture(self.onSuccess, self.onFail, { 
             quality: 45,
-            allowEdit: true, 
+            allowEdit: false, 
             sourceType: Camera.PictureSourceType.CAMERA,
             encodingType: Camera.EncodingType.JPEG,
             destinationType: Camera.DestinationType.FILE_URI,
