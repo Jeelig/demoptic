@@ -537,36 +537,41 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
     };
 
     
-    self.onSuccess = function(imageData) { //(imageURI) {
-        //var image = document.getElementById('myImage');
-        //image.src = imageURI;
+    self.onSuccess = function(imageData) {
+        var image = new Image();
+        image.src = 'data:image/png;base64,' + imageData; // jpg ?
+        $(".pic_area").css("background-image", "url('" + image.src + "')");
 
-        /**/
-        var image = document.getElementById('profileimg');
-        image.src = "data:image/jpeg;base64," + imageData;
+        document.getElementById('profileimg').src = "data:image/jpeg;base64," + imageData;
 
-        var image2 = new Image();
-        image2.src = 'data:image/png;base64,' + imageData;
-        //document.getElementById("profileimg").appendChild(image2);
-        $(".pic_area").css("background-image", "url('" + image2.src + "')");
-        /**/
+        self.AfterImageReceived();
 
-        /*var random = Math.floor(Math.random()*1000);
-        let newImagePath = imageURI + "?dummy=" + random;
-        alert(newImagePath);
-        document.querySelector(".vsg_graydv.pic_area").style.backgroundImage = "url(" + newImagePath + ")";
-        $("#profileimg").attr("src", newImagePath);*/
-        //$$(".pic_area").css("background-image", "url('" + imageURI + "')");
-    }
+        //var image = document.getElementById('profileimg');
+        //image.src = "data:image/jpeg;base64," + imageData;
+    };
     
     self.onFail = function(message) {
         alert('Failed because: ' + message);
     }
 
     self.getfile = function() {
-        var elem = document.getElementById("file");
-        elem.addEventListener("change", self.onimage);
-        elem.click();
+        if (navigator && navigator.hasOwnProperty("camera")) {
+            navigator.camera.getPicture(self.onSuccess, self.onFail, { 
+                quality: 45,
+                allowEdit: false, 
+                sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+                encodingType: Camera.EncodingType.JPEG,
+                //destinationType: Camera.DestinationType.FILE_URI,
+                destinationType: Camera.DestinationType.DATA_URL,
+                targetWidth: 350,
+                targetHeight: 350
+            });
+        }
+        else {
+            var elem = document.getElementById("file");
+            elem.addEventListener("change", self.onimage);
+            elem.click();
+        }
     };
 
     self.onimage = function() {
@@ -575,20 +580,22 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
         elem.removeEventListener("change", self.onimage);
         let url = URL.createObjectURL(elem.files[0])
         document.querySelector(".vsg_graydv.pic_area").style.backgroundImage = "url(" + url + ")";
+        self.AfterImageReceived();
         console.log("got image");
-        //self.swiper.slideNext();
+        //Set Image into img
+        fr.onload = function () {
+            document.getElementById("profileimg").src = fr.result;
+        }
+        fr.readAsDataURL(elem.files[0]);
+    };
+
+    self.AfterImageReceived = function() {
         $scope.firstPicTaken = true;
         self.sync();
         self.togglefab();
         setTimeout(() => {
             self.swiper.update();
         }, 500);
-        //Set Image into img
-        fr.onload = function () {
-            document.getElementById("profileimg").src = fr.result;
-        }
-        fr.readAsDataURL(elem.files[0]);
-        /**/
     };
 
     self.CheckChoices = function() {
