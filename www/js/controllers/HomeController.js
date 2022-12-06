@@ -35,6 +35,16 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
     $scope.optics = [];
     $scope.trends = [];
 
+    $scope.offsetMove = 7;
+
+    self.savedArticles = [];
+
+    self.shapePosition = {
+        x: 0,
+        y: 0,
+        z: 0
+    };
+
     $scope.table_forms = {
         "carre": {
             title: "VISAGE CARRÉ",
@@ -173,11 +183,19 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
             $$("#page_profile").show();
         }
         self.swiper = null;
-        //debugger;
         MyApp.fw7.app.on('ProfileUpdate', function (a) {
             $scope.user = a;
             self.sync();
         });
+        //////////
+        //debugger;
+        let artcls = localStorage.getItem("savedArticles");
+        if (artcls && (artcls != null)) {
+            artcls = JSON.parse(artcls);
+            if (artcls.length > 0) {
+                self.savedArticles = artcls;
+            }
+        }
 	};
 
     $scope.GoNext = function() {
@@ -200,6 +218,12 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
     };
 
     $scope.checkFutur = function(date) {
+        let returnValue = (new Date() > date)
+        if (returnValue) {
+            //console.log(new Date());
+            //console.log("is lower than ");
+            console.log(date);
+        }
         return (new Date() > date);
     };
 
@@ -290,6 +314,36 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
         }, 500);
     };
 
+    $scope.GoAfterSale = function() {
+        $scope.setTab('rdv');
+        $scope.rdv_tab = 'past';
+        self.sync();
+    };
+
+    $scope.SendOrdonnance = function(rdv) {
+        let title = "Optic Store Finder : Ordonnance (RDV " + rdv.date + ")";
+        let body = "Bonjour Docteur, <br>Je vous prie de bien vouloir trouver ci-joint mon ordonnance en prévision du rdv du " + rdv.date + ".<br>Bonne réception";
+        $(location).attr('href', 'mailto:?subject='
+            + encodeURIComponent(title)
+            + "&body=" 
+            + encodeURIComponent(body)
+        );
+    };
+
+    $scope.SaveArticle = function(article, state=true) {
+        //debugger;
+        let saveArticle = {};
+        saveArticle.id = article.id;
+        if (state) article.saved = true;
+        else article.saved = false;
+        if (article.top == true) {
+            saveArticle.top = true;
+        }
+        self.savedArticles.push(saveArticle);
+        localStorage.setItem("savedArticles", JSON.stringify(self.savedArticles));
+        self.sync();
+    };
+
     $scope.setTab = function(tab_name) {
         global.active_tab = tab_name;
         $scope.menu_item = tab_name;
@@ -339,52 +393,101 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
         $(".vsg_body1.1st").html($scope.table_forms[form].description);
         self.swiper.update();
         self.swiper2.update();
-        self.swiper2.slideTo(0, 0)
+        self.swiper2.slideTo(0, 0);
+        self.animatedescription();
+    };
+
+    self.animatedescription = function() {
+        $(".swiper-description .swiper-slide.swiper-slide-active").animate({
+            "margin-left": -80
+        }, {
+            complete: function (elements) {
+                $(".swiper-description .swiper-slide.swiper-slide-active").animate({
+                    "margin-left": 0
+                });
+            }
+        });
+    };
+
+    $scope.placeForm = function(position) {
+        //debugger;
+        let o = $scope.offsetMove;
+        self.shapePosition = position;
+        let item = $$(".swiper-forms .swiper-slide-active > div");
+        let w = item.css("width").replace("px", "");
+        let h = item.css("height").replace("px", "");
+        let mT = item.css("margin-top").replace("px", "");
+        let mL = item.css("margin-left").replace("px", "");
+        item.animate({
+            "width": parseFloat(w) + o*position.z,
+            //"width": parseFloat(w) + o*position.z,
+            //"height": parseFloat(h) + o*position.z,
+            "margin-top": parseFloat(mT) + o*position.y - o*position.z,
+            "margin-left": parseFloat(mL) + o*position.x - o*position.z/2
+        }, {
+            // Animation completed, optional
+            complete: function (elements) {
+                MyApp.fw7.app.preloader.hide();
+                console.log('animation completed');
+            }
+        });
     };
 
     $scope.moveForm = function(direction) {
         let index = 0;
         let value = null;
         let value2 = null;
+        let value3 = null;
         let property = "";
+        let o = $scope.offsetMove;
         let item = $$(".swiper-forms .swiper-slide-active > div");
         switch(direction) {
             case "up": value = item.css("margin-top").replace("px", "");
                 item.animate({
-                    "margin-top": parseInt(value) - 10
+                    "margin-top": parseFloat(value) - o
                 });
+                self.shapePosition["y"]++;
                 break;
             case "down": value = item.css("margin-top").replace("px", "");
                 item.animate({
-                    "margin-top": parseInt(value) + 10
+                    "margin-top": parseFloat(value) + o
                 });
+                self.shapePosition["y"]--;
                 break;
             case "left": value = item.css("margin-left").replace("px", "");
                 item.animate({
-                    "margin-left": parseInt(value) - 10
+                    "margin-left": parseFloat(value) - o
                 });
+                self.shapePosition["x"]--;
                 break;
             case "right": value = item.css("margin-left").replace("px", "");
                 item.animate({
-                    "margin-left": parseInt(value) + 10
+                    "margin-left": parseFloat(value) + o
                 });
+                self.shapePosition["x"]++;
                 break;
             case "pinch": value = item.css("width").replace("px", "");
-                value2 = item.css("height").replace("px", "");
+                value2 = item.css("margin-top").replace("px", ""); //item.css("height").replace("px", "");
+                value3 = item.css("margin-left").replace("px", "");
                 item.animate({
-                    "width": parseInt(value) - 10,
-                    "height": parseInt(value2) - 10
+                    "width": parseFloat(value) - o,
+                    "margin-top": parseFloat(value2) + o,
+                    "margin-left": parseFloat(value3) + (o/2)
                 });
+                self.shapePosition["z"]--;
                 break;
             case "zoom": value = item.css("width").replace("px", "");
-                value2 = item.css("height").replace("px", "");
+                value2 = item.css("margin-top").replace("px", "");
+                value3 = item.css("margin-left").replace("px", "");
                 item.animate({
-                    "width": parseInt(value) + 10,
-                    "height": parseInt(value2) + 10
+                    "width": parseInt(value) + o,
+                    "margin-top": parseFloat(value2) - o,
+                    "margin-left": parseFloat(value3) - (o/2)
                 });
+                self.shapePosition["z"]++;
                 break;
         }
-        
+        console.log(self.shapePosition);
     };
 
     $scope.SavePreferences = function() {
@@ -392,7 +495,8 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
         let imgData = getBase64Image(profileImage);
         let userChoices = {
             form: $scope.form,
-            image: imgData
+            image: imgData,
+            position: self.shapePosition
         };
         localStorage.setItem("userChoices", JSON.stringify(userChoices));
         MyApp.fw7.app.dialog.alert("Vos choix ont été sauvegardés !", "Merci", function() {
@@ -416,14 +520,15 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
     self.getRdv = function() {
         if (!global.user || !global.user.id) return;
         supe.from('Rendezvous')
-        .select('id, date, time, utilisateur, note, opticien(id, name, image), motif, informations').order('date')
+        .select('id, date, active, time, utilisateur, note, opticien(id, name, image), motif, informations').order('date', { ascending: false })
         .eq('utilisateur', global.user.id)
         .is('active', true)
         .then((response) => {
             console.log(response);
             $scope.rdvs = response.data;
             for (let i=0; i < $scope.rdvs.length; i++) {
-                $scope.rdvs[i].rdvdate = new Date($scope.rdvs[i].date);
+                let date = new Date($scope.rdvs[i].date + " " + $scope.rdvs[i].time);
+                $scope.rdvs[i].rdvdate = date; //new Date($scope.rdvs[i].date);
             }
             self.sync();
         }).catch((error) => {
@@ -459,9 +564,26 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
             console.log(response);
             $scope.trends = response.data;
             self.sync();
+            self.getSavedArticles();
         }).catch((error) => {
             console.warn(error);
         });
+    };
+
+    self.getSavedArticles = function() {
+        for(let i = 0; i < $scope.trends.length; i++) {
+            for(let j = 0; i < $scope.trends[i].tendances_articles.length; j++) {
+                let art = $scope.trends[i].tendances_articles[j];
+                //debugger;
+                for(let k = 0; k < self.savedArticles.length; k++) {
+                    if (art.id == self.savedArticles[k].id) {
+                        art.saved = true;
+                    }
+                }
+                $scope.trends[i].tendances_articles[j] = art;
+            }
+        }
+        self.sync();
     };
 
     $scope.OpenOpticien = function(id) {
@@ -525,29 +647,23 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
 
     self.takePicture = function() {
         navigator.camera.getPicture(self.onSuccess, self.onFail, { 
-            quality: 45,
+            quality: 100,
             allowEdit: false, 
             sourceType: Camera.PictureSourceType.CAMERA,
             encodingType: Camera.EncodingType.JPEG,
             //destinationType: Camera.DestinationType.FILE_URI,
             destinationType: Camera.DestinationType.DATA_URL,
-            targetWidth: 350,
-            targetHeight: 350
+            targetWidth: 500,
+            targetHeight: 500
         });
     };
-
     
     self.onSuccess = function(imageData) {
         var image = new Image();
         image.src = 'data:image/png;base64,' + imageData; // jpg ?
         $(".pic_area").css("background-image", "url('" + image.src + "')");
-
         document.getElementById('profileimg').src = "data:image/jpeg;base64," + imageData;
-
         self.AfterImageReceived();
-
-        //var image = document.getElementById('profileimg');
-        //image.src = "data:image/jpeg;base64," + imageData;
     };
     
     self.onFail = function(message) {
@@ -589,6 +705,14 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
         fr.readAsDataURL(elem.files[0]);
     };
 
+    $scope.isLoggedIn = function() {
+        let loggedIn = false;
+        if (global.user && global.user.id) {
+            loggedIn = true;
+        }
+        return loggedIn;
+    };
+
     self.AfterImageReceived = function() {
         $scope.firstPicTaken = true;
         self.sync();
@@ -603,13 +727,14 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
         if (choices != null) {
             choices = JSON.parse(choices);
             if (choices.hasOwnProperty("form")) {
+                MyApp.fw7.app.preloader.show();
                 $scope.firstPicTaken = true;
                 self.togglefab();
                 self.sync();
                 /**/
                 var image = new Image();
                 image.src = 'data:image/png;base64,' + choices.image;
-                document.getElementById("profileimg").appendChild(image);
+                document.getElementById('profileimg').src = "data:image/jpeg;base64," + choices.image;
                 $(".pic_area").css("background-image", "url('" + image.src + "')");
                 /**/
                 setTimeout(() => {
@@ -619,6 +744,7 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
                         self.swiper.slideNext(0);
                         if ($scope.form == choices.form) {
                             found = true;
+                            $scope.placeForm(choices.position);
                         }
                     }
                 }, 500);

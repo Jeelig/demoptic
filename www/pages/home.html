@@ -133,7 +133,7 @@
                         <div class="indic">Votre opticien</div>
                     </div>
                 </a>
-                <a href="/opticiens/" class="item-content item-link">
+                <a href="#" class="item-content item-link" ng-click="GoAfterSale()">
                     <div class="bluebloc">
                         <div class="kpm icon"><img src="assets/img/home/home_settings.png" style="width: auto; height: 60px; margin-right: -10px;" /></div>
                         <div class="indic">L'après vente</div>
@@ -172,14 +172,14 @@
                             <div class="rdv_actions">
                                 <button class="col button button-raised button-fill button-small button-round">Transmettre mes formes de montures</button>
                                 <button class="col button button-raised button-fill button-small button-round color-black" ng-click="CancelRdv(rdv)">Annuler le rendez-vous</button>
-                                <div class="trans_ordonnance"><span class="f7-icons">paperclip</span> Transmettre mon ordonnance</div>
+                                <div class="trans_ordonnance" ng-click="SendOrdonnance(rdv)"><span class="f7-icons">paperclip</span> Transmettre mon ordonnance</div>
                             </div>
                         </div>
                     </div>
                     <div ng-show="rdv_tab=='past'" ng-click="rdv_tab='past'" style="margin: 0 10px;">
                         <!--<p>RENDEZ-VOUS passés</p>-->
                         <div class="nordv" ng-show="NbPassed(rdvs)<=0">Aucun rendez-vous passé</div>
-                        <div class="rdv" ng-repeat="rdv in rdvs | orderBy: 'rdvdate' track by rdv.id" ng-show="checkFutur(rdv.rdvdate)">
+                        <div class="rdv" ng-repeat="rdv in rdvs | orderBy: '-rdvdate' track by rdv.id" ng-show="checkFutur(rdv.rdvdate)">
                             <div class="rdv_date">
                                 {{getDate(rdv, 'day')}} {{getDate(rdv, 'date')}} {{getDate(rdv, 'month')}} à {{rdv.time.substring(0, 5)}}
                             </div>
@@ -208,7 +208,6 @@
             </div>
             <div id="tab-vsg" class="page-content tab" ng-class="{'tab-active': menu_item=='vsg'}">
                 
-                
                 <div class="vsg_page_1" ng-show="pageVsg=='page1'">
                     <div class="vsg_graydv pic_area" style="background-image: url('assets/img/no2.png'); background-repeat: no-repeat; background-size: 100% auto;">
                         <div data-pagination='{"el": ".swiper-pagination"}' data-space-between="0" data-direction="vertical" class="swiper swiper-init demo-swiper swiper-forms">
@@ -221,22 +220,34 @@
                                     Swiper vers le haut ou le bas pour essayer les différentes formes de visage
                                 </div>
                                 <div class="swiper-slide" ng-show="firstPicTaken">
-                                    <div class="form_circle"></div>
+                                    <div class="xform form_circle">
+                                        <img src="assets/img/vsg/rond.png"/>
+                                    </div>
                                 </div>
                                 <div class="swiper-slide" ng-show="firstPicTaken">
-                                    <div class="form_ovale"></div>
+                                    <div class="xform form_ovale">
+                                        <img src="assets/img/vsg/ovale.png"/>
+                                    </div>
                                 </div>
                                 <div class="swiper-slide" ng-show="firstPicTaken">
-                                    <div class="form_carre"></div>
+                                    <div class="xform form_carre">
+                                        <img src="assets/img/vsg/carre.png"/>
+                                    </div>
                                 </div>
                                 <div class="swiper-slide" ng-show="firstPicTaken">
-                                    <div class="form_triangle_down"></div>
+                                    <div class="xform form_triangle_down">
+                                        <img src="assets/img/vsg/trianglbas-coeur.png"/>
+                                    </div>
                                 </div>
                                 <div class="swiper-slide" ng-show="firstPicTaken">
-                                    <div class="form_triangle_up"></div>
+                                    <div class="xform form_triangle_up">
+                                        <img src="assets/img/vsg/trianglehaut.png"/>
+                                    </div>
                                 </div>
                                 <div class="swiper-slide" ng-show="firstPicTaken">
-                                    <div class="form_rectangle"></div>
+                                    <div class="xform form_rectangle">
+                                        <img src="assets/img/vsg/rectangle.png"/>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -393,7 +404,10 @@
                         </div>
                     </div>
                     <div style="margin:15px 40px">
-                        <button class="col button button-raised button-fill button-round" ng-click="SavePreferences()">Sauvegarder mes choix</button>
+                        <button class="col button button-raised button-fill button-round" ng-class="{'disabled': !isLoggedIn()}" ng-click="SavePreferences()">Sauvegarder mes choix</button>
+                        <div class="save_not_logged_in" ng-click="setTab('account')">
+                            Veuillez vous connecter pour bénéficier de la sauvegarde
+                        </div>
                     </div>
                 </div>
                 
@@ -414,7 +428,7 @@
                             </ul>
                         </div>
 
-                        <div class="top_news" ng-show="trend_menu!='saved'" ng-if="top_article">
+                        <div class="top_news" ng-show="(trend_menu!='saved') || ((trend_menu=='saved') && top_article.saved)" ng-if="top_article">
                             <a href="#" class="sheet-open" data-sheet=".my-sheet-swipe-to-close" ng-click="setArticle(top_article)">
                                 <img ng-src="{{top_article.image}}" />
                             </a>
@@ -423,14 +437,14 @@
                     </div>
                 </div>
 
-                <div style="background-color:#FFF; min-height:300px;margin-top: -50px; border-radius: 40px 40px 0 0;">
+                <div style="background-color:#FFF; min-height:300px; margin-top:-50px; border-radius:40px 40px 0 0;">
 
                     <div class="sub_trends_area" ng-repeat="trend in trends">
                         <div class="ttitle">{{trend.name}}</div>
                         <div style="overflow-x: scroll;">
                             <div style="width: 500px;">
                                 <ul>
-                                    <li ng-repeat="article in trend.tendances_articles" ng-show="trend_menu!='saved'" ng-click="setArticle(article)" style="background-image:url({{article.image}});" class="sheet-open" data-sheet=".my-sheet-swipe-to-close">
+                                    <li ng-repeat="article in trend.tendances_articles" ng-show="(trend_menu!='saved') || ((trend_menu=='saved') && article.saved)" ng-click="setArticle(article)" style="background-image:url({{article.image}});" class="sheet-open" data-sheet=".my-sheet-swipe-to-close">
                                         <div>{{article.titre}}</div>
                                     </li>
                                 </ul>
@@ -500,7 +514,7 @@
                             </li>
                             <li style="height:5px; margin-bottom: 15px;">
                                 <div class="pidica"><img src="assets/img/insta-icon.png" style="height: 26px !important; margin-left:10px;"/></div>
-                                <div class="pidica"><img src="assets/img/fb-icon.png" style="margin-top: -2px;"/></div>
+                                <div class="pidica"><img src="assets/img/fb_circle.png" style="margin-top: -1px;"/></div>
                             </li>
                             <li ng-click="logout()">
                                 <div><img src="assets/img/acc/deconexion.png"/></div>
@@ -694,19 +708,21 @@
         
         <div class="sheet-modal my-sheet-swipe-to-close" style="height: 100vh; --f7-sheet-bg-color: #fff;">
             <div class="sheet-modal-inner">
+                <div class="art_close sheet-close"><i class="f7-icons">xmark</i></div>
                 <div class="page-content">
                     <div class="img_ctnr">
                         <div style="background-image: url({{current.image}})"></div>
                     </div>
                     <div class="ppbuddy">
                         <ul>
-                            <li><i class="f7-icons">lock_circle</i></li>
-                            <li><i class="f7-icons">logo_instagram</i></li>
-                            <li><i class="f7-icons">arrowshape_turn_up_right_circle</i></li>
-                            <li><i class="f7-icons">bookmark_fill</i></li>
+                            <li><div><img src="assets/img/fb_circle.png" style="width:30px; position:absolute; margin:-24px 0 0 -32px;"/></div></li>
+                            <li><div><img src="assets/img/insta-icon.png" style="width:28px; position:absolute; margin:-24px 0 0 -26px;"/></div></li>
+                            <li><div class="material-icons shr">share</div></li>
+                            <li ng-show="!current.saved"><div class="f7-icons" ng-click="SaveArticle(current, true)">bookmark</div></li>
+                            <li ng-show="current.saved"><i class="f7-icons" ng-click="SaveArticle(current, false)">bookmark_fill</i></li>
                         </ul>
                         <div class="mLine"></div>
-                        <div class="art_title sheet-close">{{current.titre}}</div>
+                        <div class="art_title">{{current.titre}}</div>
                         <div class="art_subtitle">{{current.soustitre}}</div>
                         <div class="block">{{current.contenu}}</div>
                     </div>

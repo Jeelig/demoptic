@@ -900,8 +900,27 @@ ul.list_of_motifs li.clickcollect {
    -moz-white-space: pre-wrap;  
 }
 .parameter-security .list.simple-list ul li label.toggle {
-    margin-top: -107px;
+    /*margin-top: -107px;*/
 }
+
+.parameter-security .toggle.toggle-init .toggle-icon {
+    border:solid 0 red;
+}
+
+label.toggle.toggle-init {
+    border: solid 0 blue;
+    position: absolute;
+    right: 0;
+}
+
+.parameter-security .toggle input[type=checkbox]+.toggle-icon {
+    position: absolute;
+    margin-top: -56px;
+}/*
+.parameter-security .toggle input[type=checkbox]:checked+.toggle-icon {
+    position: absolute;
+    margin-top: -56px;
+}*/
 
 .OpticFirstLaunch {
     position: absolute;
@@ -1003,6 +1022,7 @@ ul.list_of_motifs li.clickcollect {
 .rdv .trans_ordonnance {
     margin-top: 15px;
     font-size: 10px;
+    cursor: pointer;
 }
 .rdv .trans_ordonnance span.f7-icons {
     font-size: 14px;
@@ -1194,6 +1214,14 @@ ul.list_of_motifs li.clickcollect {
     display: inline-block;
     text-align: right;
     margin-left: 5px;
+    width: 28px;
+    border: solid 0 red;
+}
+.ppbuddy ul li .shr {
+    font-size: 30px;
+    position: absolute;
+    margin-top: -25px;
+    right: 53px;
 }
 
 .mLine {
@@ -1781,7 +1809,8 @@ ul.essayage_list li > div > div {
     float: right;
 }
 .pidica img {
-    height: 30px !important;
+    height: 28px !important;
+    cursor: pointer;
 }
 
 
@@ -1821,61 +1850,66 @@ ul.essayage_list li > div > div {
 }
 
 /* FORMS */
+.swiper-slide .xform img {
+    width:100%;
+}
 .form_circle {
     height: 50%;
     width: 50%;
-    background-color: transparent;
+    /*background-color: transparent;
     border:dotted 3px #FFF;
-    border-radius: 50%;
+    border-radius: 50%;*/
     margin: 0 auto;
-    margin-top: 25px;
+    margin-top: -25px;
 }
 .form_ovale {
-    height: 70%;
-    width: 40%;
-    background-color: transparent;
+    height: 50%;
+    width: 50%;
+    /*background-color: transparent;
     border:dotted 3px #FFF;
-    border-radius: 50%;
+    border-radius: 50%;*/
     margin: 0 auto;
-    margin-top: 30px;
+    margin-top: -35px;
 }
 .form_carre {
     height: 50%;
     width: 50%;
-    background-color: transparent;
-    border:dotted 3px #FFF;
+    /*background-color: transparent;
+    /*border:dotted 3px #FFF;
+    border-radius: 12%;*/
     margin: 0 auto;
-    border-radius: 12%;
-    margin-top: 25px;
+    margin-top: -25px;
 }
 .form_triangle_down {
-    width: 0;
-	height: 0;
+    width: 50%;
+	height: 50%;/*
 	border-left: 25px solid transparent;
 	border-right: 25px solid transparent;
 	border-top: 50px solid #555;
     background-color: transparent;
-    border:dotted 3px #FFF;
+    border:dotted 3px #FFF;*/
     margin: 0 auto;
+    margin-top: -30px;
 }
 .form_triangle_up {
-    width: 0;
-	height: 0;
+    width: 50%;
+	height: 50%;/*
 	border-left: 25px solid transparent;
 	border-right: 25px solid transparent;
 	border-bottom: 50px solid #555;
     background-color: transparent;
-    border:dotted 3px #FFF;
+    border:dotted 3px #FFF;*/
     margin: 0 auto;
+    margin-top: -25px;
 }
 .form_rectangle {
     height: 50%;
-    width: 32%;
-    background-color: transparent;
-    border:dotted 3px #FFF;
+    width: 50%;
+    /*background-color: transparent;
+    border:dotted 3px #FFF;*/
     margin: 0 auto;
     border-radius: 16px;
-    margin-top: 25px;
+    margin-top: -35px;
 }
 
 @property --border{
@@ -2058,7 +2092,40 @@ ul.essayage_list li > div > div {
 }
 
 
+.swiper-slide .xform img {
+    display: none;
+}
+.swiper-slide.swiper-slide-active .xform img {
+    display: block;
+}
 
+#tab-vsg {
+    padding-bottom: 400px;
+}
 
+.save_not_logged_in {
+    margin-top: 15px;
+    font-size: 12px;
+    text-align: center;
+    color: #777;
+    cursor: pointer;
+    text-decoration: underline;
+}
 
+.art_close {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 40px;
+    height: 40px;
+    color: #FFF;
+    cursor: pointer;
+    z-index: 9999999;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+}
+.art_close i {
+    margin: 13px 0 0 13px;
+    font-size: 14px;
+}
 
