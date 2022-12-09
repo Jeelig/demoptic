@@ -356,6 +356,7 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
             self.getTrends();
         }
         else if (tab_name == "vsg") {
+            //debugger;
             if (self.swiper == null) {
                 self.swiper = MyApp.fw7.app.swiper.get('.swiper-forms');
                 global.swiper = self.swiper;
@@ -370,8 +371,8 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
                         if (e.activeIndex == 1) self.setForms("rond");
                         else if (e.activeIndex == 2) self.setForms("ovale");
                         else if (e.activeIndex == 3) self.setForms("carre");
-                        else if (e.activeIndex == 5) self.setForms("triangle1");
-                        else if (e.activeIndex == 4) self.setForms("triangle2");
+                        else if (e.activeIndex == 4) self.setForms("triangle1");
+                        else if (e.activeIndex == 5) self.setForms("triangle2");
                         else if (e.activeIndex == 6) self.setForms("rectangle");
                     }
                     else {
@@ -571,8 +572,9 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
     };
 
     self.getSavedArticles = function() {
+        if (self.savedArticles.length <= 0) return;
         for(let i = 0; i < $scope.trends.length; i++) {
-            for(let j = 0; i < $scope.trends[i].tendances_articles.length; j++) {
+            for(let j = 0; j < $scope.trends[i].tendances_articles.length; j++) {
                 let art = $scope.trends[i].tendances_articles[j];
                 //debugger;
                 for(let k = 0; k < self.savedArticles.length; k++) {

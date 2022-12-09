@@ -1169,6 +1169,7 @@ label.toggle.toggle-init {
     margin-right: 12px;
     border-radius: 12px;
     background-size:cover;
+    overflow: hidden;
 }
 .sub_trends_area div ul li > div {
     float:left;
@@ -1815,10 +1816,10 @@ ul.essayage_list li > div > div {
 
 
 .howitworks {
-    background-color:#2B6AC7; 
-    color:#FFF !important; 
-    padding-left:15px;
-    padding-right:15px;
+    /*background-color:#2B6AC7; */
+    /*color:#FFF !important; */
+    /*padding-left:15px;
+    padding-right:15px;*/
 }
 .howitworks p {
     color:#000;
@@ -1830,6 +1831,42 @@ ul.essayage_list li > div > div {
     color:#000;
     font-size:18px;
     font-weight: bold;
+}
+.howitworks .above_list_optk {
+    padding-top: 20px;
+    text-align: center;
+    color: #000;
+    font-size: 15px;
+    font-weight: bold;
+}
+.howitworks .above_list_optk p,
+.howitworks .opticien_gray_area p {
+    color: #C6C6C6;
+    color: #ababab;
+    font-weight: normal;
+    text-align: left;
+    padding: 0 15px;
+    font-size: 12px;
+}
+.howitworks .above_list_optk .green,
+.howitworks .opticien_gray_area .green {
+    color: #00A19A;
+}
+.howitworks .above_list_optk .green.center,
+.howitworks .opticien_gray_area .green.center {
+    text-align: center;
+}
+.howitworks .optic_tit_cat {
+    padding:15px; 
+    text-transform:uppercase;
+    font-weight: bold;
+}
+.line_hiw {
+    width: 20%;
+    border-top: solid 2px #C6C6C6;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .fab-center-bottom, 
@@ -1878,7 +1915,7 @@ ul.essayage_list li > div > div {
     /*border:dotted 3px #FFF;
     border-radius: 12%;*/
     margin: 0 auto;
-    margin-top: -25px;
+    margin-top: -50px;
 }
 .form_triangle_down {
     width: 50%;
