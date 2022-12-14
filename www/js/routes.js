@@ -25,6 +25,10 @@ var routes = [
     url: './pages/parametres.html',
   },
   {
+    path: '/parameters/:id/',
+    componentUrl: './pages/parameters-perso.html',
+  },
+  {
     path: '/howitworks/',
     url: './pages/howitworks.html',
   },
@@ -35,6 +39,10 @@ var routes = [
   {
     path: '/cgu/',
     url: './pages/cgu.html',
+  },
+  {
+    path: '/engagements/',
+    url: './pages/engagements.html',
   },
   {
     path: '/partner/',

@@ -112,30 +112,32 @@
         <div class="tabs opt">
             <div id="tab-home" class="page-content tab" ng-class="{'tab-active': menu_item=='home'}">
                 <div style="padding: 30px 40px 20px 40px; color: #098fa1; font-size: 20px; font-size: 14px; text-align: center;">
-                    Un guide, votre liberté de choisir.
+                    <b>La communauté</b> des porteurs de lunettes 
+                    et des opticiens engagés
                 </div>
     
-                <a href="#" class="item-content" ng-click="setTab('vsg')">
-                    <div class="bluebloc">
-                        <div class="kpm"><img src="assets/img/home/home_visage.png" style="width: auto; height: 65px;" /></div>
-                        <div class="indic">Votre visage</div>
-                    </div>
-                </a>
-                <a href="#" class="item-content" onclick="window.open(encodeURI('https://opticsolutions.owiz.fittingbox.com/#/catalog'), '_system')">
-                    <div class="bluebloc">
-                        <div class="kpm"><img src="assets/img/home/home_face.png" style="width: auto; height: 67px;" /></div>
-                        <div class="indic">Votre style</div>
-                    </div>
-                </a>
                 <a href="/opticiens/" class="item-content item-link">
                     <div class="bluebloc">
                         <div class="kpm"><img src="assets/img/home/home_home.png" style="width: auto; height: 55px; margin-right: -20px;" /></div>
-                        <div class="indic">Votre opticien</div>
+                        <div class="indic">Vos opticiens engagés</div>
+                    </div>
+                </a>
+                <a href="#" class="item-content" ng-click="setTab('vsg')">
+                    <div class="bluebloc">
+                        <div class="kpm"><img src="assets/img/home/home_visage.png" style="width: auto; height: 65px;" /></div>
+                        <div class="indic">Nos conseils visagisme</div>
+                    </div>
+                </a>
+                <a href="/engagements/" class="item-content"><!-- /*onclick="window.open(encodeURI('https://opticsolutions.owiz.fittingbox.com/#/catalog'), '_system')"*/-->
+                    <div class="bluebloc">
+                        <div class="kpm"><img src="assets/img/home/home_face.png" style="width: auto; height: 67px;" /></div>
+                        <div class="indic">Les engagements</div>
                     </div>
                 </a>
                 <a href="#" class="item-content item-link" ng-click="GoAfterSale()">
                     <div class="bluebloc">
                         <div class="kpm icon"><img src="assets/img/home/home_settings.png" style="width: auto; height: 60px; margin-right: -10px;" /></div>
+                        <div style="position: absolute; margin: 50px 0 0 20px; color: #898989;">avec votre opticien</div>
                         <div class="indic">L'après vente</div>
                     </div>
                 </a>

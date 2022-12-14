@@ -622,8 +622,11 @@ ul.list_of_motifs li.clickcollect {
     margin-top:15px;
     margin-bottom: 10px;
     font-weight: 500;
+    text-align: left;
 }
-
+.optic_tit_cat span {
+    color: #3BB7B1;
+}
 /* Global Carousel */
 .carousel {
     width: 100%;
@@ -1839,6 +1842,8 @@ ul.essayage_list li > div > div {
     font-size: 15px;
     font-weight: bold;
 }
+.engage .above_list_optk p,
+.engage .opticien_gray_area p
 .howitworks .above_list_optk p,
 .howitworks .opticien_gray_area p {
     color: #C6C6C6;
@@ -1848,10 +1853,14 @@ ul.essayage_list li > div > div {
     padding: 0 15px;
     font-size: 12px;
 }
+.engage .above_list_optk .green,
+.engage .opticien_gray_area .green,
 .howitworks .above_list_optk .green,
 .howitworks .opticien_gray_area .green {
     color: #00A19A;
 }
+.engage .above_list_optk .green.center,
+.engage .opticien_gray_area .green.center,
 .howitworks .above_list_optk .green.center,
 .howitworks .opticien_gray_area .green.center {
     text-align: center;
@@ -2165,4 +2174,226 @@ ul.essayage_list li > div > div {
     margin: 13px 0 0 13px;
     font-size: 14px;
 }
+
+.opticien_gray_area.hwt {
+    border-top-left-radius: 0;
+    padding-bottom: 95px;
+}
+
+.above_list_optk.on_opticien.hwt {
+    border-top-left-radius: 0;
+    padding-bottom: 95px;
+}
+
+.above_list_optk.on_opticien.eng {
+    border-top-left-radius: 0;
+    padding-bottom: 95px;
+    margin: 30px 15px 0 15px;
+}
+
+.above_list_optk.on_opticien.hwt span,
+.above_list_optk.on_opticien.eng span {
+    text-align: left;
+    color: #1c59b8;
+    display: block;
+    margin-left: 15px;
+    font-size: 13px;
+}
+.above_list_optk.on_opticien.hwt table.tab14 {
+    margin: 10px 15px;
+}
+.above_list_optk.on_opticien.eng table.tab14 {
+    margin: 10px 0;
+}
+.above_list_optk.on_opticien.hwt table.tab14 tr td,
+.above_list_optk.on_opticien.eng table.tab14 tr td {
+    text-align: left;
+    font-weight: normal;
+    color: #ababab;
+    font-size: 12px;
+    vertical-align: top;
+}
+.above_list_optk.on_opticien.hwt table.tab14 tr td span,
+.above_list_optk.on_opticien.eng table.tab14 tr td span {
+    display: block;
+    color: #ababab;
+    margin-left: 0;
+}
+.above_list_optk.on_opticien.hwt table.tab14 tr td div,
+.above_list_optk.on_opticien.eng table.tab14 tr td div {
+    width: 75px;
+    height: 75px;
+    text-align: center;
+    box-shadow: 0px 2px 4px #bdbdbd;
+    white-space: nowrap;
+    margin: 0 15px 20px 0;
+    border-radius: 5px;
+}
+.above_list_optk.on_opticien.hwt table.tab14 tr td .helper,
+.above_list_optk.on_opticien.eng table.tab14 tr td .helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+.above_list_optk.on_opticien.hwt table.tab14 tr td div img,
+.above_list_optk.on_opticien.eng table.tab14 tr td div img {
+    width:85%;
+    margin-left: -2px;
+    vertical-align: middle;
+}
+/**/
+
+.above_list_optk.on_opticien.hwt table.tab15,
+.opticien_gray_area.eng table.tab15 {
+    margin: 10px 0;
+    width: 100%;
+}
+.above_list_optk.on_opticien.hwt table.tab15 tr td,
+.opticien_gray_area.eng table.tab15 tr td {
+    width:33%;
+    text-align: center;
+    font-weight: normal;
+    color: #ababab;
+    font-size: 11px;
+    vertical-align: top;
+}
+.above_list_optk.on_opticien.hwt table.tab15 tr td div,
+.opticien_gray_area.eng table.tab15 tr td div {
+    width: 65px;
+    height: 65px;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 5px;
+    background-color: #FFF;
+    box-shadow: 0px 2px 4px #bdbdbd;
+
+}
+.above_list_optk.on_opticien.hwt table.tab15 tr td div img,
+.opticien_gray_area.eng table.tab15 tr td div img {
+    width:90%;
+}
+
+.page-content.engage {
+    /*padding-left: 15px;
+    padding-right: 15px;*/
+}
+
+
+
+
+.giresse1 {
+    width: 50px;
+    height: 50px;
+    background-color: #F2F2F2;
+    overflow: hidden;
+    position: absolute;
+    margin-top: -110px;
+}
+.giresse1 > div {
+    width: 100px;
+    height: 100px;
+    background-color: #FFF;
+    border-radius: 50%;
+    margin: -50px 0 0 0;
+}
+.giresse2 {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    position: absolute;
+    margin-top: -110px;
+    background-color: #FFF;
+}
+.giresse2 > div {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: -50px 0 0 0;
+    background-color: #F2F2F2;
+}
+
+.bgbtngray1 {
+    width: fit-content;
+    background-color: #F2F2F2;
+    padding: 14px 50px 14px 64px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    margin-top: 25px;
+    border-radius: 30px;
+    font-size: 12px;
+    color: #1A3D87;
+    background-image: url(../assets/img/face/ampoule.png);
+    background-repeat: no-repeat;
+    background-position: 20px 6px;
+    background-size: 31px auto;
+}
+
+ul.usefull_for {
+    list-style: none;
+}
+ul.usefull_for li {
+    font-size: 12px;
+    color:#ababab;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+ul.usefull_for li::before {
+    content: "\2022";
+    color: #098FA1;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+    font-size: 20px;
+    position: absolute;
+    margin-top: -5px;
+}
+
+.engageTop {
+    background-color: #F2F2F2;
+    border-radius: 0 0 43px 43px;
+    text-align: center;
+    padding: 30px 30px 10px 30px;
+    margin: 0;
+}
+.engageTop .eTitle {
+    color: #1c59b8;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 18px;
+}
+.engageTop .esubTitle {
+    color: #00A19A;
+    font-size: 10px;
+    margin-top: 5px;
+}
+
+.opticien_gray_area.eng {
+    min-height: 100px;
+    padding: 20px 15px;
+    border-top-left-radius: 0;
+}
+
+.engage .opticien_gray_area p {
+    font-size: 12px;
+    color: #ababab;
+}
+
+.parameter-security .list.links-list {
+    margin: 0;
+    padding: 0;
+}
+.parameter-security .list.links-list ul li a {
+    padding-left: 0;
+    font-family: comfortaa Regular;
+    font-size: 12px;
+    white-space: break-spaces;
+}
+
+.howitworks .above_list_optk.on_opticien p {
+    font-size: 12px;
+    color: #bababa;
+    font-weight: normal;
+}
+
 

@@ -1,0 +1,91 @@
+<template>
+    <div class="page" data-name="parameters-perso" ng-controller="ParametersController" ng-init="init()">
+        <div class="navbar">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="if-not-md">Back</span>
+                    </a>
+                </div>
+                <div class="title">Paramètres avancés</div>
+            </div>
+        </div>
+
+        <div class="page-content parameter-security">
+            <div style="padding-left: 15px; padding-right: 15px; background-color: #F2F2F2; padding-bottom: 80px;">
+                <!-- {{block}}-->
+                <div class="op_text_circle" ng-show="block>2">
+                    <div class="title">Notifications</div>
+                    <div class="content">
+                        Comment souhaitez-vous recevoir les notifications ?
+                        <div class="list simple-list">
+                            <ul>
+                                <li>
+                                    <span>Push (mobile)</span>
+                                    <label class="toggle toggle-init">
+                                        <input type="checkbox" checked />
+                                        <span class="toggle-icon"></span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <span>Email</span>
+                                    <label class="toggle toggle-init">
+                                        <input type="checkbox" checked />
+                                        <span class="toggle-icon"></span>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="op_text_circle" ng-show="block<=2">
+                    <div class="title">Visibilité</div>
+                    <div class="content">
+                        Qui peut voir mon profil ?
+                        <div class="list simple-list">
+                            <ul>
+                                <li>
+                                    <span>Push (mobile)</span>
+                                    <label class="toggle toggle-init">
+                                        <input type="checkbox" checked />
+                                        <span class="toggle-icon"></span>
+                                    </label>
+                                </li>
+                                <li>
+                                    <span>Email</span>
+                                    <label class="toggle toggle-init">
+                                        <input type="checkbox" checked />
+                                        <span class="toggle-icon"></span>
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+	export default function (props, { $f7, $on, $update }) {
+		// Component Data
+		var id = props.id;
+
+		// Page Events
+		$on("pageMounted", (e, page) => {
+			console.log("pageMounted", page);
+		});
+		$on("pageInit", (e, page) => {
+			var self = this;
+			console.log("pageInit", page);
+            MyApp.fw7.app.emit("parameter", id);
+		});
+		// Return render function
+		return $render;
+	}
+</script>
