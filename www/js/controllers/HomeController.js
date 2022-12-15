@@ -222,7 +222,7 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
         if (returnValue) {
             //console.log(new Date());
             //console.log("is lower than ");
-            console.log(date);
+            //console.log(date);
         }
         return (new Date() > date);
     };
@@ -492,16 +492,57 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
     };
 
     $scope.SavePreferences = function() {
-        let profileImage = document.getElementById('profileimg');
-        let imgData = getBase64Image(profileImage);
-        let userChoices = {
-            form: $scope.form,
-            image: imgData,
-            position: self.shapePosition
+        self.UploadImage(function(url) {
+            self.UpdateVsgImg(url);
+        }, function(e) {
+            console.warn(e);
+        });
+    };
+
+    self.UpdateVsgImg = function(url) {
+        let data = {
+            "VsgImg": url,
+            "VsgEyesClr": $scope.eyes_color,
+            "VsgSkinClr": $scope.color,
+            "VsgHairsClr": $scope.season
         };
-        localStorage.setItem("userChoices", JSON.stringify(userChoices));
-        MyApp.fw7.app.dialog.alert("Vos choix ont été sauvegardés !", "Merci", function() {
-            $scope.GoNext();
+        supe.from('users')
+        .update(data)
+        .eq('id', global.user.id)
+        .then((response) => {
+            let userChoices = {
+                form: $scope.form,
+                image: url,
+                position: self.shapePosition
+            };
+            localStorage.setItem("userChoices", JSON.stringify(userChoices));
+            MyApp.fw7.app.dialog.alert("Vos choix ont été sauvegardés !", "Merci", function() {
+                $scope.GoNext();
+            });
+            //self.toast('Vos choix ont été sauvegardés');
+        }).catch((error) => {
+            console.warn(error);
+        });
+    };
+
+    self.UploadImage = function(success, error) {
+        var elem = document.getElementById("file");
+        var file = elem.files[0];
+        if (!file) {
+            if (self.url && (self.url.length > 0)) success(self.url);
+            return;
+        }
+        let filename = GetFileName("vsg", file.name);
+        supe.storage.from("visagisme").upload(filename, file)
+        .then((response) => {
+            if (!response.error) {
+                let url = supe.storageUrl + "/object/public/visagisme/" + response.data.path;
+                if (success) success(url);
+            }
+            else console.warn(response);
+        }).catch((err) => {
+            //elem.removeEventListener("change", self.onimage , false);
+            //self.errorhappened();
         });
     };
 
@@ -696,7 +737,8 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
         var fr = new FileReader();
         var elem = document.getElementById("file");
         elem.removeEventListener("change", self.onimage);
-        let url = URL.createObjectURL(elem.files[0])
+        let url = URL.createObjectURL(elem.files[0]);
+        self.url = url;
         document.querySelector(".vsg_graydv.pic_area").style.backgroundImage = "url(" + url + ")";
         self.AfterImageReceived();
         console.log("got image");
@@ -709,9 +751,7 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
 
     $scope.isLoggedIn = function() {
         let loggedIn = false;
-        if (global.user && global.user.id) {
-            loggedIn = true;
-        }
+        if (global.user && global.user.id) loggedIn = true;
         return loggedIn;
     };
 
@@ -734,10 +774,9 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
                 self.togglefab();
                 self.sync();
                 /**/
-                var image = new Image();
-                image.src = 'data:image/png;base64,' + choices.image;
-                document.getElementById('profileimg').src = "data:image/jpeg;base64," + choices.image;
-                $(".pic_area").css("background-image", "url('" + image.src + "')");
+                self.url = choices.image;
+                document.getElementById('profileimg').src = choices.image;
+                $(".pic_area").css("background-image", "url('" + choices.image + "')");
                 /**/
                 setTimeout(() => {
                     self.swiper.update();
@@ -746,6 +785,7 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
                         self.swiper.slideNext(0);
                         if ($scope.form == choices.form) {
                             found = true;
+                            MyApp.fw7.app.preloader.hide();
                             $scope.placeForm(choices.position);
                         }
                     }

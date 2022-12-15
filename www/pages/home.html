@@ -55,28 +55,28 @@
 
         <div class="toolbar tabbar tabbar-labels toolbar-bottom" style="background-color: #fff; border-top: solid 1px #000; height: 85px;">
             <div class="toolbar-inner" style="margin: 8px 0 8px 0;">
-                <a href="#tab-home" class="tab-link tab-link-active" ng-click="setTab('home')">
+                <a href="#tab-home" class="tab-link tab-link-active" ng-click="setTab('home')" id="tab-home-link">
                     <div class="icon material-icons" style="color: #000;">
                         <img src="assets/img/home/menu_home.png" ng-show="menu_item!='home'"/>
                         <img src="assets/img/home/menu_home_active.png" ng-show="menu_item=='home'" class="ng-hide" />
                     </div>
                     <span class="tabbar-label" ng-class="{'clr-active': menu_item=='home'}">Accueil</span>
                 </a>
-                <a href="#tab-rdv" class="tab-link" ng-click="setTab('rdv')">
+                <a href="#tab-rdv" class="tab-link" ng-click="setTab('rdv')" id="tab-rdv-link">
                     <div class="icon f7-icons" style="color: #000;">
                         <img src="assets/img/home/menu_rdv.png" ng-show="menu_item!='rdv'"/>
                         <img src="assets/img/home/menu_rdv_active.png" ng-show="menu_item=='rdv'" class="ng-hide" class="ng-hide"  />
                     </div>
                     <span class="tabbar-label" ng-class="{'clr-active': menu_item=='rdv'}">Rendez-vous</span>
                 </a>
-                <a href="#tab-vsg" class="tab-link" ng-click="setTab('vsg')">
+                <a href="#tab-vsg" class="tab-link" ng-click="setTab('vsg')" id="tab-vsg-link">
                     <div class="icon f7-icons" style="color: #000;">
                         <img src="assets/img/home/menu_visagisme.png" ng-show="menu_item!='vsg'"/>
                         <img src="assets/img/home/menu_visagisme_active.png" ng-show="menu_item=='vsg'" class="ng-hide" />
                     </div>
                     <span class="tabbar-label" ng-class="{'clr-active': menu_item=='vsg'}">Visagisme</span>
                 </a>
-                <a href="#tab-trends" class="tab-link" ng-click="setTab('trends')">
+                <a href="#tab-trends" class="tab-link" ng-click="setTab('trends')" id="tab-trends-link">
                     <div class="bulle_green"></div>
                     <div class="icon f7-icons" style="color: #000;">
                         <img src="assets/img/home/menu_trends.png" ng-show="menu_item!='trends'"/>
@@ -84,7 +84,7 @@
                     </div>
                     <span class="tabbar-label" ng-class="{'clr-active': menu_item=='trends'}">Tendances</span>
                 </a>
-                <a href="#tab-user" class="tab-link" ng-click="setTab('account')">
+                <a href="#tab-user" class="tab-link" ng-click="setTab('account')" id="tab-user-link">
                     <div class="icon f7-icons" style="color: #000;">
                         <img src="assets/img/home/menu_compte.png" ng-show="menu_item!='account'"/>
                         <img src="assets/img/home/menu_compte_active.png" class="ng-hide" ng-show="menu_item=='account'" class="ng-hide" />
@@ -122,21 +122,21 @@
                         <div class="indic">Vos opticiens engagés</div>
                     </div>
                 </a>
+                <a href="/engagements/" class="item-content"><!-- /*onclick="window.open(encodeURI('https://opticsolutions.owiz.fittingbox.com/#/catalog'), '_system')"*/-->
+                    <div class="bluebloc">
+                        <div class="kpm"><img src="assets/img/howto/lesengagements.png" style="width: auto; height: 40px;" /></div>
+                        <div class="indic">Les engagements</div>
+                    </div>
+                </a> 
                 <a href="#" class="item-content" ng-click="setTab('vsg')">
                     <div class="bluebloc">
                         <div class="kpm"><img src="assets/img/home/home_visage.png" style="width: auto; height: 65px;" /></div>
                         <div class="indic">Nos conseils visagisme</div>
                     </div>
                 </a>
-                <a href="/engagements/" class="item-content"><!-- /*onclick="window.open(encodeURI('https://opticsolutions.owiz.fittingbox.com/#/catalog'), '_system')"*/-->
-                    <div class="bluebloc">
-                        <div class="kpm"><img src="assets/img/home/home_face.png" style="width: auto; height: 67px;" /></div>
-                        <div class="indic">Les engagements</div>
-                    </div>
-                </a>
                 <a href="#" class="item-content item-link" ng-click="GoAfterSale()">
                     <div class="bluebloc">
-                        <div class="kpm icon"><img src="assets/img/home/home_settings.png" style="width: auto; height: 60px; margin-right: -10px;" /></div>
+                        <div class="kpm icon"><img src="assets/img/home/home_settings.png" style="width: auto; height: 60px; margin-right: -17px;" /></div>
                         <div style="position: absolute; margin: 50px 0 0 20px; color: #898989;">avec votre opticien</div>
                         <div class="indic">L'après vente</div>
                     </div>
@@ -149,7 +149,7 @@
                 <div class="rdv_list">
                     <ul>
                         <li ng-class="{'active': rdv_tab=='coming'}" ng-click="rdv_tab='coming'">A VENIR</li>
-                        <li ng-class="{'active': rdv_tab=='past'}" ng-click="rdv_tab='past'">PASSES</li>
+                        <li ng-class="{'active': rdv_tab=='past'}" ng-click="rdv_tab='past'">PASSÉS</li>
                     </ul>
                 </div>
                 <div class="block">
@@ -285,6 +285,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
 
                 
@@ -407,7 +408,7 @@
                     </div>
                     <div style="margin:15px 40px">
                         <button class="col button button-raised button-fill button-round" ng-class="{'disabled': !isLoggedIn()}" ng-click="SavePreferences()">Sauvegarder mes choix</button>
-                        <div class="save_not_logged_in" ng-click="setTab('account')">
+                        <div class="save_not_logged_in" ng-class="{'hidden': isLoggedIn()}" ng-click="setTab('account')">
                             Veuillez vous connecter pour bénéficier de la sauvegarde
                         </div>
                     </div>

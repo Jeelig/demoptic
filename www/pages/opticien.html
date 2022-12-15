@@ -54,7 +54,7 @@
 					<div class="f7-icons star" ng-class="{'gray': optic.stars<4}">star_fill</div>
 					<div class="f7-icons star" ng-class="{'gray': optic.stars<5}">star_fill</div>
 
-					<img src=${opticien.encart1} style="width:100%; margin-top:20px;"/>
+					<img src=${opticien.encart1} ng-show="optic.encart1" style="width:100%; margin-top:20px;"/>
 
 					<div class="carousel carousel-1">
 						<div>
@@ -66,10 +66,25 @@
 								<li><div><img src="assets/img/optic/centrecommercial.png" style="margin-top: 10px;"/></div><div class="subi">Centre commercial</div></li>
 								<li><div><img src="assets/img/optic/acceshandicape.png" style="margin-top: 6px;"/></div><div class="subi">Accès handicapé</div></li>
 								<li><div><img src="assets/img/optic/lens.png" style="margin-top:16px;"/></div><div class="subi">Adaptation lentilles</div></li>
+								<li><div><img src="assets/img/howto/optidomicile.png" style="margin-top:5px; width:60%;"/></div><div class="subi">Déplacement à domicile</div></li>
 							</ul>
 						</div>
 					</div>
 					
+					<!-- -->
+					
+					<div class="optic_tit_cat">LES ENGAGEMENTS</div>
+					<div class="nSubText">ECO RESPONSABLE</div>
+
+					<div class="carousel carousel-2">
+						<div>
+							<ul>
+								<li ng-repeat="mat in matieres track by mat.id" class="{{mat.class}}" ng-class="{'mat-active': mat.active==true}" ng-click="changematiere(mat.id)">{{mat.name}}</li>
+							</ul>
+						</div>
+					</div>
+					
+					<!-- -->
 
 					<div class="optic_tit_cat">Montures</div>
 					<div class="nSubText">Selectionnez un materiau et découvrez tous ses avantages *</div>
@@ -85,7 +100,7 @@
 					<div class="opt_info_resistance" ng-show="id_matiere!=-1">
 						<table>
 							<tr>
-								<td><img src="assets/img/face/ampoule conseils.png" style="width:35px"/></td>
+								<td><img src="assets/img/face/ampoule.png" style="width:35px"/></td>
 								<td>{{matieres[id_matiere].description}}</td>
 							</tr>
 						</table>
@@ -122,7 +137,7 @@
 						</div>
 					</div>
 					
-					<img src=${opticien.encart2} style="width:100%; margin-top:20px;"/>
+					<img src=${opticien.encart2} ng-show="optic.encart2" style="width:100%; margin-top:20px;"/>
 
 				</div>
 

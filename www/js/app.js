@@ -749,3 +749,16 @@ function getBase64Image(img) {
 
     return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 }
+
+function GoToPage(page) {
+	let id = "#tab-" + page + "-link";
+	setTimeout(function() {
+		$(id).trigger("click");
+	}, 250);
+}
+
+function GetFileName(preffix, filename) {
+	let ext = filename.split(".")[filename.split(".").length - 1];
+	let now = (new Date()).getTime();
+	return  preffix + "_" + global.user.id + "_" + now + "." + ext;
+}

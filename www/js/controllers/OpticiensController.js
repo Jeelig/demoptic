@@ -21,6 +21,7 @@ MyApp.angular.controller('OpticiensController', ['$scope', '$rootScope', 'InitSe
             self.getOpticiens();
         else {
             MyApp.fw7.app.dialog.confirm('Veuillez vous connecter pour avoir accès aux opticiens', function () {
+                GoToPage("user");
                 mainView.router.back();
             }, function () {
                 mainView.router.back();

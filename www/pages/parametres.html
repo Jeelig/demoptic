@@ -19,7 +19,7 @@
 	</div>
 
 	<div class="page-content parameter-security">
-        <div style="padding-left: 15px; padding-right: 15px; background-color: #F2F2F2; padding-bottom: 80px;">
+        <div style="padding-left: 15px; padding-right: 15px; background-color: #F2F2F2; padding-bottom: 20px;">
             &nbsp;
             <div class="op_text_circle">
                 <div class="title">Préférence de compte</div>
@@ -38,14 +38,14 @@
 							<li>
 								<span>Désactiver temporairement le compte</span>
 								<label class="toggle toggle-init">
-									<input type="checkbox" checked />
+									<input type="checkbox" />
 									<span class="toggle-icon"></span>
 								</label>
 							</li>
 							<li>
 								<span>Fermer le compte</span>
 								<label class="toggle toggle-init">
-									<input type="checkbox" checked />
+									<input type="checkbox" />
 									<span class="toggle-icon"></span>
 								</label>
 							</li>
@@ -64,7 +64,7 @@
 							<li style="padding: 0;">
 								<span>Validation en 2 étapes</span>
 								<label class="toggle toggle-init">
-									<input type="checkbox" checked />
+									<input type="checkbox" />
 									<span class="toggle-icon"></span>
 								</label>
 							</li>
@@ -89,25 +89,6 @@
 						</ul>
 					</div>
 					
-					<div class="list simple-list links List" style="display:none">
-						<ul>
-							<li>
-								<div>Qui peut voir mon profil (personne ou mon favori)</div>
-								<!--<label class="toggle toggle-init">
-									<input type="checkbox" checked />
-									<span class="toggle-icon"></span>
-								</label>-->
-							</li>
-							<li>
-								<div>Qui peut télécharger mes données (personne ou mon favori)</div>
-								<!--<label class="toggle toggle-init">
-									<input type="checkbox" checked />
-									<span class="toggle-icon"></span>
-								</label>-->
-							</li>
-						</ul>
-					</div>
-
                 </div>
             </div>
             <div class="op_text_circle">
@@ -129,46 +110,29 @@
 						</ul>
 					</div>
 					
-
-					<div class="list simple-list links List" style="display:none">
-						<ul>
-							<li>
-								<div>Comment recevoir les notifications <!--(push)--></div>
-								<!--<label class="toggle toggle-init">
-									<input type="checkbox" checked />
-									<span class="toggle-icon"></span>
-								</label>-->
-							</li>
-							<li>
-								<div>Recevoir les informations sur les tendances <!--(push)--></div>
-								<!--<label class="toggle toggle-init">
-									<input type="checkbox" checked />
-									<span class="toggle-icon"></span>
-								</label>-->
-							</li>
-							<li>
-								<div>Recevoir les informations sur les offres de votre opticien favori <!--(push ou mail)--></div>
-								<!--<label class="toggle toggle-init">
-									<input type="checkbox" checked />
-									<span class="toggle-icon"></span>
-								</label>-->
-							</li>
-						</ul>
-					</div>
-
                 </div>
             </div>
             <div class="op_text_circle">
                 <div class="title">Confidentialité des données</div>
                 <div class="content">
-                    
-					- Où sont stockées vos données<br>
-					- Obtenir une copie de vos données<br>
-					- Modifier vos données démographiques (sexe, region, ville)
+					
+					<div class="list links-list">
+						<ul>
+							<li>
+								<a href="/hosting/">Où sont stockées vos données</a>
+							</li>
+						</ul>
+					</div>
 					
                 </div>
             </div>
         </div>
+
+		<div style="margin:0 15px 80px 15px">
+			<button class="col button button-fill button-round" ng-click="request()" style="font-size:11px">Obtenir une copie de vos données</button>
+		</div>
+		
+
 		<!--
         <div class="above_list_optk">
 

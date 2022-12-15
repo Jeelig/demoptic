@@ -665,6 +665,7 @@ ul.list_of_motifs li.clickcollect {
     white-space: nowrap;
 }
 .carousel.carousel-1 > div ul li div.subi {
+    white-space: break-spaces;
     position: absolute;
     width: 100%;
     bottom: 2px;
@@ -2210,8 +2211,18 @@ ul.essayage_list li > div > div {
     text-align: left;
     font-weight: normal;
     color: #ababab;
-    font-size: 12px;
+    font-size: 11px;
     vertical-align: top;
+}
+.above_list_optk.on_opticien.hwt table.tab14 tr td ul.usefull_for, 
+.above_list_optk.on_opticien.eng table.tab14 tr td ul.usefull_for {
+    margin: 0 0 0 20px;
+    padding: 0;
+}
+.above_list_optk.on_opticien.hwt table.tab14 tr td ul.usefull_for li, 
+.above_list_optk.on_opticien.eng table.tab14 tr td ul.usefull_for li {
+    font-size: 11px;
+    margin-bottom: 5px;
 }
 .above_list_optk.on_opticien.hwt table.tab14 tr td span,
 .above_list_optk.on_opticien.eng table.tab14 tr td span {
@@ -2379,8 +2390,12 @@ ul.usefull_for li::before {
     color: #ababab;
 }
 
+.parameter-security .list.simple-list {
+    margin: 15px 0;
+    padding: 0;
+}
 .parameter-security .list.links-list {
-    margin: 0;
+    margin: 15px 0;
     padding: 0;
 }
 .parameter-security .list.links-list ul li a {
@@ -2396,4 +2411,62 @@ ul.usefull_for li::before {
     font-weight: normal;
 }
 
+.parameter-security.security2 .toggle input[type=checkbox]+.toggle-icon {
+    position: relative;
+    margin-top: 0;
+}
 
+.op_text_circle .content > span {
+    color: var(--f7-theme-color);
+    margin-bottom: 10px;
+    display: block;
+}
+
+.favorites .media-list .item-link .item-title-row:before, 
+.favorites li.media-item .item-link .item-title-row:before {
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 370px) {
+    
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 345px) {
+    .bluebloc .indic {
+        font-size: 15px;
+        font-weight: 400;
+    }
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 290px) {
+    .bluebloc .indic {
+        font-size: 12px;
+        font-weight: 400;
+    }
+}

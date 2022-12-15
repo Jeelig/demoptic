@@ -9,7 +9,6 @@ MyApp.angular.controller('ParametersController', ['$scope', '$rootScope', 'InitS
 	var rootEvents = [];
 	
     $scope.user = {};
-    $scope.block = 0;
     $scope.zoomed = false;
     $scope.essayages = [];
 
@@ -18,14 +17,20 @@ MyApp.angular.controller('ParametersController', ['$scope', '$rootScope', 'InitS
     });
 	
 	$scope.init = function() {
-        console.log("ok");
         MyApp.fw7.app.on("parameter", function(e) {
-            //debugger;
-            console.log("ok");
-            $scope.block = parseInt(e);
-            self.sync();
+            $$("#block-" + e).show();
         });
 	};
+
+    $scope.request = function() {
+        MyApp.fw7.app.preloader.show();
+        setTimeout(function() {
+            MyApp.fw7.app.preloader.hide();
+            MyApp.fw7.app.dialog.confirm('Vous recevrez un rapport contenant vos données par email dans les 24 heures', function () {
+                //
+            });
+        }, 1000);
+    };
 
     self.sync = function () { 
         if (!$scope.$$phase) { 
