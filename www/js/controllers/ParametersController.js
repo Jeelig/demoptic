@@ -17,6 +17,7 @@ MyApp.angular.controller('ParametersController', ['$scope', '$rootScope', 'InitS
     });
 	
 	$scope.init = function() {
+        $scope.pref = user_preferences;
         MyApp.fw7.app.on("parameter", function(e) {
             $$("#block-" + e).show();
         });
@@ -27,9 +28,15 @@ MyApp.angular.controller('ParametersController', ['$scope', '$rootScope', 'InitS
         setTimeout(function() {
             MyApp.fw7.app.preloader.hide();
             MyApp.fw7.app.dialog.confirm('Vous recevrez un rapport contenant vos données par email dans les 24 heures', function () {
-                //
+                console.log("ok")
             });
         }, 1000);
+    };
+
+    $scope.isLoggedIn = function() {
+        let loggedIn = false;
+        if (global.user && global.user.id) loggedIn = true;
+        return loggedIn;
     };
 
     self.sync = function () { 

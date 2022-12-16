@@ -762,3 +762,16 @@ function GetFileName(preffix, filename) {
 	let now = (new Date()).getTime();
 	return  preffix + "_" + global.user.id + "_" + now + "." + ext;
 }
+
+let user_preferences = {
+	sync_calendar: true,
+	deactivate_account: false,
+	close_account: false,
+	twostep_verification: false,
+	profile_visibility: "favorites",
+	profile_information: "favorites",
+	push_notifications: true,
+	newsletter: false,
+	offers_push: true,
+	offers_email: false
+};
