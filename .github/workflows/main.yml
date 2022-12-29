@@ -12,12 +12,12 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v3
 
-      - uses: actions/checkout@master
-      - name: Update version
-        uses: brettdorrans/write-version-to-file@master
-        with:
-          filename: '.VERSION'
-          placeholder: '${VERSION}'
+      #- uses: actions/checkout@master
+      #- name: Update version
+      #  uses: brettdorrans/write-version-to-file@master
+      #  with:
+      #    filename: '.VERSION'
+      #    placeholder: '${VERSION}'
 
       - name: Setup JDK 11
         uses: actions/setup-java@v3
@@ -88,5 +88,5 @@ jobs:
           ftp_host: ftp.liputa.fr
           ftp_username: liputa
           ftp_password: Liputa2016
-          local_source_dir: "platforms/android/app/build/outputs/apk/debug"
+          local_source_dir: "platforms/android/app/build/outputs/apk/debug/app-debug.apk"
           dist_target_dir: "/AXELIB/files/temp/apk"
