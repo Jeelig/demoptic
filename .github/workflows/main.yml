@@ -74,12 +74,11 @@ jobs:
           name: app-dev
           path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
 
-      - uses: actions/checkout@v2
       - name: Upload ftp
-        uses: genietim/ftp-action@releases/v4
+        uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
         with:
-          host: ftp.liputa.fr   #${{ secrets.FTP_SERVER }}
-          user: liputa          #${{ secrets.FTP_USERNAME }}
-          password: Liputa2016  #${{ secrets.FTP_PASSWORD }}
-          localDir: "platforms/android/app/build/outputs/apk/debug"
-          remoteDir: "/AXELIB/files/temp/apk"
+          ftp_host: ftp.liputa.fr   #${{ secrets.FTP_SERVER }}
+          ftp_username: liputa          #${{ secrets.FTP_USERNAME }}
+          ftp_password: Liputa2016  #${{ secrets.FTP_PASSWORD }}
+          local_source_dir: "platforms/android/app/build/outputs/apk/debug"
+          dist_target_dir: "/AXELIB/files/temp/apk"
