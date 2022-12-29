@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup JDK 11
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v3
         with:
           java-version: 11
 
@@ -77,8 +77,8 @@ jobs:
       - name: Upload ftp
         uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
         with:
-          ftp_host: ftp.liputa.fr   #${{ secrets.FTP_SERVER }}
-          ftp_username: liputa          #${{ secrets.FTP_USERNAME }}
-          ftp_password: Liputa2016  #${{ secrets.FTP_PASSWORD }}
+          ftp_host: ftp.liputa.fr
+          ftp_username: liputa
+          ftp_password: Liputa2016
           local_source_dir: "platforms/android/app/build/outputs/apk/debug"
           dist_target_dir: "/AXELIB/files/temp/apk"
