@@ -78,8 +78,6 @@ jobs:
         with:
           name: app-folders
           path: |
-            res
-            www
             cordova
             plugins
             platforms
@@ -93,14 +91,16 @@ jobs:
     environment: 
       name: DEV
     steps:
+      - name: Checkout source
+        uses: actions/checkout@v3
     
       - name: Retrieve Artifact
         uses: actions/download-artifact@v3
         with:
           name: app-folders
           
-      - name: Display structure of downloaded files
-        run: ls -R
+      #- name: Display structure of downloaded files
+      #  run: ls -R
         
       #START
       - name: Setup JDK 11
