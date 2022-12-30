@@ -6,7 +6,7 @@ on: [workflow_dispatch]
 
 jobs:
   prepare:
-    name: Prepare APP
+    name: 🚀 Prepare APP
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source
@@ -70,10 +70,14 @@ jobs:
         with:
           name: app-folders
           path: |
+            res
             www
             cordova
+            plugins
             platforms
-
+            node_modules
+            config.xml
+            package.json
 
   build:
     name: Build App
@@ -88,7 +92,29 @@ jobs:
           
       - name: Display structure of downloaded files
         run: ls -R
-    
+        
+      #START
+      - name: Setup JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: 11
+          distribution: 'temurin'
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18.x
+
+      - name: Install Cordova
+        run: npm install -g cordova
+
+      - name: Install Ionic
+        run: npm install -g @ionic/cli
+
+      - name: Install app dependencies
+        run: npm install
+      #END
+      
       - name: Build Android Dev APK
         run: cordova build android --debug
 
