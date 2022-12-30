@@ -69,6 +69,12 @@ jobs:
       #- name: Add Plugins firebase
       #  run: cordova plugin add cordova-plugin-firebase-lib --save
 
+  goy:
+    name: Goy app
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+
       - name: Build Android Dev APK
         run: cordova build android --debug
 
@@ -85,7 +91,7 @@ jobs:
   
   deploy:
     name: Deploy App
-    needs: build
+    needs: goy
     runs-on: ubuntu-latest
     steps:
       - name: Retrieve Artifact
