@@ -98,7 +98,6 @@ jobs:
         run: |
           mkdir -p AppFolder && cp -R platforms/android/app/build/outputs/apk/debug AppFolder
           ls AppFolder
-          cd AppFolder
 
       - name: Upload APK to FTP
         uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
@@ -106,5 +105,6 @@ jobs:
           ftp_host: ftp.liputa.fr
           ftp_username: liputa
           ftp_password: Liputa2016
-          local_source_dir: "platforms/android/app/build/outputs/apk/debug/"
+          #local_source_dir: "platforms/android/app/build/outputs/apk/debug/"
+          local_source_dir: "AppFolder"
           dist_target_dir: "/AXELIB/files/temp/apk"
