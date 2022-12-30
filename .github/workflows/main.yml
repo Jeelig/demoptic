@@ -75,18 +75,29 @@ jobs:
       - name: Generate the Android App Bundle
         working-directory: ./platforms/android/
         run: ./gradlew bundle
-
-      - name: Upload dev APK
-        uses: actions/upload-artifact@v1
+  
+  deploy:
+    name: Deploy App
+    runs-on: ubuntu-latest
+    steps:
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
         with:
           name: app-dev
           path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
 
-      - name: Upload ftp
+      - name: Create folder
+        run: |
+          mkdir -p AppFolder && cp -R platforms/android/app/build/outputs/apk/debug AppFolder
+          ls AppFolder
+          cd AppFolder
+
+      - name: Upload APK to FTP
         uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
         with:
           ftp_host: ftp.liputa.fr
           ftp_username: liputa
           ftp_password: Liputa2016
-          local_source_dir: "platforms/android/app/build/outputs/apk/debug/app-debug.apk"
+          local_source_dir: "platforms/android/app/build/outputs/apk/debug/"
           dist_target_dir: "/AXELIB/files/temp/apk"
