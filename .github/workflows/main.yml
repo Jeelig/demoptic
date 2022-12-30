@@ -12,7 +12,7 @@ env:
 
 jobs:
   prepare:
-    name: 🚀 Prepare APP
+    name: 🎉 Prepare APP
     runs-on: ubuntu-latest
     environment: 
       name: DEV
@@ -81,11 +81,9 @@ jobs:
             cordova
             plugins
             platforms
-            config.xml
-            package.json
 
   build:
-    name: Build App
+    name: ⚒️ Build App
     needs: prepare
     runs-on: ubuntu-latest
     environment: 
@@ -140,7 +138,7 @@ jobs:
   
   
   deploy:
-    name: Deploy App
+    name: 🚀 Deploy App
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -149,7 +147,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: app-dev
-          path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
+          #path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
 
       - name: Create folder
         run: |
