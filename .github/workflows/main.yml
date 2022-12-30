@@ -78,6 +78,7 @@ jobs:
   
   deploy:
     name: Deploy App
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Upload Artifact
