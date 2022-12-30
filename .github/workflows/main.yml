@@ -75,18 +75,24 @@ jobs:
       - name: Generate the Android App Bundle
         working-directory: ./platforms/android/
         run: ./gradlew bundle
-  
-  #deploy:
-  #  name: Deploy App
-  #  needs: build
-  #  runs-on: ubuntu-latest
-  #  steps:
+        
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
           name: app-dev
           path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
+  
+  deploy:
+    name: Deploy App
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Retrieve Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: docker-artifact
+          path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
 
       - name: Create folder
         run: |
