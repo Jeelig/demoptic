@@ -14,6 +14,8 @@ jobs:
   prepare:
     name: 🚀 Prepare APP
     runs-on: ubuntu-latest
+    environment: 
+      name: DEV
     steps:
       - name: Checkout source
         uses: actions/checkout@v3
@@ -25,7 +27,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Setup Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: 18.x
 
@@ -68,20 +70,18 @@ jobs:
       #- name: Add Plugins firebase
       #  run: cordova plugin add cordova-plugin-firebase-lib --save
       
-      - name: Read all files
-        run: ls -R
+      #- name: Read all files
+      #  run: ls -R
       
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
           name: app-folders
           path: |
-            res
             www
             cordova
             plugins
             platforms
-            node_modules
             config.xml
             package.json
 
@@ -91,7 +91,6 @@ jobs:
     runs-on: ubuntu-latest
     environment: 
       name: DEV
-      url: https://ibm-dev.crm4.dynamics.com
     steps:
     
       - name: Retrieve Artifact
@@ -110,7 +109,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Setup Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: 18.x
 
