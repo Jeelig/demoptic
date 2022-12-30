@@ -5,19 +5,12 @@ name: Build Android
 on: [workflow_dispatch]
 
 jobs:
-  build:
-    name: Build APK
+  prepare:
+    name: Prepare APP
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source
         uses: actions/checkout@v3
-
-      #- uses: actions/checkout@master
-      #- name: Update version
-      #  uses: brettdorrans/write-version-to-file@master
-      #  with:
-      #    filename: '.VERSION'
-      #    placeholder: '${VERSION}'
 
       - name: Setup JDK 11
         uses: actions/setup-java@v3
@@ -68,13 +61,34 @@ jobs:
         
       #- name: Add Plugins firebase
       #  run: cordova plugin add cordova-plugin-firebase-lib --save
+      
+      - name: Read all files
+        run: ls -R
+      
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-folders
+          path: |
+            www
+            cordova
+            platforms
 
-  goy:
-    name: Goy app
-    needs: build
+
+  build:
+    name: Build App
+    needs: prepare
     runs-on: ubuntu-latest
     steps:
-
+    
+      - name: Retrieve Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: app-folders
+          
+      - name: Display structure of downloaded files
+        run: ls -R
+    
       - name: Build Android Dev APK
         run: cordova build android --debug
 
@@ -89,11 +103,13 @@ jobs:
           path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
   
+  
   deploy:
     name: Deploy App
-    needs: goy
+    needs: build
     runs-on: ubuntu-latest
     steps:
+    
       - name: Retrieve Artifact
         uses: actions/download-artifact@v2
         with:
@@ -103,7 +119,6 @@ jobs:
       - name: Create folder
         run: |
           mkdir -p AppFolder && cp -R platforms/android/app/build/outputs/apk/debug AppFolder
-          ls AppFolder
 
       - name: Upload APK to FTP
         uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
@@ -114,3 +129,4 @@ jobs:
           #local_source_dir: "platforms/android/app/build/outputs/apk/debug/"
           local_source_dir: "AppFolder"
           dist_target_dir: "/AXELIB/files/temp/apk"
+
