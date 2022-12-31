@@ -4,10 +4,19 @@ name: Build Android
 
 on: [workflow_dispatch]
 
+env:
+  FTP_HOST: ftp.liputa.fr
+  FTP_USER: liputa
+  FTP_PASSWORD: Liputa2016
+  FTP_FOLDER: "/AXELIB/files/temp/apk"
+  
+
 jobs:
   build:
-    name: Build APK
+    name: 🎉 Build APK
     runs-on: ubuntu-latest
+    environment: 
+      name: DEV
     steps:
       - name: Checkout source
         uses: actions/checkout@v2
@@ -73,4 +82,46 @@ jobs:
         with:
           name: app-dev
           path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
+  
+  
+  deploy:
+    name: 🚀 Deploy App
+    needs: build
+    runs-on: ubuntu-latest
+    environment: 
+      name: TEST
+    steps:
+    
+      - name: Retrieve Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: app-dev
+          #path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
+
+      - name: Create folder
+        run: |
+          mkdir -p AppFolder && cp -R platforms/android/app/build/outputs/apk/debug AppFolder
+
+      - name: Upload APK to FTP
+        uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
+        with:
+          ftp_host: ${{env.FTP_HOST}}
+          ftp_username: ${{env.FTP_USER}}
+          ftp_password: ${{env.FTP_PASSWORD}}
+          local_source_dir: "AppFolder"
+          dist_target_dir: ${{env.FTP_FOLDER}}
+  
+  
+  deploy:
+    name: ✉️ Notify
+    needs: deploy
+    runs-on: ubuntu-latest
+    environment: 
+      name: TEST
+    steps:
+    
+      - name: Display message
+      - run: echo "Hello World !"
+
+
           
