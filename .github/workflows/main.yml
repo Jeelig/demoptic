@@ -140,8 +140,8 @@ jobs:
         run: echo "Hello World !"
 
   
-  communicate:
-    name: 📢 Publish news to Customer
+  publish:
+    name: 📢 Communicate to Customer
     needs: deploy
     runs-on: ubuntu-latest
     environment: 
