@@ -103,7 +103,7 @@ jobs:
           
       - name: Create folder
         run: |
-          mkdir -p AppFolder && cp -R platforms/android/app/build/outputs/apk/debug AppFolder
+          mkdir -p app && cp -R app-debug.apk /app/app-debug1.apk
 
       - name: Upload APK to FTP
         uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
