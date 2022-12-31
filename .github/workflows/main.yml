@@ -141,7 +141,7 @@ jobs:
 
   
   publish:
-    name: 📢 Communicate to Customer
+    name: 📢 Publish to Customer
     needs: deploy
     runs-on: ubuntu-latest
     environment: 
