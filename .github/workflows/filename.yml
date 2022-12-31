@@ -14,5 +14,5 @@ jobs:
       - name: Install Cordova
         run: |
           mkdir $(date +%y)$(date +%m)$(date +%d)abcprod
-          mkdir test_$(date +%Y-%m-%d)_$(date +%F-%H:%M)
+          mkdir test_$(date +%Y%m%d-%H:%M)
           ls -R
