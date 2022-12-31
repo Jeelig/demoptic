@@ -13,7 +13,7 @@ env:
 
 jobs:
   build:
-    name: 🎉 Build APK
+    name: 🚀 Build APK
     runs-on: ubuntu-latest
     environment: 
       name: DEV
@@ -85,7 +85,7 @@ jobs:
   
   
   deploy:
-    name: 🚀 Deploy App
+    name: 🎉 Deploy App
     needs: build
     runs-on: ubuntu-latest
     environment: 
@@ -111,7 +111,7 @@ jobs:
           ftp_host: ${{env.FTP_HOST}}
           ftp_username: ${{env.FTP_USER}}
           ftp_password: ${{env.FTP_PASSWORD}}
-          local_source_dir: "AppFolder"
+          local_source_dir: "app"
           dist_target_dir: ${{env.FTP_FOLDER}}
   
   
