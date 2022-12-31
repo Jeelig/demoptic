@@ -4,30 +4,21 @@ name: Build Android
 
 on: [workflow_dispatch]
 
-env:
-  FTP_HOST: ftp.liputa.fr
-  FTP_USER: liputa
-  FTP_PASSWORD: Liputa2016
-  FTP_FOLDER: "/AXELIB/files/temp/apk"
-
 jobs:
-  prepare:
-    name: 🎉 Prepare APP
+  build:
+    name: Build APK
     runs-on: ubuntu-latest
-    environment: 
-      name: DEV
     steps:
       - name: Checkout source
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Setup JDK 11
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v1
         with:
           java-version: 11
-          distribution: 'temurin'
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v1
         with:
           node-version: 18.x
 
@@ -69,96 +60,17 @@ jobs:
         
       #- name: Add Plugins firebase
       #  run: cordova plugin add cordova-plugin-firebase-lib --save
-      
-      #- name: Read all files
-      #  run: ls -R
-      
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: app-folders
-          path: |
-            cordova
-            plugins
-            platforms
 
-  build:
-    name: ⚒️ Build App
-    needs: prepare
-    runs-on: ubuntu-latest
-    environment: 
-      name: DEV
-    steps:
-      - name: Checkout source
-        uses: actions/checkout@v3
-    
-      - name: Retrieve Artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: app-folders
-          
-      #- name: Display structure of downloaded files
-      #  run: ls -R
-        
-      #START
-      - name: Setup JDK 11
-        uses: actions/setup-java@v3
-        with:
-          java-version: 11
-          distribution: 'temurin'
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18.x
-
-      - name: Install Cordova
-        run: npm install -g cordova
-
-      - name: Install Ionic
-        run: npm install -g @ionic/cli
-
-      - name: Install app dependencies
-        run: npm install
-      #END
-      
       - name: Build Android Dev APK
         run: cordova build android --debug
 
       - name: Generate the Android App Bundle
         working-directory: ./platforms/android/
         run: ./gradlew bundle
-        
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+
+      - name: Upload dev APK
+        uses: actions/upload-artifact@v1
         with:
           name: app-dev
           path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
-          if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
-  
-  
-  deploy:
-    name: 🚀 Deploy App
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    
-      - name: Retrieve Artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: app-dev
-          #path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
-
-      - name: Create folder
-        run: |
-          mkdir -p AppFolder && cp -R platforms/android/app/build/outputs/apk/debug AppFolder
-
-      - name: Upload APK to FTP
-        uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
-        with:
-          ftp_host: ${{env.FTP_HOST}}
-          ftp_username: ${{env.FTP_USER}}
-          ftp_password: ${{env.FTP_PASSWORD}}
-          local_source_dir: "AppFolder"
-          dist_target_dir: ${{env.FTP_FOLDER}}
-
+          
