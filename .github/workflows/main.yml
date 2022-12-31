@@ -127,6 +127,16 @@ jobs:
           local_source_dir: "app"
           dist_target_dir: ${{env.FTP_FOLDER}}
 
+  publish:
+    name: 📢 Publish to Customer
+    needs: deploy
+    runs-on: ubuntu-latest
+    environment: 
+      name: CLIENT
+    steps:
+    
+      - name: Display message
+        run: echo "Hello World !"
   
   notify:
     name: ✉️ Notify
@@ -140,16 +150,4 @@ jobs:
         run: echo "Hello World !"
 
   
-  publish:
-    name: 📢 Publish to Customer
-    needs: deploy
-    runs-on: ubuntu-latest
-    environment: 
-      name: CLIENT
-    steps:
-    
-      - name: Display message
-        run: echo "Hello World !"
-
-
           
