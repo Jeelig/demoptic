@@ -1,0 +1,16 @@
+#test
+
+name: Build Android
+
+on: [workflow_dispatch]
+
+jobs:
+  namefile:
+    name: 🚀 Build Filename
+    runs-on: ubuntu-latest
+    environment: 
+      name: DEV
+    steps:
+      - name: Install Cordova
+        run: |
+          mkdir $(date +%y)$(date +%m)$(date +%d)abcprod
