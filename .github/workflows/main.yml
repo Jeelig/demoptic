@@ -98,6 +98,9 @@ jobs:
           name: app-dev
           #path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
 
+      - name: Read folders
+        run: ls -R
+          
       - name: Create folder
         run: |
           mkdir -p AppFolder && cp -R platforms/android/app/build/outputs/apk/debug AppFolder
