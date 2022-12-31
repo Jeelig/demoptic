@@ -141,7 +141,7 @@ jobs:
 
   
   communicate:
-    name: 📢 Communicate
+    name: 📢 Publish news to Customer
     needs: deploy
     runs-on: ubuntu-latest
     environment: 
