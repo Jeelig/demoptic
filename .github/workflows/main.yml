@@ -89,7 +89,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     environment: 
-      name: TEST
+      name: DEV
     steps:
     
       - name: Retrieve Artifact
@@ -134,6 +134,18 @@ jobs:
     runs-on: ubuntu-latest
     environment: 
       name: TEST
+    steps:
+    
+      - name: Display message
+        run: echo "Hello World !"
+
+  
+  communicate:
+    name: 📢 Communicate
+    needs: deploy
+    runs-on: ubuntu-latest
+    environment: 
+      name: CLIENT
     steps:
     
       - name: Display message
