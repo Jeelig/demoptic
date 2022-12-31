@@ -132,7 +132,7 @@ jobs:
     needs: deploy
     runs-on: ubuntu-latest
     environment: 
-      name: CLIENT
+      name: Z_CLIENT
     steps:
     
       - name: Display message
