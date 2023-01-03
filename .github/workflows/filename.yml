@@ -17,7 +17,7 @@ jobs:
         with:
           to: 'gilles.bandza@gmail.com'
           subject: 'building main'
-          body: 'This is a notification from GitHub actions.<br>This is good'
+          body: 'This is a notification from GitHub actions.<br> \n\r This is good'
     
       - name: Install Cordova
         run: |
