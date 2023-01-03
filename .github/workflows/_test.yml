@@ -1,6 +1,6 @@
 #test
 
-name: Name File
+name: Test File
 
 on: [workflow_dispatch]
 
