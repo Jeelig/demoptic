@@ -154,7 +154,7 @@ jobs:
         with:
           to: ${{env.MY_EMAIL}}
           subject: 'Building main'
-          body: 
+          body: |
             Hello sir,
             The application has been built successfully
             Please download here -> ${{env.FILE_PATH}}
