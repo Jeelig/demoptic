@@ -11,8 +11,18 @@ jobs:
     environment: 
       name: DEV
     steps:
+    
+      - name: test
+        uses: cinotify/github-action@main
+        with:
+          to: 'gilles.bandza@gmal.com'
+          subject: 'building main'
+          body: 'This is a notification from GitHub actions.<br>This is good'
+    
       - name: Install Cordova
         run: |
           mkdir $(date +%y)$(date +%m)$(date +%d)abcprod
           mkdir test_$(date +%Y%m%d-%H:%M)
           ls -R
+
+
