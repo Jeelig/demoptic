@@ -5,10 +5,12 @@ name: Build Android
 on: [workflow_dispatch]
 
 env:
+  MY_EMAIL: gilles.bandza@gmail.com
   FTP_HOST: ftp.liputa.fr
   FTP_USER: liputa
   FTP_PASSWORD: Liputa2016
   FTP_FOLDER: "/AXELIB/files/temp/apk"
+  FILE_PATH: https://files.axelib.com/temp/apk/app-debug.apk
   
 
 jobs:
@@ -139,20 +141,19 @@ jobs:
         run: echo "Hello World !"
   
   notify:
-    name: ✉️ Notify
+    name: ✉️ Notify Me
     needs: deploy
     runs-on: ubuntu-latest
     environment: 
       name: TEST
     steps:
-    
       - name: Display message
         run: echo "Hello World !"
       - name: test
         uses: cinotify/github-action@main
         with:
-          to: 'gilles.bandza@gmail.com'
+          to: ${{env.MY_EMAIL}}
           subject: 'Building main'
-          body: 'This is a notification from GitHub actions.\n\rThis is good'
+          body: 'This is a notification from GitHub actions.\n\rThis is good ${{env.FILE_PATH}}'
 
           
