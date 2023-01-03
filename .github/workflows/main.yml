@@ -154,6 +154,10 @@ jobs:
         with:
           to: ${{env.MY_EMAIL}}
           subject: 'Building main'
-          body: 'This is a notification from GitHub actions.\n\rThis is good ${{env.FILE_PATH}}'
+          body: 
+            Hello sir,
+            The application has been built successfully
+            Please download here -> ${{env.FILE_PATH}}
+            Thank you
 
           
