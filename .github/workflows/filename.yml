@@ -15,7 +15,7 @@ jobs:
       - name: test
         uses: cinotify/github-action@main
         with:
-          to: 'gilles.bandza@gmal.com'
+          to: 'gilles.bandza@gmail.com'
           subject: 'building main'
           body: 'This is a notification from GitHub actions.<br>This is good'
     
