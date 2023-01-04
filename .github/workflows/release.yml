@@ -20,11 +20,11 @@ jobs:
           filename: '/.VERSION'
           placeholder: '${VERSION}'
           
-      - uses: pocket-apps/action-update-version@v1
-        with:
-          files: 'config.xml' #, app.yaml'
-          version-regexp: '\d+.\d+.\d+'
-          repo-token: ${{ secrets.MY_KEY }}
+      #- uses: pocket-apps/action-update-version@v1
+      #  with:
+      #    files: 'config.xml' #, app.yaml'
+      #    version-regexp: '\d+.\d+.\d+'
+      #    repo-token: ${{ secrets.MY_KEY }}
   
 
           
