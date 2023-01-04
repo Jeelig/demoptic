@@ -11,6 +11,4 @@ jobs:
       - name: test
         uses: actions/checkout@v2
       - name: Find and Replace
-        run: |
-          vi bobo.xml
-          sed -i 's/version="0.0.1"/version="0.0.2"/' bobo.xml
+        run: sed -i 's/version="0.0.1"/version="0.0.2"/' bobo.xml
