@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: pocket-apps/action-update-version@v1
         with:
-          files: 'congif.xml, app.yaml'
+          files: 'config.xml' #, app.yaml'
           version-regexp: '\d+.\d+.\d+'
           repo-token: ${{ secrets.MY_KEY }}
   
