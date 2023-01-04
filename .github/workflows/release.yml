@@ -15,7 +15,10 @@ jobs:
     steps:
       #- name: test
       #  run: echo "hello world"
-      - uses: actions/checkout@v2
+      
+      - name: Checkout source
+        uses: actions/checkout@v2
+        
       - name: Update version
         uses: brettdorrans/write-version-to-file@master
         with:
