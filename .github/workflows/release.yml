@@ -22,7 +22,7 @@ jobs:
       - name: Update version
         uses: brettdorrans/write-version-to-file@master
         with:
-          filename: '/.VERSION'
+          filename: '.VERSION'
           placeholder: '${VERSION}'
           
       #- uses: pocket-apps/action-update-version@v1
