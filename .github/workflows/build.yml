@@ -111,11 +111,11 @@ jobs:
       - name: Upload APK to FTP
         uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
         with:
-          ftp_host: ${{env.FTP_HOST}}
-          ftp_username: ${{env.FTP_USER}}
-          ftp_password: ${{env.FTP_PASSWORD}}
+          ftp_host: ${{secrets.FTP_HOST}}
+          ftp_username: ${{secrets.FTP_USER}}
+          ftp_password: ${{secrets.FTP_PASSWORD}}
           local_source_dir: "app"
-          dist_target_dir: ${{env.FTP_FOLDER}}
+          dist_target_dir: ${{secrets.FTP_FOLDER}}
   
       - name: Create folder
         run: cp -R app/app-debug.apk app/app-debug-$(date +%Y%m%d-%H%M).apk
@@ -157,7 +157,7 @@ jobs:
           body: |
             Hello sir,
             The application has been built successfully
-            Please download here -> ${{env.FILE_PATH}}
+            Please download here -> ${{secrets.FILE_PATH}}
             Thank you
 
           
