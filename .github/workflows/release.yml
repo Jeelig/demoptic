@@ -25,7 +25,8 @@ jobs:
           VERSION=${{ github.event.release.tag_name }}
           VERSION=${VERSION:1}
           #sed -i '/widget/s/version="[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}"/version="${{ github.event.release.tag_name }}"/' bobo.xml
-          sed -i '/widget/s/version="[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}"/version="$VERSION"/' bobo.xml
+          #sed -i '/widget/s/version="[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}"/version="$VERSION"/' bobo.xml
+          sed -i "/widget/s/version=\"[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\"/version=\"${VERSION}\"/" bobo.xml
           
       - name: Commit & Push changes
         uses: actions-js/push@master
