@@ -26,11 +26,10 @@ jobs:
           echo "VERSION -> ${{ github.event.release.tag_name }}"
           sed -i '/widget/s/version="[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}"/version="${{ github.event.release.tag_name }}"/' bobo.xml
           
-      #- uses: pocket-apps/action-update-version@v1
-      #  with:
-      #    files: 'config.xml' #, app.yaml'
-      #    version-regexp: '\d+.\d+.\d+'
-      #    repo-token: ${{ secrets.MY_KEY }}
+      - name: Commit & Push changes
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.MY_KEY }}
   
 
           
