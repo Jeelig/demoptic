@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.OpticStoreFinder.finder" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>OpticStoreFinder</name>
-    <description>Sample Apache Cordova App</description>
-    <author email="dev@cordova.apache.org" href="https://cordova.apache.org">
-        Apache Cordova Team
+    <description>Optic Store Finder</description>
+    <author email="opticstorefinder@gmail.com" href="https://cordova.apache.org">
+        Gilles Bandza @Optic Store Finder
     </author>
     <content src="index.html" />
     <allow-intent href="http://*/*" />
