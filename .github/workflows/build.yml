@@ -40,32 +40,17 @@ jobs:
       - name: Add Android platform
         run: cordova platform add android@latest
 
-      - name: Add Plugins splashscreen
-        run: cordova plugin add cordova-plugin-splashscreen
-
-      #- name: Add Plugins whitelist
-      #  run: cordova plugin add cordova-plugin-whitelist
-
-      - name: Add Plugins device
-        run: cordova plugin add cordova-plugin-device
-
-      - name: Add Plugins statusbar
-        run: cordova plugin add cordova-plugin-statusbar
-
-      - name: Add Plugins dialogs
-        run: cordova plugin add cordova-plugin-dialogs
-
-      - name: Add Plugins file
-        run: cordova plugin add cordova-plugin-file
-        
-      - name: Add Plugin Splashscreen
-        run: cordova plugin add cordova-plugin-splashscreen
-
-      - name: Add Plugin camera
-        run: cordova plugin add https://github.com/apache/cordova-plugin-camera.git
-        
-      #- name: Add Plugins firebase
-      #  run: cordova plugin add cordova-plugin-firebase-lib --save
+      - name: Add Cordova Plugins
+        run: |
+          cordova plugin add cordova-plugin-splashscreen
+          cordova plugin add cordova-plugin-device
+          cordova plugin add cordova-plugin-statusbar
+          cordova plugin add cordova-plugin-dialogs
+          cordova plugin add cordova-plugin-file
+          cordova plugin add cordova-plugin-splashscreen
+          cordova plugin add https://github.com/apache/cordova-plugin-camera.git
+          #cordova plugin add cordova-plugin-whitelist
+          #cordova plugin add cordova-plugin-firebase-lib --save
 
       - name: Build Android Dev APK
         run: cordova build android --debug
