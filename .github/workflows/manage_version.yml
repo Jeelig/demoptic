@@ -11,7 +11,8 @@ jobs:
       - name: test
         uses: actions/checkout@v2
       - name: Find and Replace
-        run: sed -i 's/version="0.0.1"/version="0.0.2"/' bobo.xml
+        #run: sed -i 's/version="0.0.1"/version="0.0.2"/' bobo.xml
+        run: sed -i '/widget/s/version="0.0.0"/version="0.0.1"/' bobo.xml
       #- name: Push changes
       #  uses: ad-m/github-push-action@v0.6.0
       #  with:
