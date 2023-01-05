@@ -6,10 +6,10 @@ on: [workflow_dispatch]
 
 env:
   MY_EMAIL: gilles.bandza@gmail.com
-  #FTP_HOST: ftp.liputa.fr
-  #FTP_USER: liputa
+  #FTP_HOST: 
+  #FTP_USER: 
   #FTP_PASSWORD: 
-  #FTP_FOLDER: "/AXELIB/files/temp/apk"
+  #FTP_FOLDER: 
   #FILE_PATH: https://files.axelib.com/temp/apk/app-debug.apk
   
 
