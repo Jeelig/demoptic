@@ -5,21 +5,16 @@ on:
     types: [published]
     tags:
       - v[0-9]+.[0-9]+.[0-9]+
-      
-  #push:
-  #  tags:
-  #    - v[0-9]+.[0-9]+.[0-9]+
-
 
 jobs:
   namefile:
-    name: 🚀 Build Filename
+    name: 🚀 Release application
     runs-on: ubuntu-latest
     environment: 
       name: DEV
     steps:
-      - name: test
-        run: echo "hello world"
+      - name: Start
+        run: echo "Starting job"
         
       - name: Checkout source
         uses: actions/checkout@v2
