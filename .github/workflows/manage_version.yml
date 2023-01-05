@@ -16,7 +16,7 @@ jobs:
         #run: sed -i '/widget/s/version="\([0-9]+.[0-9]+.[0-9]+\)"/version="0.0.2"/' bobo.xml
         #run: sed -i '/widget/s/version="[0-9]+.[0-9]+.[0-9]+"/version="0.0.3"/' bobo.xml
         #run: sed -i '/widget/s/version="\([^"]*\)"/version="0.0.31"/' bobo.xml #WORKS !
-        run: sed -i '/widget/s/version="\([0-9]+.[0-9]+.[0-9]+\)"/version="0.0.32"/' bobo.xml
+        run: sed -i '/widget/s/version="\([0-9]+.[0-9]+.[0-9]+*\)"/version="0.0.32"/' bobo.xml
       #- name: Push changes
       #  uses: ad-m/github-push-action@v0.6.0
       #  with:
