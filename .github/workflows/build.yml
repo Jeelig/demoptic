@@ -6,11 +6,11 @@ on: [workflow_dispatch]
 
 env:
   MY_EMAIL: gilles.bandza@gmail.com
-  FTP_HOST: ftp.liputa.fr
-  FTP_USER: liputa
-  FTP_PASSWORD: Liputa2016
-  FTP_FOLDER: "/AXELIB/files/temp/apk"
-  FILE_PATH: https://files.axelib.com/temp/apk/app-debug.apk
+  #FTP_HOST: ftp.liputa.fr
+  #FTP_USER: liputa
+  #FTP_PASSWORD: 
+  #FTP_FOLDER: "/AXELIB/files/temp/apk"
+  #FILE_PATH: https://files.axelib.com/temp/apk/app-debug.apk
   
 
 jobs:
@@ -123,11 +123,11 @@ jobs:
       - name: Upload APK to FTP
         uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
         with:
-          ftp_host: ${{env.FTP_HOST}}
-          ftp_username: ${{env.FTP_USER}}
-          ftp_password: ${{env.FTP_PASSWORD}}
+          ftp_host: ${{ secrets.FTP_HOST }}
+          ftp_username: ${{secrets.FTP_USER}}
+          ftp_password: ${{secrets.FTP_PASSWORD}}
           local_source_dir: "app"
-          dist_target_dir: ${{env.FTP_FOLDER}}
+          dist_target_dir: ${{secrets.FTP_FOLDER}}
 
   publish:
     name: 📢 Publish to Customer
