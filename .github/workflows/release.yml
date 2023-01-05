@@ -33,6 +33,16 @@ jobs:
         with:
           github_token: ${{ secrets.MY_KEY }}
   
+      - name: Notify
+        uses: cinotify/github-action@main
+        with:
+          to: ${{env.MY_EMAIL}}
+          subject: 'Building main'
+          body: |
+            Hello sir,
+            The application (${{env.APP_NAME}}) has been built successfully.
+            Please download here -> ${{secrets.FILE_PATH}}
+            Thank you
 
           
           
