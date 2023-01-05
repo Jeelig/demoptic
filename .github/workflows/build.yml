@@ -6,6 +6,7 @@ on: [workflow_dispatch]
 
 env:
   MY_EMAIL: gilles.bandza@gmail.com
+  APP_NAME: Optic Store Finder
 
 jobs:
   build:
@@ -150,7 +151,7 @@ jobs:
           subject: 'Building main'
           body: |
             Hello sir,
-            The application has been built successfully
+            The application (${{env.APP_NAME}}) has been built successfully.
             Please download here -> ${{secrets.FILE_PATH}}
             Thank you
 
