@@ -6,7 +6,7 @@ var routes = [
   },
   {
     path: '/opticiens/',
-    url: './pages/about.html',
+    url: './pages/opticiens.html',
   },
   {
     path: '/profile/',
@@ -96,8 +96,8 @@ var routes = [
       setTimeout(function () {
         // We got user data from request
         var user = {
-          firstName: 'Vladimir',
-          lastName: 'Kharlampidi',
+          firstName: 'Gilles',
+          lastName: 'Bandza',
           about: 'Hello, i am creator of Framework7! Hope you like it!',
           links: [
             {

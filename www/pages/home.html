@@ -727,7 +727,7 @@
                         <div class="mLine"></div>
                         <div class="art_title">{{current.titre}}</div>
                         <div class="art_subtitle">{{current.soustitre}}</div>
-                        <div class="block">{{current.contenu}}</div>
+                        <div class="block" ng-bind-html="current.contenu"></div>
                     </div>
                 </div>
             </div>

@@ -2539,3 +2539,16 @@ ul.usefull_for li::before {
         font-weight: 400;
     }
 }
+
+.loadMore {
+    width:200px; 
+    font-size:10px; 
+    margin: 0 auto;
+}
+
+.loadMore button {
+    margin-top:5px; 
+    font-size: 10px;
+    text-transform: none; 
+    background-color: dimgrey; 
+}

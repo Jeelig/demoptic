@@ -3,7 +3,8 @@ var $$ = Dom7;
 var device = Framework7.getDevice();
 
 var global = {
-	user: null
+	user: null,
+	position: null
 };
 
 global.category_name = '';
@@ -20,7 +21,7 @@ if (document.location.search.indexOf('theme=') >= 0) {
 var MyApp = {};
 MyApp.config = {};
 
-MyApp.angular = angular.module('MyApp', ["ngTouch"])
+MyApp.angular = angular.module('MyApp', ["ngTouch", "ngSanitize"])
 /*
 This directive is used to open regular and dynamic href links inside of inappbrowser.
 */
@@ -42,6 +43,8 @@ This directive is used to open regular and dynamic href links inside of inappbro
 		}
 	};
 });
+
+
 
 MyApp.fw7 = {
 	app : new Framework7({

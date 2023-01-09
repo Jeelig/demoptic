@@ -1,4 +1,4 @@
-<div class="page" data-name="opticiens" ng-controller="OpticiensController" ng-init="init()">
+<div class="page opticiens" data-name="opticiens" ng-controller="OpticiensController" ng-init="init()">
 	<div class="navbar">
 		<div class="navbar-bg"></div>
 		<div class="navbar-inner sliding">
@@ -27,7 +27,7 @@
 
             <div class="f7-icons place_icon" ng-click="filter=!filter">placemark</div>
             <div class="searchpro2" ng-click="filter=!filter"><i class="f7-icons">search</i></div>
-            <div style="width:calc(100% - 40px)">
+            <div style="width:calc(100% - 40px)" ng-click="localize()">
                 <button class="col button button-raised button-fill button-round" style="margin-top:15px; text-transform: none; color: #bbc6ff;">Localiser ma position</button>
             </div>
             
@@ -61,7 +61,7 @@
                 <ul ng-show="optics.length>0">
                     <li ng-repeat="optic in optics | filter:search">
                         <div class="f7-icons fleche_bas">arrow_right_circle_fill</div>
-                        <div class="optic_distance">2 km</div>
+                        <div class="optic_distance" ng-show="position">{{optic.distance}}</div>
                         <a href="/opticien/{{optic.id}}/" class="item-link item-content">
                             <div class="item-media"><img ng-src="{{optic.image || 'assets/img/no.png'}}" width="48" style="border-radius: 5px;" /></div>
                             <div class="item-inner">
@@ -82,6 +82,10 @@
                 </ul>
             </div>
 
+            <div class="loadMore" ng-click="loadMore()" ng-show="optics.length > 0">
+                <button class="button button-raised button-fill button-round button-small">Charger plus ...</button>
+            </div>
+    
         </div>
 
 	</div>
