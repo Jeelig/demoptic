@@ -518,9 +518,9 @@ ul.list_of_motifs li.clickcollect {
 .optic_distance {
     position: absolute;
     right: 0;
-    font-size: 12px;
-    margin-top: 15px;
-    color:#555;
+    font-size: 11px;
+    margin-top: 20px;
+    color: #555;
 }
 
 .bulle_green {
@@ -1228,10 +1228,13 @@ label.toggle.toggle-init {
     margin-top: -25px;
     right: 53px;
 }
+.ppbuddy ul li div {
+    cursor: pointer;
+}
 
 .mLine {
     width:60%;
-    border-bottom: solid 1px #000;
+    border-bottom: solid 1px #cfcfcf;
     margin:0 auto;
     margin-top:18px;
     margin-bottom: 20px;
@@ -1630,7 +1633,7 @@ ul.essayage_list li > div > div {
     bottom: 0;
     width: 100%;
     text-align: center;
-    background-color: #F00;
+    background-color: #9f2828;
 }
 
 .timeline-item.finish .timeline-item-divider {
@@ -2499,6 +2502,54 @@ ul.usefull_for li::before {
     font-size: 8.5px;
 }
 
+.loadMore {
+    width:200px; 
+    font-size:10px; 
+    margin: 0 auto;
+}
+
+.loadMore button {
+    margin-top:5px; 
+    font-size: 10px;
+    text-transform: none; 
+    background-color: dimgrey; 
+}
+
+.displayPosition {
+    position: absolute;
+    right: 15px;
+    font-size: 14px;
+    margin-top: -23px;
+    color: #AAA
+}
+
+.loading-results {
+    width: 15px;
+    height: 15px;
+    margin-top: 2px;
+}
+
+@keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+}
+
+.art_skeleton {
+    animation: blinker 1.5s linear infinite;
+}
+
+.input_inconfort {
+    height: 60px;
+    border: solid 1px #ebebeb;
+    width: 100%;
+    margin-top: 10px;
+    padding: 5px;
+    color: #0b2b64;
+}
+
+
+
 
 
 
@@ -2538,17 +2589,4 @@ ul.usefull_for li::before {
         font-size: 12px;
         font-weight: 400;
     }
-}
-
-.loadMore {
-    width:200px; 
-    font-size:10px; 
-    margin: 0 auto;
-}
-
-.loadMore button {
-    margin-top:5px; 
-    font-size: 10px;
-    text-transform: none; 
-    background-color: dimgrey; 
 }

@@ -7,30 +7,31 @@ MyApp.angular.controller('RendezvousController', ['$scope', '$rootScope', 'InitS
 	
 	var self = this;
 	var rootEvents = [];
-	
+	// filter_motifs
     $scope.user = {};
     $scope.prestation = null;
     $scope.dateChoosed = false;
-    $scope.prestations = [{
-        id: 1, type: "rdv", time: 90, class: "lunettes",
+    $scope.prestations = [];
+    self.prestations = [{
+        id: 1, type: "rdv", time: 90, class: "lunettes", filter: false,
         name: "Vérification de la vue + lunettes"
     }, {
-        id: 2, type: "rdv", time: 60, class: "lunettes",
+        id: 2, type: "rdv", time: 60, class: "lunettes", filter: false,
         name: "Lunettes"
     }, {
-        id: 3, type: "rdv", time: 60, class: "alentilles",
+        id: 3, type: "rdv", time: 60, class: "alentilles", filter: false,
         name: "Adaptation lentilles"
     }, {
-        id: 4, type: "rdv", time: 30, class: "lentilles",
+        id: 4, type: "rdv", time: 30, class: "lentilles", filter: false,
         name: "Lentilles"
     }, {
-        id: 5, type: "rdv", time: 30, class: "reparations",
+        id: 5, type: "rdv", time: 30, class: "reparations", filter: true,
         name: "Réparations"
     }, {
-        id: 6, type: "rdv", time: 15, class: "ajustage",
+        id: 6, type: "rdv", time: 15, class: "ajustage", filter: true,
         name: "Ajustages"
     }, {
-        id: 7, type: "ccl", time: 15, class: "clickcollect",
+        id: 7, type: "ccl", time: 15, class: "clickcollect", filter: false,
         name: "Click & Collect",
         subtext: "Lentilles et produits"
     }];
@@ -41,11 +42,20 @@ MyApp.angular.controller('RendezvousController', ['$scope', '$rootScope', 'InitS
 	
 	$scope.init = function() {
         $scope.state = "motif";
+        $scope.prestations = angular.copy(self.prestations);
         self.calendar = MyApp.fw7.app.calendar.create({
             inputEl: '#calendar-input'
         });
         $scope.opticien = localStorage.getItem("opticien");
         $scope.opticien = JSON.parse($scope.opticien);
+        if (global.filter_motifs) {
+            global.filter_motifs = false;
+            $scope.prestations = [];
+            for (let i = 0; i < self.prestations.length; i++) {
+                if (self.prestations[i].filter == true)
+                    $scope.prestations.push(self.prestations[i]);
+            }
+        }
         self.getcalendar();
         self.sync();
 	};

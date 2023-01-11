@@ -52,9 +52,11 @@ MyApp.angular.controller('AfterSaleController', ['$scope', '$rootScope', 'InitSe
     $scope.ShowInconfort = function() {
         $$(".zinconfort").show();
     };
+    
     $scope.HideInconfort = function() {
         $$(".zinconfort").hide();
     };
+
     $scope.ClickArea = function(area) {
         $scope.zoneinconfort = area;
         self.sync();
@@ -73,7 +75,7 @@ MyApp.angular.controller('AfterSaleController', ['$scope', '$rootScope', 'InitSe
                 break;
             case 2: data = {received: false, callback: false, remark: "Le client n'a toujours pas reçu ses lunettes. Ne souhaite pas être recontacté pour l'instant" };
                 break;
-            case 3: data = {received: false, note: $scope.note, callback: true, OriginProblem: $scope.origin, remark: "Le client a reçu ses lunettes. Il est satisfait !" };
+            case 3: data = {received: false, note: $scope.note, callback: true, OriginProblem: $scope.origin, remark: "Le client a reçu ses lunettes. Il est satisfait !", comment: $scope.comment };
                 break;
             case 4: data = {received: false, note: $scope.note, callback: true, OriginProblem: $scope.origin, remark: "Le client a reçu ses lunettes. Cependant il rencontre un problème d'esthétique" };
                 openRdv = true;
@@ -94,6 +96,7 @@ MyApp.angular.controller('AfterSaleController', ['$scope', '$rootScope', 'InitSe
                 self.toastSuccess.open(); // Open it
                 if (data.note) MyApp.fw7.app.emit("RdvTermine", $scope.id, data.note);
                 if (openRdv) {
+                    global.filter_motifs = true;
                     localStorage.setItem("opticien", JSON.stringify($scope.rdv.opticien));
                     if (global.user && global.user.id) {
                         $scope.disabled = false;

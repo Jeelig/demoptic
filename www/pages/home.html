@@ -46,7 +46,8 @@
             <div class="ofl_text1">Votre guide pour choisir vos lunettes.</div>
             <div class="ofl_text2">Vos critères, vos choix.</div>
             <div class="ofl_text3">Une expérience client intuitive avec des opticiens au service de votre vision</div>
-            <div class="ofl_img"><img src="assets/img/ouv/pictoouverture.png"/></div>
+            <!--<div class="ofl_img"><img src="assets/img/ouv/pictoouverture.png"/></div>-->
+            <div class="ofl_img"><img src="assets/img/ouv/pictopopup.png"/></div>
             <div class="ofl_text4">Vivez une expérience <br>unique.</div>
             <div class="ofl_btn">
                 <button class="col button button-raised button-fill button-round" onclick="document.querySelector('.OpticFirstLaunch').remove()">Se connecter</button>
@@ -97,6 +98,7 @@
         <div class="header_osf" ng-show="mode=='read'">
             <img src="assets/img/optic2.jpg" style="height: 100%;" />
         </div>
+
         <div class="header_edition" ng-show="mode=='edit'">
             <ul>
                 <li><div class="f7-icons" ng-click="moveForm('left')">arrow_left</div></li>
@@ -116,27 +118,27 @@
                     et des opticiens engagés
                 </div>
     
-                <a href="/opticiens/" class="item-content item-link">
-                    <div class="bluebloc">
-                        <div class="kpm"><img src="assets/img/home/home_home.png" style="width: auto; height: 55px; margin-right: -20px;" /></div>
-                        <div class="indic">Vos opticiens engagés</div>
-                    </div>
-                </a>
                 <a href="/engagements/" class="item-content"><!-- /*onclick="window.open(encodeURI('https://opticsolutions.owiz.fittingbox.com/#/catalog'), '_system')"*/-->
                     <div class="bluebloc">
-                        <div class="kpm"><img src="assets/img/howto/lesengagements.png" style="width: auto; height: 40px;" /></div>
+                        <div class="kpm"><img src="assets/img/home/home_sc_engagementsmain.png" style="width:auto; height:40px; margin-right:12px;" /></div>
                         <div class="indic">Les engagements</div>
                     </div>
                 </a> 
+                <a href="/opticiens/" class="item-content item-link">
+                    <div class="bluebloc">
+                        <div class="kpm"><img src="assets/img/home/home_sc_localiser.png" style="width:auto; height:44px; margin-right:18px;" /></div>
+                        <div class="indic">Vos opticiens engagés</div>
+                    </div>
+                </a>
                 <a href="#" class="item-content" ng-click="setTab('vsg')">
                     <div class="bluebloc">
-                        <div class="kpm"><img src="assets/img/home/home_visage.png" style="width: auto; height: 65px;" /></div>
+                        <div class="kpm"><img src="assets/img/home/home_sc_conseilslunettes.png" style="width:auto; height:42px; margin-right:10px;" /></div>
                         <div class="indic">Nos conseils visagisme</div>
                     </div>
                 </a>
                 <a href="#" class="item-content item-link" ng-click="GoAfterSale()">
                     <div class="bluebloc">
-                        <div class="kpm icon"><img src="assets/img/home/home_settings.png" style="width: auto; height: 60px; margin-right: -17px;" /></div>
+                        <div class="kpm icon"><img src="assets/img/home/home_sc_sav.png" style="width:auto; height:41px; margin-right:9px;" /></div>
                         <div style="position: absolute; margin: 50px 0 0 20px; color: #898989;">avec votre opticien</div>
                         <div class="indic">L'après vente</div>
                     </div>
@@ -382,11 +384,11 @@
                 
                 <div class="vsg_page_3" ng-show="pageVsg=='page3'">
                     <div class="vsg_graydv" style="padding-top: 15px; padding-bottom:20px">
-                        <div class="vsg_big_title">Trouver votre style</div>
+                        <div class="vsg_big_title">Résumé</div><!--
                         <div class="vsg_info_bulle">
                             <div class="lgt_blb_vsg1"><img src="assets/img/face/ampoule.png"></div>
                             Autres formes
-                        </div>
+                        </div>-->
                         <div class="vsg_info_block">
                             <div class="head">
                                 <div class="lgt_blb_vsg2"><img src="assets/img/face/ampoule.png"></div>
@@ -430,7 +432,13 @@
                                 <li ng-class="{'active': trend_menu=='saved'}" ng-click="trend_menu='saved'">Sauvegardés</li>
                             </ul>
                         </div>
-
+                        
+                        <div class="top_news art_skeleton">
+                            <a href="#">
+                                <img src="assets/img/top_trend.png" />
+                            </a>
+                        </div>
+                        
                         <div class="top_news" ng-show="(trend_menu!='saved') || ((trend_menu=='saved') && top_article.saved)" ng-if="top_article">
                             <a href="#" class="sheet-open" data-sheet=".my-sheet-swipe-to-close" ng-click="setArticle(top_article)">
                                 <img ng-src="{{top_article.image}}" />
@@ -441,6 +449,24 @@
                 </div>
 
                 <div style="background-color:#FFF; min-height:300px; margin-top:-50px; border-radius:40px 40px 0 0;">
+
+                    <div class="sub_trends_area art_skeleton">
+                        <div class="ttitle">
+                            <div style="width:150px; height:15px; background-color:#CCC;"></div>
+                        </div>
+                        <div style="overflow-x: scroll;">
+                            <div>
+                                <ul>
+                                    <li style="background-color: #CCC;">
+                                        <div>. . .</div>
+                                    </li>
+                                    <li style="background-color: #CCC;">
+                                        <div>. . .</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="sub_trends_area" ng-repeat="trend in trends">
                         <div class="ttitle">{{trend.name}}</div>

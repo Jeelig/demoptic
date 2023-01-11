@@ -10,6 +10,7 @@
 			</div>
 			<div class="title">Trouver mon opticien</div>
 			<div class="right">
+                <div class="preloader color-white loading-results hidden"></div>
 				<a href="#" class="link" ng-click="init()">
 					<div class="f7-icons">arrow_counterclockwise</div>
 				</a>
@@ -59,7 +60,7 @@
             <div class="list media-list inset">
                 <div class="preloader" ng-show="optics.length<=0"></div>
                 <ul ng-show="optics.length>0">
-                    <li ng-repeat="optic in optics | filter:search">
+                    <li ng-repeat="optic in optics | filter:search" ng-click="setDistance(optic.distance)">
                         <div class="f7-icons fleche_bas">arrow_right_circle_fill</div>
                         <div class="optic_distance" ng-show="position">{{optic.distance}}</div>
                         <a href="/opticien/{{optic.id}}/" class="item-link item-content">

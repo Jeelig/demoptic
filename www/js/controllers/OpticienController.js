@@ -7,6 +7,7 @@ MyApp.angular.controller('OpticienController', ['$scope', '$rootScope', 'InitSer
 	
 	var self = this;
 	var rootEvents = [];
+    $scope.optic = {};
     $scope.matieres = [{
         id: 0, name: "Titane", class: "cr_tita", marques: "Ray-Ban, Gucci, Prada, Izipizi ...", active: false,
         description: "Resistantes et ultra légères, les montures en titane sont élégantes et ne vous laisseront pas de marque sur le nez."
@@ -35,8 +36,11 @@ MyApp.angular.controller('OpticienController', ['$scope', '$rootScope', 'InitSer
 	
 	$scope.init = function() {
         $scope.id_matiere = -1;
+        $scope.optic.distance = global.optic_distance;
+        self.sync();
         MyApp.fw7.app.on("opticien", function(e) {
             $scope.optic = e;
+            $scope.optic.distance = global.optic_distance;
             localStorage.setItem("opticien", JSON.stringify(e));
             self.sync();
         });

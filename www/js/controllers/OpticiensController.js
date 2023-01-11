@@ -17,8 +17,10 @@ MyApp.angular.controller('OpticiensController', ['$scope', '$rootScope', 'InitSe
     $scope.serviceurl = "https://api.axelib.io/0.1/specific/osf/opticiens.php";
     
 	$scope.init = function() {
+        $scope.page = 0;
         $scope.optics = [];
         self.sync();
+        $$(".loadMore").removeClass("hidden");
         if (global.position) {
             self.setPositionActive();
             $scope.position = global.position;
@@ -35,6 +37,10 @@ MyApp.angular.controller('OpticiensController', ['$scope', '$rootScope', 'InitSe
         }
 	};
 
+    $scope.setDistance = function(d) {
+        global.optic_distance = d;
+    };
+
     self.getOpticiens = function(page) {
         $scope.page++;
         self.sync();
@@ -44,12 +50,13 @@ MyApp.angular.controller('OpticiensController', ['$scope', '$rootScope', 'InitSe
                 url += "&latitude=" + global.position.latitude + "&longitude=" + global.position.longitude;
             }
             MyApp.fw7.app.request.get(url).then((response) => {
+                $$(".loading-results").addClass("hidden");
                 if (response.error != null) console.warn(response.error.messages);
                 else {
                     response.data = JSON.parse(response.data);
                     console.log(response.data);
                     if (response.data.length <= 0) {
-                        $$(".loadMore").hide();
+                        $$(".loadMore").addClass("hidden");
                         $scope.page--;
                         self.sync();
                         return;
@@ -59,26 +66,55 @@ MyApp.angular.controller('OpticiensController', ['$scope', '$rootScope', 'InitSe
                 }
             })
             .catch((err) => {
+                $$(".loading-results").addClass("hidden");
                 console.warn(err.response.text)
             });
         }, 500);
     };
 
     $scope.loadMore = function() {
+        $$(".loading-results").removeClass("hidden");
         self.getOpticiens();
     };
 
     $scope.localize = function() {
+        if (global.position != null) return;
         navigator.geolocation.getCurrentPosition(function(position) {
             global.position = position.coords;
             console.log(global.position);
             self.setPositionActive();
-        });
+            $scope.init();
+        }, self.ErrorLocation);
+    };
+
+    self.ErrorLocation = function(error) {
+        switch(error.code) {
+            case error.PERMISSION_DENIED:
+                self.toast("L'appareil n'autorise pas la demande de géolocalisation")
+                break;
+            case error.POSITION_UNAVAILABLE:
+                self.toast("La géolocalisation n'est pas opérationnelle")
+                break;
+            case error.TIMEOUT:
+                self.toast("La demande de géolocalisation a mis trop de temps")
+                break;
+            case error.UNKNOWN_ERROR:
+                self.toast("Une erreur innatendue s'est produite.")
+                break;
+        }
     };
 
     self.setPositionActive = function() {
         $$(".page.opticiens .col.button.button-fill").css("color", "#FFF");
         $$(".page.opticiens .col.button.button-fill").css("background-color", "#3BB7B1");
+    };
+
+    self.toast = function(msg) {
+        let toastBottom = MyApp.fw7.app.toast.create({
+            text: msg,
+            closeTimeout: 2000,
+        });
+        toastBottom.open();
     };
 
     self.sync = function () { 

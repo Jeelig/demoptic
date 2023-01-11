@@ -778,3 +778,17 @@ let user_preferences = {
 	offers_push: true,
 	offers_email: false
 };
+
+let user_parameters = {
+	synchro_calendar: true,
+	account_state: "active",
+	two_step_verification: false,
+	profile_visibility_global: false,
+	profile_visibility_favorites: true,
+	profile_data_global: false,
+	profile_data_favorites: true,
+	push_notifications: true,
+	trends_notifications: true,
+	offers_notifications_push: true,
+	offers_notifications_email: false
+};

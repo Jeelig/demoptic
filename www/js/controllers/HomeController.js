@@ -164,7 +164,7 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
             setTimeout(function() {
                 let el = document.querySelector('.OpticFirstLaunch');
                 if (el) el.remove();
-            }, 50);
+            }, 0);
         }
         //else localStorage.setItem("firstlaunch", true);
         $scope.trend_menu = "discover";
@@ -352,8 +352,10 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
             self.getRdv();
         }
         else if (tab_name == 'trends') {
-            self.getTop();
-            self.getTrends();
+            setTimeout(function() {
+                self.getTop();
+                self.getTrends();
+            }, 1500);
         }
         else if (tab_name == "vsg") {
             //debugger;
@@ -367,7 +369,7 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
                     if (e && (e.activeIndex > 0)) {
                         $$(".vsg_down").show();
                         $$(".fab-edit").show();
-                        $(".fab.fab-right-bottom").addClass("shunpo");
+                        //$(".fab.fab-right-bottom").addClass("shunpo");
                         if (e.activeIndex == 1) self.setForms("rond");
                         else if (e.activeIndex == 2) self.setForms("ovale");
                         else if (e.activeIndex == 3) self.setForms("carre");
@@ -378,7 +380,7 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
                     else {
                         $$(".vsg_down").hide();
                         $$(".fab-edit").hide();
-                        $(".fab.fab-right-bottom").removeClass("shunpo");
+                        //$(".fab.fab-right-bottom").removeClass("shunpo");
                     }
                 });
                 self.CheckChoices();
@@ -553,6 +555,7 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
         .then((response) => {
             console.log(response);
             $scope.top_article = response.data[0];
+            $$(".top_news.art_skeleton").hide();
             self.sync();
         }).catch((error) => {
             console.warn(error);
@@ -606,6 +609,7 @@ MyApp.angular.controller('HomeController', ['$scope', '$rootScope', 'InitService
             console.log(response);
             $scope.trends = response.data;
             self.sync();
+            $$(".sub_trends_area.art_skeleton").hide();
             self.getSavedArticles();
         }).catch((error) => {
             console.warn(error);
