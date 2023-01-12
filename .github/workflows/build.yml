@@ -49,6 +49,7 @@ jobs:
           cordova plugin add cordova-plugin-file
           cordova plugin add cordova-plugin-splashscreen
           cordova plugin add cordova-plugin-geolocation
+          cordova plugin add cordova-plugin-ionic-keyboard --save
           cordova plugin add https://github.com/apache/cordova-plugin-camera.git
           #cordova plugin add cordova-plugin-whitelist
           #cordova plugin add cordova-plugin-firebase-lib --save
